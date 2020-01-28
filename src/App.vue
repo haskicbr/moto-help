@@ -1,5 +1,4 @@
 <script>
-    import HelloWorld from "./components/HelloWorld.vue";
 
     export default {
         name: "app",
@@ -22,12 +21,7 @@
             testComputedValue() {
                 return this.$store.state.testComputed.computedValue
             }
-
         },
-
-        components: {
-            HelloWorld
-        }
     };
 </script>
 
@@ -44,20 +38,20 @@
 
 <template>
     <div id="app">
-        <img alt="Vue logo" src="./assets/logo.png"/>
-        <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+        <ul>
+            <li>
+                <router-link to="/foo">Go to Foo</router-link>
+            </li>
+            <li>
+                <router-link to="/animations">Go to animations</router-link>
+            </li>
+            <li>
+                <router-link to="/mileage">Go to mileages</router-link>
+            </li>
+        </ul>
 
 
-        <h1>{{testComputedValue}}</h1>
-        <h1>{{testComputedData}}</h1>
-        <h1>{{testCountData}}</h1>
-        <h1>{{testTextData}}</h1>
-        <h1>{{testCountFromComputed}}</h1>
-
-
-        <router-link to="/foo">Go to Foo</router-link>
-        <router-link to="/animations">Go to animations</router-link>
-        <router-link to="/mileage">Go to mileages</router-link>
 
         <router-view></router-view>
 

@@ -77,11 +77,9 @@
 
         <ul>
             <li v-for="(val, key, index) in testArray">
-
                 val : {{val}}
                 key : {{key}}
                 index : {{index}}
-
             </li>
 
 

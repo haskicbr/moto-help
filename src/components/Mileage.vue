@@ -1,4 +1,7 @@
 <script>
+
+    import { MileageActions } from "../store/actions"
+
     export default {
         name: "Mileage",
 
@@ -7,9 +10,7 @@
 
             addMileage() {
 
-
-
-                this.$store.commit('addMileage', {
+                this.$store.commit(MileageActions.ADD_MILEAGE, {
                     mileage: {
                         action:      "checkPressure",
                         description: "Проверка давления в шинах",
@@ -27,14 +28,16 @@
 <template>
 
 
-    <h1>
-
+    <div>
         <button v-on:click="addMileage">
             add mileage
         </button>
 
+        <br>
+
         {{$store.state.mileages}}
-    </h1>
+
+    </div>
 
 
 </template>

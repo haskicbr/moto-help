@@ -8,6 +8,10 @@ import VueRouter from 'vue-router'
 
 import 'bootstrap-css-only/css/bootstrap.min.css'
 import 'mdbvue/build/css/mdb.css'
+import { MileageActions } from "./store/actions"
+
+
+console.log(MileageActions)
 
 
 
@@ -18,6 +22,18 @@ Vue.use(Vuex);
 Vue.use(VueRouter);
 
 Vue.config.productionTip = false;
+
+let mutations =  {
+    increment(state) {
+        state.count++
+    }
+}
+
+mutations[MileageActions.ADD_MILEAGE] = (state, payload) => {
+    state.mileages.push(payload.mileage);
+};
+
+
 
 const store = new Vuex.Store({
     state: {
@@ -39,16 +55,8 @@ const store = new Vuex.Store({
         }
     },
 
-    mutations: {
 
-        addMileage(state, payload) {
-            state.mileages.push(payload.mileage);
-        },
-
-        increment(state) {
-            state.count++
-        }
-    },
+    mutations,
     actions: {
         increment(context) {
             context.commit('increment')
