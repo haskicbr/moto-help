@@ -8,10 +8,10 @@ import VueRouter from 'vue-router'
 
 import 'bootstrap-css-only/css/bootstrap.min.css'
 import 'mdbvue/build/css/mdb.css'
-import { MileageActions } from "./store/actions"
+import { MileageMutationTypes } from "./store/mutations/mutationTypes"
 
 
-console.log(MileageActions)
+console.log(MileageMutationTypes)
 
 
 
@@ -29,7 +29,7 @@ let mutations =  {
     }
 }
 
-mutations[MileageActions.ADD_MILEAGE] = (state, payload) => {
+mutations[MileageMutationTypes.ADD_MILEAGE] = (state, payload) => {
     state.mileages.push(payload.mileage);
 };
 
