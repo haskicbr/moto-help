@@ -1,15 +1,7 @@
 <script>
-    import {
-        mdbBtn,
-        mdbBtnFixed,
-        mdbBtnFixedItem,
-        mdbBtnGroup,
-        mdbIcon
-    } from "mdbvue";
 
     export default {
         components: {
-            mdbBtn
         },
 
         methods: {
@@ -44,29 +36,6 @@
 <template>
     <div>
         <h1>test template</h1>
-        <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-        <mdb-btn color="primary">Primary</mdb-btn>
-        <mdb-btn color="primary">Primary</mdb-btn>
-        <mdb-btn color="primary">Primary</mdb-btn>
-        <mdb-btn color="primary">Primary</mdb-btn>
-
-        <!-- Default button -->
-        <mdb-btn color="default">Default</mdb-btn>
-
-        <!-- Secondary button -->
-        <mdb-btn color="secondary">Secondary</mdb-btn>
-
-        <!-- Indicates a successful or positive action -->
-        <mdb-btn color="success">Success</mdb-btn>
-
-        <!-- Contextual button for informational alert messages -->
-        <mdb-btn color="info">Info</mdb-btn>
-
-        <!-- Indicates caution should be taken with this action -->
-        <mdb-btn color="warning">Warning</mdb-btn>
-
-        <!-- Indicates a dangerous or potentially negative action -->
-        <mdb-btn color="danger">Danger</mdb-btn>
 
 
         <button v-on:contextmenu.prevent="test">context</button>

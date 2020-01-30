@@ -1,23 +1,12 @@
 <script>
 
 
-    import {
-        mdbBtn,
-        mdbBtnFixed,
-        mdbBtnFixedItem,
-        mdbBtnGroup,
-        mdbIcon
-    } from "mdbvue";
+
 
     export default {
         name: "RouterAnimations",
 
         components: {
-            mdbBtn,
-            mdbBtnFixed,
-            mdbBtnFixedItem,
-            mdbBtnGroup,
-            mdbIcon
         },
 
         computed: {},
@@ -104,18 +93,13 @@
             <h1 v-show="showAnimation">HELLO WORLD</h1>
         </transition>
 
-
         <div v-html="checkboxModel"></div>
         <input type="checkbox" v-model="checkboxModel">
         {{inputModel}}
         <input type="text" v-model="inputModel">
 
-
         <component v-bind="dynamicProps" v-bind:is="dynamicComponent">test</component>
 
-
-
-        <mdb-btn color="info" v-on:click="changeShowAnimation">Chnage show animation</mdb-btn>
 
         <h1 v-on:click="changeAnimations">{{animations.one.two.three}}</h1>
     </div>

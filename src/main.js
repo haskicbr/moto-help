@@ -1,13 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
-import RouterTemplate from './components/RouteTemplate.vue';
-import RouterAnimations from './components/RouterAnimations.vue';
 
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 
-import 'bootstrap-css-only/css/bootstrap.min.css'
-import 'mdbvue/build/css/mdb.css'
 import { MileageMutationTypes } from "./store/mutations/mutationTypes"
 
 
@@ -75,8 +71,6 @@ const store = new Vuex.Store({
 });
 
 const routes = [
-    {path: '/foo', component: RouterTemplate},
-    {path: '/animations', component: RouterAnimations},
     {path: '/mileage', component: Mileage},
 ];
 
