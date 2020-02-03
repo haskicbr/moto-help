@@ -13,6 +13,14 @@
 
         methods: {
 
+            getLastMileage() {
+
+                if (typeof (this.$store.state.mileages[0]) !== 'undefined') {
+                    return parseInt(this.$store.state.mileages[0].value);
+                }
+
+                return 0;
+            },
 
             dateFormat(date) {
                 return dateFormat('dd-MM-yyyy', date);
@@ -23,7 +31,7 @@
                 this.$store.commit(MileageActionTypes.ADD_MILEAGE, {
                     action: "checkPressure",
                     description: this.mileageType,
-                    value: this.mileageValue,
+                    value: parseInt(this.mileageValue),
                     date: this.mileageDate
                 })
             },
@@ -39,7 +47,7 @@
             ];
 
             return {
-                mileageValue: 0,
+                mileageValue: this.getLastMileage(),
                 mileageType : mileageTypes[0],
                 mileageTypes,
                 mileageDate : new Date()
