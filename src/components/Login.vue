@@ -1,5 +1,5 @@
 <template>
-    $END$
+
 </template>
 
 <script>
@@ -7,7 +7,3 @@
         name: "Login"
     }
 </script>
-
-<style scoped>
-
-</style>

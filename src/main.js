@@ -4,24 +4,19 @@ import App from './App.vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 
-import * as mdbvue from 'mdbvue'
-
-for (const component in mdbvue) {
-    Vue.component(component, mdbvue[component])
-}
-
-import 'bootstrap-css-only/css/bootstrap.min.css'
-import 'mdbvue/lib/css/mdb.min.css'
-import '@fortawesome/fontawesome-free/css/all.min.css'
-
 import { MileageMutationTypes } from "./store/mutations/mutationTypes"
-
 
 import Mileage from "./components/Mileage"
 import Test    from "./components/Test"
+import Mobile  from "./components/Mobile"
 
 Vue.use(Vuex);
 Vue.use(VueRouter);
+
+import VueMaterial from 'vue-material'
+
+
+Vue.use(VueMaterial);
 
 Vue.config.productionTip = false;
 
@@ -33,7 +28,9 @@ let mutations =  {
 
 
 mutations[MileageMutationTypes.ADD_MILEAGE] = (state, payload) => {
-    state.mileages.push(payload.mileage);
+    state.mileages.push(
+        payload
+    );
 };
 
 
@@ -79,6 +76,7 @@ const store = new Vuex.Store({
 
 const routes = [
     {path: '/mileage', component: Mileage},
+    {path: '/mobile', component: Mobile},
     {path: '/test',    component: Test},
 ];
 

@@ -1,9 +1,12 @@
 <script>
 
 
-    import { MileageActionTypes } from "../store/actions/actionTypes"
+    import {MileageActionTypes} from "../store/actions/actionTypes";
+    import dateFormat from "date-format";
+
 
     export default {
+
         name: "Mileage",
 
         components: {},
@@ -11,23 +14,35 @@
         methods: {
 
 
-            addMileage() {
-
-                console.log(this.$refs.mileageInput.value)
-
-                this.$store.commit(MileageActionTypes.ADD_MILEAGE, {
-                    mileage: {
-                        action:      "checkPressure",
-                        description: "Проверка давления в шинах",
-                        mileageValue: this.mileageValue,
-                    }
-                })
+            dateFormat(date) {
+                return dateFormat('dd-MM-yyyy', date);
             },
 
-            data() {
-                return {
-                    mileageValue: null
-                }
+            addMileage() {
+
+                this.$store.commit(MileageActionTypes.ADD_MILEAGE, {
+                    action: "checkPressure",
+                    description: this.mileageType,
+                    value: this.mileageValue,
+                    date: this.mileageDate
+                })
+            },
+        },
+
+        data() {
+
+
+            let mileageTypes = [
+                "Проверка давления в шинах",
+                "Проверка масла",
+                "проверка топливных шлангов"
+            ];
+
+            return {
+                mileageValue: 0,
+                mileageType : mileageTypes[0],
+                mileageTypes,
+                mileageDate : new Date()
             }
         }
     }
@@ -35,76 +50,61 @@
 
 <template>
 
+    <div class="md-layout" style="justify-content: space-between">
+        <div class="md-layout-item md-small-size-100  md-size-50">
+            <div class="md-layout-item  md-size-100">
+                <md-field>
+                    <label>Mileage</label>
+                    <md-input v-model="mileageValue" type="number"></md-input>
+                </md-field>
+            </div>
 
-    <div>
+            <div class="md-layout-item  md-size-100">
+                <md-datepicker v-model="mileageDate" />
+            </div>
+            <br>
+            <div class="md-layout-item md-size-100">
+                <md-field>
+                    <label for="mileageType">Type</label>
+                    <md-select v-model="mileageType" name="mileageType" id="mileageType" md-dense>
 
-        <!-- Material input -->
-        <div class="md-form">
-            <input type="text" id="12" class="form-control">
-            <label for="12">Example label</label>
+                        <template v-for="type in mileageTypes">
+                            <md-option :value="type">{{type}}</md-option>
+                        </template>
+
+                    </md-select>
+                </md-field>
+            </div>
+
+            <br>
+
+            <md-button v-on:click="addMileage" class="md-layout-item md-size-100 md-raised md-primary">
+                Save
+            </md-button>
         </div>
-        <div>
-            <div class="row">
 
-                <div class="col-md-4">
-                    <div class="md-form">
-                        <input ref="mileageInput" type="text" id="form1" class="form-control">
+        <div class="md-layout-item md-small-size-100 md-size-45">
+            <div class="md-layout-item md-size-100">
 
-                    </div>
-                </div>
+                <md-list class="md-triple-line">
+                    <md-list-item v-for="mileage in $store.state.mileages">
 
-                <div center  :style="`align-items: self-end;`"  md="3" xs="12">
-                    <button v-on:click="addMileage" color="primary">Success</button>
-                </div>
+                        <div class="md-list-item"></div>
+
+                        <div class="md-list-item-text">
+                            <span>{{mileage.action}}</span>
+                            <span>{{mileage.description}}</span>
+                            <span>{{dateFormat(mileage.date)}}</span>
+                            <span>{{mileage.value}} km</span>
+                        </div>
+
+                        <md-button class="md-icon-button md-list-action">
+                            <!--<md-icon class="md-primary">star</md-icon>-->
+                        </md-button>
+                    </md-list-item>
+                </md-list>
             </div>
         </div>
-
-        <div class="container">
-            <section>
-
-                <!-- Grid row -->
-                <!-- <div class="row mx-1"> -->
-
-                <!-- Grid column -->
-                <!-- <div class="col-md-12 mb-4"> -->
-
-                <!-- Card -->
-                <div class="col-md-4">
-
-                    <!-- Card image -->
-                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
-
-                    <!-- Card content -->
-                    <div class="card-body">
-
-                        <!-- Title -->
-                        <h4 class="card-title"><a>Card title</a></h4>
-                        <!-- Text -->
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                            content.</p>
-                        <!-- Button -->
-                        <a href="#" class="btn-block btn btn-primary waves-effect waves-light">Button</a>
-
-                    </div>
-
-                </div>
-                <!-- Card -->
-
-                <!-- </div> -->
-                <!-- Grid column -->
-
-                <!-- </div> -->
-                <!-- Grid row -->
-
-            </section>
-        </div>
-
-
-
-        <br>
-
-        {{$store.state.mileages}}
-
     </div>
 
 
