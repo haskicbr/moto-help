@@ -1,34 +1,15 @@
 <template>
     <div>
-
-        <div class="md-layout">
-
-            <div class="md-layout-item md-size-50 md-small-size-100">
-
-                <md-card md-with-hover>
-                    <md-ripple>
-                        <md-card-header>
-                            <div class="md-title">Go to use free moto.help service for yours motorcycle maintenance.
-                            </div>
-                            <div class="md-subhead">It also have a ripple</div>
-                        </md-card-header>
-
-                        <md-card-content>
-                            Go to use free moto.help service for yours motorcycle maintenance.
-                        </md-card-content>
-
-                        <md-card-actions>
-                            <md-button v-on:click="login" class="md-primary md-raised">
-                                Use free
-                            </md-button>
-                        </md-card-actions>
-                    </md-ripple>
-                </md-card>
+        <template>
+            <div>
+                <md-empty-state
+                        md-icon="devices_other"
+                        md-label="Create your first project"
+                        md-description="Creating project, you'll be able to upload your design and collaborate with people.">
+                    <md-button class="md-primary md-raised" v-on:click="login">Create first project</md-button>
+                </md-empty-state>
             </div>
-
-
-        </div>
-
+        </template>
     </div>
 
 </template>
