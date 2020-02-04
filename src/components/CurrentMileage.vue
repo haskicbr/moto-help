@@ -16,7 +16,7 @@
             getMileageProgress(mileage, lifetime) {
                 let compareMileage = this.currentMileage - mileage
 
-                if (compareMileage > mileage) {
+                if (compareMileage > 100) {
                     return 100;
                 }
 

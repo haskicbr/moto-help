@@ -29,6 +29,12 @@
     @import '~vue-material/dist/theme/default-dark.css';
     @import "~vue-material/dist/theme/engine";
 
+
+    .md-list-item-text, link {
+            color: white;
+        font-size: 16px;
+        }
+
 </style>
 
 <template>
@@ -42,46 +48,48 @@
         </md-app-toolbar>
 
         <md-app-drawer :md-active.sync="menuVisible">
-            <md-toolbar class="md-transparent" md-elevation="0">Navigation</md-toolbar>
+            <md-toolbar class="md-transparent" md-elevation="0" style="font-size: 16px">Navigation</md-toolbar>
 
             <md-list>
 
 
                 <md-list-item>
-                    <router-link v-on:click="closeMenu" class="md-list-item-text link" to="/"><span
-                            class="md-list-item-text"
-                            v-on:click="closeMenu">curent mileage</span></router-link>
+                    <router-link v-on:click="closeMenu" class="md-list-item-text link" to="/">
+                        <span
+                                class="md-list-item-text"
+                                v-on:click="closeMenu">
+                        current mileage
+                    </span></router-link>
                 </md-list-item>
 
+                <template v-if="$store.state.isLogged">
+                    <md-list-item>
+                        <md-icon>move_to_inbox</md-icon>
 
-                <md-list-item>
-                    <md-icon>move_to_inbox</md-icon>
+                        <router-link v-on:click="closeMenu" class="md-list-item-text link" to="/mileage"><span
+                                class="md-list-item-text"
+                                v-on:click="closeMenu">mileages</span></router-link>
+                    </md-list-item>
 
-                    <router-link v-on:click="closeMenu" class="md-list-item-text link" to="/mileage"><span
-                            class="md-list-item-text"
-                            v-on:click="closeMenu">mileage</span></router-link>
-                </md-list-item>
+                    <md-list-item>
+                        <md-icon>move_to_inbox</md-icon>
 
-                <md-list-item>
-                    <md-icon>send</md-icon>
-                    <router-link class="md-list-item-text" to="/test">
-                        <span v-on:click="closeMenu" class="md-list-item-text link">test</span>
-                    </router-link>
+                        <router-link v-on:click="closeMenu" class="md-list-item-text link" to="/mileage"><span
+                                class="md-list-item-text"
+                                v-on:click="closeMenu">timeline</span></router-link>
+                    </md-list-item>
+                </template>
 
-                </md-list-item>
+                <template v-else>
+                    <md-list-item>
+                        <md-icon>move_to_inbox</md-icon>
 
-                <md-list-item>
-                    <md-icon>delete</md-icon>
+                        <router-link v-on:click="closeMenu" class="md-list-item-text link" to="/"><span
+                                class="md-list-item-text"
+                                v-on:click="closeMenu">mileages</span></router-link>
+                    </md-list-item>
+                </template>
 
-                    <router-link v-on:click="closeMenu" class="md-list-item-text" to="/mobile">
-                        <span v-on:click="closeMenu" class="md-list-item-text link">mobile</span>
-                    </router-link>
-                </md-list-item>
-
-                <md-list-item>
-                    <md-icon>error</md-icon>
-                    <span class="md-list-item-text">Spam</span>
-                </md-list-item>
             </md-list>
         </md-app-drawer>
 
