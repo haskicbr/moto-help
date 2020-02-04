@@ -1,4 +1,5 @@
 import {SystemMutations, MileageMutations} from "./mutations";
+import {MileageActions} from "./actions";
 import state from "./state";
 
 import Vuex from "vuex";
@@ -12,18 +13,16 @@ let mutations = {
     ...MileageMutations
 };
 
-
+let actions = {
+    ...MileageActions
+};
 
 
 const store = new Vuex.Store({
     state,
     mutations,
 
-    actions: {
-        increment(context) {
-            context.commit('increment')
-        }
-    },
+    actions,
 
     getters: {
         doneTodos: state => {
