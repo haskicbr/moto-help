@@ -57,4 +57,12 @@ const store = new Vuex.Store({
     }
 });
 
+
+store.subscribe((mutation, state) => {
+    // Store the state object as a JSON string
+    localStorage.setItem('store', JSON.stringify(state));
+});
+
+window.store2 = store;
+
 export default store;
