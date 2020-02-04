@@ -1,4 +1,5 @@
-import {MileageMutationTypes} from "./mutations/MutationTypes";
+import {SystemMutations, MileageMutations} from "./mutations";
+import state from "./state";
 
 import Vuex from "vuex";
 import Vue from "vue";
@@ -7,39 +8,17 @@ import Vue from "vue";
 Vue.use(Vuex);
 
 let mutations = {
-    increment(state) {
-        state.count++
-    }
+    ...SystemMutations,
+    ...MileageMutations
 };
 
 
-mutations[MileageMutationTypes.ADD_MILEAGE] = (state, payload) => {
-    state.mileages.unshift(
-        payload
-    );
-};
 
 
 const store = new Vuex.Store({
-    state: {
-
-        count: 0,
-
-
-        // Пробег { name : value }
-        mileages: [],
-
-        todos: [
-            {id: 1, text: '...', done: true},
-            {id: 2, text: '...', done: false}
-        ],
-        testComputed: {
-            computedValue: 'this is computed value'
-        }
-    },
-
-
+    state,
     mutations,
+
     actions: {
         increment(context) {
             context.commit('increment')
@@ -59,7 +38,6 @@ const store = new Vuex.Store({
 
 
 store.subscribe((mutation, state) => {
-    // Store the state object as a JSON string
     localStorage.setItem('store', JSON.stringify(state));
 });
 
