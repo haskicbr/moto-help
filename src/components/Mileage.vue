@@ -12,13 +12,8 @@
 
         methods: {
 
-            getLastMileage() {
-
-                if (typeof (this.$store.state.mileages[0]) !== 'undefined') {
-                    return parseInt(this.$store.state.mileages[0].value);
-                }
-
-                return 0;
+            getMileageDescription(type) {
+                return this.$store.state.mileageTypes[type];
             },
 
             dateFormat(dateString) {
@@ -28,10 +23,9 @@
             addMileage() {
 
                 this.$store.dispatch(MileageActionTypes.ADD_MILEAGE, {
-                    action: "checkPressure",
-                    description: this.mileageType,
-                    value: parseInt(this.mileageValue),
-                    limit: parseInt(this.mileageLimit),
+                    type: this.mileageType,
+                    mileage: parseInt(this.mileageValue),
+                    lifetime: parseInt(this.lifetime),
                     date: this.mileageDate
                 });
             },
@@ -43,18 +37,15 @@
 
         data() {
 
-            let mileageTypes = [
-                "Проверка давления в шинах",
-                "Проверка масла",
-                "проверка топливных шлангов"
-            ];
+            let mileageTypesDescriptions = this.$store.state.mileageTypes;
+            let mileageType = this.$store.state.defaultMileageType;
 
             return {
-                mileageLimit: 0,
+                lifetime: 100,
                 mileageValue: this.$store.state.currentMileage,
-                mileageType : mileageTypes[0],
-                mileageTypes,
-                mileageDate : new Date()
+                mileageDate : new Date(),
+                mileageTypesDescriptions,
+                mileageType,
             }
         }
     }
@@ -68,8 +59,8 @@
 
             <div class="md-layout-item  md-size-100">
                 <md-field>
-                    <label>Mileage limit</label>
-                    <md-input v-model="mileageLimit" type="number"></md-input>
+                    <label>lifetime</label>
+                    <md-input v-model="lifetime" type="number"></md-input>
                 </md-field>
             </div>
 
@@ -90,8 +81,8 @@
                     <label for="mileageType">Type</label>
                     <md-select v-model="mileageType" name="mileageType" id="mileageType" md-dense>
 
-                        <template v-for="type in mileageTypes">
-                            <md-option :value="type">{{type}}</md-option>
+                        <template v-for="(description, type) in mileageTypesDescriptions">
+                            <md-option :value="type">{{description}}</md-option>
                         </template>
 
                     </md-select>
@@ -114,10 +105,10 @@
                         <div class="md-list-item"></div>
 
                         <div class="md-list-item-text">
-                            <span>{{mileage.action}}</span>
-                            <span>{{mileage.description}}</span>
+                            <span>{{getMileageDescription(mileage.type)}}</span>
                             <span>{{dateFormat(mileage.date)}}</span>
                             <span>{{mileage.value}} km</span>
+                            <span>{{mileage.lifetime}} km</span>
                         </div>
 
                         <md-button v-on:click="deleteMileage(key)" class="md-icon-button md-raised md-accent ">
