@@ -19,18 +19,6 @@
                 testTextData: this.$store.getters.countAsText,
             }
         },
-
-        computed: {
-
-
-            testCountFromComputed() {
-                return this.$store.state.count;
-            },
-
-            testComputedValue() {
-                return this.$store.state.testComputed.computedValue
-            }
-        },
     };
 </script>
 

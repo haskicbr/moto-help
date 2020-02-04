@@ -8,4 +8,9 @@ mutations[MileageMutationTypes.ADD_MILEAGE] = (state, payload) => {
     );
 };
 
+mutations[MileageMutationTypes.DELETE_MILEAGE] = (state, mileageIndex) => {
+    state.mileages.splice(mileageIndex, 1);
+};
+
+
 export default mutations;

@@ -1,7 +1,6 @@
 <script>
 
-
-    import {MileageActionTypes} from "../store/actions/actionTypes";
+    import {MileageActionTypes} from "../store/actions/types";
     import dateFormat from "date-format";
 
 
@@ -22,23 +21,26 @@
                 return 0;
             },
 
-            dateFormat(date) {
-                return dateFormat('dd-MM-yyyy', date);
+            dateFormat(dateString) {
+                return dateFormat('dd-MM-yyyy', new Date(dateString));
             },
 
             addMileage() {
 
-                this.$store.commit(MileageActionTypes.ADD_MILEAGE, {
+                this.$store.dispatch(MileageActionTypes.ADD_MILEAGE, {
                     action: "checkPressure",
                     description: this.mileageType,
                     value: parseInt(this.mileageValue),
                     date: this.mileageDate
-                })
+                });
             },
+
+            deleteMileage(index) {
+                this.$store.dispatch(MileageActionTypes.DELETE_MILEAGE, index);
+            }
         },
 
         data() {
-
 
             let mileageTypes = [
                 "Проверка давления в шинах",
@@ -95,7 +97,7 @@
             <div class="md-layout-item md-size-100">
 
                 <md-list class="md-triple-line">
-                    <md-list-item v-for="mileage in $store.state.mileages">
+                    <md-list-item :key="key" v-for="(mileage,key) in $store.state.mileages">
 
                         <div class="md-list-item"></div>
 
@@ -106,9 +108,10 @@
                             <span>{{mileage.value}} km</span>
                         </div>
 
-                        <md-button class="md-icon-button md-list-action">
-                            <!--<md-icon class="md-primary">star</md-icon>-->
+                        <md-button v-on:click="deleteMileage(key)" class="md-icon-button md-raised md-accent ">
+                            <md-icon>delete</md-icon>
                         </md-button>
+
                     </md-list-item>
                 </md-list>
             </div>
