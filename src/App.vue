@@ -45,6 +45,15 @@
             <md-toolbar class="md-transparent" md-elevation="0">Navigation</md-toolbar>
 
             <md-list>
+
+
+                <md-list-item>
+                    <router-link v-on:click="closeMenu" class="md-list-item-text link" to="/"><span
+                            class="md-list-item-text"
+                            v-on:click="closeMenu">curent mileage</span></router-link>
+                </md-list-item>
+
+
                 <md-list-item>
                     <md-icon>move_to_inbox</md-icon>
 

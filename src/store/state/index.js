@@ -2,15 +2,14 @@ const state = {
 
     count: 0,
 
+    mileages: [],
+    currentMileage: 0,
 
-        // Пробег { name : value }
-        mileages: [],
-
-        todos: [
+    todos: [
         {id: 1, text: '...', done: true},
         {id: 2, text: '...', done: false}
     ],
-        testComputed: {
+    testComputed: {
         computedValue: 'this is computed value'
     }
 };

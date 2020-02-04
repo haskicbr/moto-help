@@ -12,5 +12,10 @@ mutations[MileageMutationTypes.DELETE_MILEAGE] = (state, mileageIndex) => {
     state.mileages.splice(mileageIndex, 1);
 };
 
+mutations[MileageMutationTypes.CHANGE_CURRENT] = (state, value) => {
+    state.currentMileage = value;
+};
+
+
 
 export default mutations;

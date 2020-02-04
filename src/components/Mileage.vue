@@ -31,6 +31,7 @@
                     action: "checkPressure",
                     description: this.mileageType,
                     value: parseInt(this.mileageValue),
+                    limit: parseInt(this.mileageLimit),
                     date: this.mileageDate
                 });
             },
@@ -49,7 +50,8 @@
             ];
 
             return {
-                mileageValue: this.getLastMileage(),
+                mileageLimit: 0,
+                mileageValue: this.$store.state.currentMileage,
                 mileageType : mileageTypes[0],
                 mileageTypes,
                 mileageDate : new Date()
@@ -62,6 +64,16 @@
 
     <div class="md-layout" style="justify-content: space-between">
         <div class="md-layout-item md-small-size-100  md-size-50">
+
+
+            <div class="md-layout-item  md-size-100">
+                <md-field>
+                    <label>Mileage limit</label>
+                    <md-input v-model="mileageLimit" type="number"></md-input>
+                </md-field>
+            </div>
+
+
             <div class="md-layout-item  md-size-100">
                 <md-field>
                     <label>Mileage</label>

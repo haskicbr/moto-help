@@ -12,4 +12,8 @@ actions[MileageActionTypes.DELETE_MILEAGE] = function ({ commit, state }, index)
     commit(MileageMutationTypes.DELETE_MILEAGE, index);
 };
 
+actions[MileageActionTypes.CHANGE_CURRENT] = function ({ commit, state }, newValue) {
+    commit(MileageMutationTypes.CHANGE_CURRENT, newValue);
+};
+
 export default actions;
