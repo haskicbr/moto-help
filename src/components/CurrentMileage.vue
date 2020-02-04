@@ -30,6 +30,9 @@
             },
 
             changeCurrent() {
+
+
+                this.isEditable = false;
                 this.$store.dispatch(MileageActionTypes.CHANGE_CURRENT, this.currentMileage);
             },
 
@@ -50,7 +53,8 @@
 
         data() {
             return {
-                currentMileage: this.$store.state.currentMileage
+                currentMileage: this.$store.state.currentMileage,
+                isEditable: false
             }
         }
     }
@@ -62,25 +66,31 @@
 
     <div>
 
-        <h1>
-            current mileage: {{$store.state.currentMileage}} km
+        <h1 v-if="!isEditable" style="vertical-align: middle; display: flex; align-self: center">
+            <div style="display: flex; align-items: center">current mileage: {{$store.state.currentMileage}} km</div>
+            <md-button v-on:click="isEditable = !isEditable" class="md-icon-button md-tab-icon md-raised md-primary ">
+                <md-icon>edit</md-icon>
+            </md-button>
         </h1>
 
-        <div class="md-layout" style="justify-content: space-between">
-            <div class="md-layout-item md-xsmall-size-100  md-medium-size-25 md-size-15">
-
+        <div v-else class="md-layout md-gutter">
+            <div class="md-layout-item md-xsmall-size-100  md-medium-size-25 md-size-25">
 
                 <md-field>
                     <label>Change current mileage</label>
                     <md-input v-model="currentMileage" type="number"></md-input>
                 </md-field>
 
-
                 <md-button v-on:click="changeCurrent" class="md-layout-item md-size-100 md-raised md-primary">
                     Save
                 </md-button>
+            </div>
+        </div>
 
+        <br>
 
+        <div class="md-layout md-gutter">
+            <div class="md-layout-item md-xsmall-size-100 md-medium-size-30 md-size-30 md-elevation-4">
                 <md-list class="md-double-line">
 
                     <md-subheader>Maintenance</md-subheader>
@@ -103,13 +113,13 @@
                             </div>
                         </md-list-item>
                         <br>
-                        <md-divider></md-divider>
+
                     </template>
 
                 </md-list>
-
-
             </div>
+
+
         </div>
     </div>
 

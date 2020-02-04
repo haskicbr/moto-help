@@ -107,8 +107,8 @@
                         <div class="md-list-item-text">
                             <span>{{getMileageDescription(mileage.type)}}</span>
                             <span>{{dateFormat(mileage.date)}}</span>
-                            <span>{{mileage.value}} km</span>
-                            <span>{{mileage.lifetime}} km</span>
+                            <span>change mileage: {{mileage.mileage}} km</span>
+                            <span>lifetime: {{mileage.lifetime}} km</span>
                         </div>
 
                         <md-button v-on:click="deleteMileage(key)" class="md-icon-button md-raised md-accent ">
