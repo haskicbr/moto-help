@@ -31,9 +31,9 @@
 
 
     .md-list-item-text, link {
-            color: white;
+        color: white;
         font-size: 16px;
-        }
+    }
 
 </style>
 
@@ -69,6 +69,14 @@
                         <router-link v-on:click="closeMenu" class="md-list-item-text link" to="/mileage"><span
                                 class="md-list-item-text"
                                 v-on:click="closeMenu">mileages</span></router-link>
+                    </md-list-item>
+
+                    <md-list-item>
+                        <md-icon>move_to_inbox</md-icon>
+
+                        <router-link v-on:click="closeMenu" class="md-list-item-text link" to="/mileage-types"><span
+                                class="md-list-item-text"
+                                v-on:click="closeMenu">mileage types</span></router-link>
                     </md-list-item>
 
                     <md-list-item>

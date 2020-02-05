@@ -17,5 +17,17 @@ mutations[MileageMutationTypes.CHANGE_CURRENT] = (state, value) => {
 };
 
 
+mutations[MileageMutationTypes.ADD_TYPE] = (state, {type, description}) => {
+    state.mileageTypes[type] = description;
+
+    state.mileageTypes = {...state.mileageTypes}
+};
+
+
+mutations[MileageMutationTypes.DELETE_TYPE] = (state, type) => {
+    delete state.mileageTypes[type];
+
+    state.mileageTypes = {...state.mileageTypes}
+};
 
 export default mutations;

@@ -67,14 +67,25 @@
 
     <div>
 
-        <h1 v-if="!isEditable" style="vertical-align: middle; display: flex; align-self: center">
-            <div style="display: flex; align-items: center">current mileage: {{$store.state.currentMileage}} km</div>
-            <md-button v-on:click="isEditable = !isEditable" class="md-icon-button md-tab-icon md-raised md-primary ">
-                <md-icon>edit</md-icon>
-            </md-button>
-        </h1>
 
-        <div v-else class="md-layout md-gutter">
+        <div class="md-headline" v-if="!isEditable" style="vertical-align: middle; display: flex; align-self: center">
+            <div style="display: flex; align-items: center">current mileage: {{$store.state.currentMileage}} km</div>
+            <md-button v-on:click="isEditable = !isEditable" class="md-icon-button md-tab-icon md-raised md-primary">
+                <md-icon>edit</md-icon>
+                <md-tooltip md-direction="bottom">change current mileage</md-tooltip>
+            </md-button>
+
+
+            <router-link to="/mileage/add">
+                <md-button class="md-icon-button md-tab-icon md-raised md-primary">
+                    <md-icon>add</md-icon>
+                    <md-tooltip md-direction="bottom">add mileage</md-tooltip>
+                </md-button>
+            </router-link>
+        </div>
+
+
+        <div v-if="isEditable" class="md-layout md-gutter">
             <div class="md-layout-item md-xsmall-size-100  md-medium-size-25 md-size-25">
 
                 <md-field>
@@ -90,9 +101,11 @@
 
         <br>
 
-        <div class="md-layout md-gutter">
-            <div class="md-layout-item md-xsmall-size-100 md-medium-size-30 md-size-30 md-elevation-4">
-                <md-list class="md-double-line">
+
+
+        <div v-if="$store.state.mileages.length !== 0" class="md-layout md-gutter">
+            <div class="md-layout-item md-xsmall-size-100 md-medium-size-30 md-size-30">
+                <md-list class="md-double-line md-elevation-4">
 
                     <md-subheader>Maintenance</md-subheader>
 

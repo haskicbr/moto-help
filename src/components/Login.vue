@@ -29,9 +29,6 @@
                 this.value = 'Disagreed'
             },
             login() {
-
-
-
                 this.$store.state.isLogged = true;
             }
         }
