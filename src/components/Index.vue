@@ -15,19 +15,13 @@
 
 <template>
 
-
-
-
     <div>
-
         <template v-if="$store.state.isLogged">
             <CurrentMileage></CurrentMileage>
         </template>
         <template v-else>
             <Login/>
         </template>
-
-
     </div>
 
 </template>

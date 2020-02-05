@@ -89,10 +89,12 @@
                                 <span>{{description}}</span>
                             </div>
 
-                            <md-button v-if="!checkExistsMileageWithType(type)" v-on:click="deleteType(type)" class="md-icon-button md-raised md-accent ">
-                                <md-icon>delete</md-icon>
+                            <div v-if="!checkExistsMileageWithType(type)">
+                                <md-button v-on:click="deleteType(type)" class="md-icon-button md-raised md-accent ">
+                                    <md-icon>delete</md-icon>
+                                </md-button>
                                 <md-tooltip md-direction="left">Delete mileage type</md-tooltip>
-                            </md-button>
+                            </div>
                             <div v-else>
                                 <md-button class="md-icon-button md-raised md-accent" :disabled="true">
                                     <md-icon>delete</md-icon>

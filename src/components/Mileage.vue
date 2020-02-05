@@ -20,7 +20,7 @@
         methods: {
 
             changeVisibleMileageForm() {
-                this.$props.visibleMileageForm = !this.$props.visibleMileageForm;
+                this.visibleMileageFormState = !this.visibleMileageFormState;
             },
 
             getMileageDescription(type) {
@@ -54,6 +54,7 @@
             let mileageType = this.$store.state.defaultMileageType;
 
             return {
+                visibleMileageFormState : this.$props.visibleMileageForm,
                 lifetime: 100,
                 mileageValue: this.$store.state.currentMileage,
                 mileageDate : new Date(),
@@ -76,7 +77,7 @@
 <template>
     <div>
         <div class="md-layout md-gutter">
-            <template v-if="!visibleMileageForm">
+            <template v-if="!visibleMileageFormState">
                 <div class="md-layout-item md-size=100 add-mileage-container">
                     <md-button v-on:click="changeVisibleMileageForm" class="md-icon-button md-raised md-primary">
                         <md-icon>add</md-icon>
@@ -88,7 +89,7 @@
         </div>
 
         <div class="md-layout md-gutter ">
-            <template v-if="visibleMileageForm">
+            <template v-if="visibleMileageFormState">
                 <div class="md-layout-item    md-xsmall-size-100 md-small-size-50 md-medium-size-40  md-size-20">
                     <div class="md-layout-item md-size-100">
                         <md-field>

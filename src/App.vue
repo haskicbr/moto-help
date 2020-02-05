@@ -14,9 +14,6 @@
         data() {
             return {
                 menuVisible: false,
-                testComputedData: this.$store.state.testComputed.computedValue,
-                testCountData: this.$store.state.count,
-                testTextData: this.$store.getters.countAsText,
             }
         },
     };
@@ -28,8 +25,7 @@
     @import '~vue-material/dist/vue-material.min.css';
     @import '~vue-material/dist/theme/default-dark.css';
     @import "~vue-material/dist/theme/engine";
-
-
+    
     .md-list-item-text, link {
         color: white;
         font-size: 16px;
