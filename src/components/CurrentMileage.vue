@@ -14,13 +14,14 @@
                 return dateFormat('dd-MM-yyyy', new Date(dateString));
             },
             getMileageProgress(mileage, lifetime) {
-                let compareMileage = this.currentMileage - mileage
 
-                if (compareMileage > 100) {
-                    return 100;
-                }
+                let compareMileage = this.currentMileage - mileage;
 
                 let progress = compareMileage / lifetime * 100;
+
+                if (progress > 100) {
+                    return 100;
+                }
 
                 if (progress < 0) {
                     return 0;
