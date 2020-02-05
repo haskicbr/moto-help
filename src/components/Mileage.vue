@@ -97,14 +97,6 @@
                         </md-field>
                     </div>
 
-
-                    <div class="md-layout-item  md-size-100">
-                        <md-field>
-                            <label>Mileage</label>
-                            <md-input v-model="mileageValue" type="number"></md-input>
-                        </md-field>
-                    </div>
-
                     <div class="md-layout-item  md-size-100">
                         <md-datepicker v-model="mileageDate"/>
                     </div>
