@@ -1,30 +1,30 @@
 <script>
 
-    import {MileageActionTypes} from "../store/actions/types";
+    import {ServiceActionTypes} from "../store/actions/types";
 
     export default {
-        name: "MileageTypes",
+        name: "ServiceTypes",
 
 
         methods: {
 
 
             deleteType(type) {
-                this.$store.dispatch(MileageActionTypes.DELETE_TYPE, type);
+                this.$store.dispatch(ServiceActionTypes.DELETE_TYPE, type);
             },
 
             saveType() {
-                this.$store.dispatch(MileageActionTypes.ADD_TYPE, {
+                this.$store.dispatch(ServiceActionTypes.ADD_TYPE, {
                     type: this.mileageType,
                     description: this.mileageDescription,
                 });
             },
 
-            checkExistsMileageWithType(type) {
+            checkExistsServiceWithType(type) {
 
-                if (this.$store.state.mileages.length !== 0) {
+                if (this.$store.state.services.length !== 0) {
 
-                    let existsTypes = this.$store.state.mileages.filter((mileage) => {
+                    let existsTypes = this.$store.state.services.filter((mileage) => {
                         return mileage.type === type;
                     });
 
@@ -75,12 +75,12 @@
                 </div>
             </template>
 
-            <div v-if="Object.keys($store.state.mileageTypes).length !== 0"
+            <div v-if="Object.keys($store.state.serviceTypes).length !== 0"
                  class="md-layout-item md-xsmall-size-100 md-size-45 md-xlarge-size-25 md-size-50">
                 <div class="md-layout-item md-size-100 md-elevation-4">
 
                     <md-list class="md-triple-line">
-                        <md-list-item :key="type" v-for="(description, type) in $store.state.mileageTypes">
+                        <md-list-item :key="type" v-for="(description, type) in $store.state.serviceTypes">
 
                             <div class="md-list-item"></div>
 
@@ -89,18 +89,18 @@
                                 <span>{{description}}</span>
                             </div>
 
-                            <div v-if="!checkExistsMileageWithType(type)">
+                            <div v-if="!checkExistsServiceWithType(type)">
                                 <md-button v-on:click="deleteType(type)" class="md-icon-button md-raised md-accent ">
                                     <md-icon>delete</md-icon>
                                 </md-button>
-                                <md-tooltip md-direction="left">Delete mileage type</md-tooltip>
+                                <md-tooltip md-direction="left">Delete service type</md-tooltip>
                             </div>
                             <div v-else>
                                 <md-button class="md-icon-button md-raised md-accent" :disabled="true">
                                     <md-icon>delete</md-icon>
                                 </md-button>
 
-                                <md-tooltip md-direction="left">Mileage type already used</md-tooltip>
+                                <md-tooltip md-direction="left">Service type already used</md-tooltip>
                             </div>
 
 

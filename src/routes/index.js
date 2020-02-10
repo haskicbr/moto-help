@@ -4,25 +4,25 @@ import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
 
-import CurrentMileage from "./../components/CurrentMileage"
-import Mileage from "./../components/Mileage"
+
+import Service from "./../components/Service"
 import Index from "./../components/Index"
 import Test from "./../components/Test"
 import Mobile from "./../components/Mobile"
-import MileageTypes from "./../components/MileageTypes"
+import ServiceTypes from "./../components/ServiceTypes"
 
 const routes = [
-    {path: '/mileage', component: Mileage},
+    {path: '/service', component: Service},
     {
-        path: '/mileage/add', component: Mileage,
+        path: '/service/add', component: Service,
         props: {
-            visibleMileageForm: true
+            visibleServiceForm: true
         }
     },
     {path: '/mobile', component: Mobile},
     {path: '/test', component: Test},
     {path: '/', component: Index},
-    {path: '/mileage-types', component: MileageTypes},
+    {path: '/service-types', component: ServiceTypes},
 ];
 
 const router = new VueRouter({

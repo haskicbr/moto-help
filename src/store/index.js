@@ -1,5 +1,5 @@
-import {SystemMutations, MileageMutations} from "./mutations";
-import {MileageActions} from "./actions";
+import {SystemMutations, ServiceMutations} from "./mutations";
+import {ServiceActions} from "./actions";
 import state from "./state";
 
 import Vuex from "vuex";
@@ -10,11 +10,11 @@ Vue.use(Vuex);
 
 let mutations = {
     ...SystemMutations,
-    ...MileageMutations
+    ...ServiceMutations
 };
 
 let actions = {
-    ...MileageActions
+    ...ServiceActions
 };
 
 

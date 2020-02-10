@@ -1,9 +1,9 @@
 import AuthMutationTypes    from "./AuthMutationTypes";
 import SystemMutationTypes  from "./SystemMutationTypes";
-import MileageMutationTypes from "./MileageMutationTypes"
+import ServiceMutationTypes from "./ServiceMutationTypes"
 
 export  {
     AuthMutationTypes,
     SystemMutationTypes,
-    MileageMutationTypes
+    ServiceMutationTypes
 }

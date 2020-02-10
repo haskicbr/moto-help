@@ -1,8 +1,8 @@
 import SystemMutations  from "./SystemMutations";
-import MileageMutations from "./MileageMutations";
+import ServiceMutations from "./ServiceMutations";
 
 
 export {
     SystemMutations,
-    MileageMutations
+    ServiceMutations
 }

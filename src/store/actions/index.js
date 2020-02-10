@@ -1,6 +1,6 @@
-import MileageActions from "./MileageActions"
+import ServiceActions from "./ServiceActions"
 
 
 export {
-    MileageActions
+    ServiceActions
 }

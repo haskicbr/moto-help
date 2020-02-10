@@ -25,7 +25,7 @@
     @import '~vue-material/dist/vue-material.min.css';
     @import '~vue-material/dist/theme/default-dark.css';
     @import "~vue-material/dist/theme/engine";
-    
+
     .md-list-item-text, link {
         color: white;
         font-size: 16px;
@@ -62,23 +62,23 @@
                     <md-list-item>
                         <md-icon>move_to_inbox</md-icon>
 
-                        <router-link v-on:click="closeMenu" class="md-list-item-text link" to="/mileage"><span
+                        <router-link v-on:click="closeMenu" class="md-list-item-text link" to="/service"><span
                                 class="md-list-item-text"
-                                v-on:click="closeMenu">mileages</span></router-link>
+                                v-on:click="closeMenu">services</span></router-link>
                     </md-list-item>
 
                     <md-list-item>
                         <md-icon>move_to_inbox</md-icon>
 
-                        <router-link v-on:click="closeMenu" class="md-list-item-text link" to="/mileage-types"><span
+                        <router-link v-on:click="closeMenu" class="md-list-item-text link" to="/service-types"><span
                                 class="md-list-item-text"
-                                v-on:click="closeMenu">mileage types</span></router-link>
+                                v-on:click="closeMenu">service types</span></router-link>
                     </md-list-item>
 
                     <md-list-item>
                         <md-icon>move_to_inbox</md-icon>
 
-                        <router-link v-on:click="closeMenu" class="md-list-item-text link" to="/mileage"><span
+                        <router-link v-on:click="closeMenu" class="md-list-item-text link" to="/service"><span
                                 class="md-list-item-text"
                                 v-on:click="closeMenu">timeline</span></router-link>
                     </md-list-item>
@@ -90,7 +90,7 @@
 
                         <router-link v-on:click="closeMenu" class="md-list-item-text link" to="/"><span
                                 class="md-list-item-text"
-                                v-on:click="closeMenu">mileages</span></router-link>
+                                v-on:click="closeMenu">service</span></router-link>
                     </md-list-item>
                 </template>
 

@@ -1,7 +1,7 @@
 import AuthActionTypes from "./AuthActionTypes";
-import MileageActionTypes from "./MileageActionTypes";
+import ServiceActionTypes from "./ServiceActionTypes";
 
 export {
     AuthActionTypes,
-    MileageActionTypes
+    ServiceActionTypes
 }

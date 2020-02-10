@@ -1,6 +1,6 @@
 <script>
 
-    import {MileageActionTypes} from "../store/actions/types";
+    import {ServiceActionTypes} from "../store/actions/types";
     import dateFormat from "date-format";
 
 
@@ -34,11 +34,11 @@
 
 
                 this.isEditable = false;
-                this.$store.dispatch(MileageActionTypes.CHANGE_CURRENT, this.currentMileage);
+                this.$store.dispatch(ServiceActionTypes.CHANGE_CURRENT, this.currentMileage);
             },
 
             getMileageDescription(type) {
-                return this.$store.state.mileageTypes[type];
+                return this.$store.state.serviceTypes[type];
             },
 
             getProgressClass(progress) {
@@ -79,7 +79,7 @@
             <router-link to="/mileage/add">
                 <md-button class="md-icon-button md-tab-icon md-raised md-primary">
                     <md-icon>add</md-icon>
-                    <md-tooltip md-direction="bottom">add mileage</md-tooltip>
+                    <md-tooltip md-direction="bottom">add service</md-tooltip>
                 </md-button>
             </router-link>
         </div>
@@ -103,13 +103,13 @@
 
 
 
-        <div v-if="$store.state.mileages.length !== 0" class="md-layout md-gutter">
+        <div v-if="$store.state.services.length !== 0" class="md-layout md-gutter">
             <div class="md-layout-item md-xsmall-size-100 md-medium-size-30 md-size-30">
                 <md-list class="md-double-line md-elevation-4">
 
                     <md-subheader>Maintenance</md-subheader>
 
-                    <template v-for="mileage in $store.state.mileages">
+                    <template v-for="mileage in $store.state.services">
                         <md-list-item>
                             <div class="md-list-item-text">
                                 <span> {{getMileageDescription(mileage.type)}}</span>
