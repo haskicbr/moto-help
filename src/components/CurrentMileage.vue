@@ -76,7 +76,7 @@
             </md-button>
 
 
-            <router-link to="/mileage/add">
+            <router-link to="/service/add">
                 <md-button class="md-icon-button md-tab-icon md-raised md-primary">
                     <md-icon>add</md-icon>
                     <md-tooltip md-direction="bottom">add service</md-tooltip>
