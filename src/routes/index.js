@@ -7,8 +7,6 @@ Vue.use(VueRouter);
 
 import Service from "./../components/Service"
 import Index from "./../components/Index"
-import Test from "./../components/Test"
-import Mobile from "./../components/Mobile"
 import ServiceTypes from "./../components/ServiceTypes"
 
 const routes = [
@@ -19,8 +17,7 @@ const routes = [
             visibleServiceForm: true
         }
     },
-    {path: '/mobile', component: Mobile},
-    {path: '/test', component: Test},
+
     {path: '/', component: Index},
     {path: '/service-types', component: ServiceTypes},
 ];
