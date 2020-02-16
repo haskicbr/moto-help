@@ -17,17 +17,7 @@
 <script>
     export default {
         name: 'DialogConfirm',
-        data: () => ({
-            active: true,
-            value: null
-        }),
         methods: {
-            onConfirm() {
-                this.value = 'Agreed'
-            },
-            onCancel() {
-                this.value = 'Disagreed'
-            },
             login() {
                 this.$store.state.isLogged = true;
             }
