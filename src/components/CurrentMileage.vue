@@ -10,6 +10,26 @@
 
         methods: {
 
+            getServices() {
+
+                let services = this.$store.state.services;
+
+                let lastTypes = [];
+
+                services = services.filter(service => {
+
+                    if (lastTypes.includes(service.type)) {
+                      return false;
+                    }
+
+                    lastTypes.push(service.type);
+
+                    return true;
+                });
+
+                return services;
+            },
+
             dateFormat(dateString) {
                 return dateFormat('dd-MM-yyyy', new Date(dateString));
             },
@@ -103,13 +123,13 @@
 
 
 
-        <div v-if="$store.state.services.length !== 0" class="md-layout md-gutter">
+        <div v-if="getServices() !== 0" class="md-layout md-gutter">
             <div class="md-layout-item md-xsmall-size-100 md-medium-size-30 md-size-30">
                 <md-list class="md-double-line md-elevation-4">
 
                     <md-subheader>Maintenance</md-subheader>
 
-                    <template v-for="mileage in $store.state.services">
+                    <template v-for="mileage in getServices()">
                         <md-list-item>
                             <div class="md-list-item-text">
                                 <span> {{getMileageDescription(mileage.type)}}</span>
