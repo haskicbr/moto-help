@@ -5,6 +5,13 @@
 
     export default {
         name: "Index",
+
+        beforeMount () {
+            if (!this.$store.state.isLogged) {
+                this.$router.push('/login');
+            }
+        },
+
         components: {
             CurrentMileage,
             Login
@@ -16,12 +23,7 @@
 <template>
 
     <div>
-        <template v-if="$store.state.isLogged">
-            <CurrentMileage></CurrentMileage>
-        </template>
-        <template v-else>
-            <Login/>
-        </template>
+        <CurrentMileage></CurrentMileage>
     </div>
 
 </template>

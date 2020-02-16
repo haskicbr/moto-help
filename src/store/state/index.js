@@ -16,7 +16,7 @@ let serviceTypesDescriptions = {};
 
 serviceTypesDescriptions[serviceTypes.CHANGE_OIL]         = "Замена масла";
 serviceTypesDescriptions[serviceTypes.CHANGE_OIL_FILTER]  = "Замена маслянного фильтра";
-serviceTypesDescriptions[serviceTypes.CHANGE_FUEL_FILTER] = "Замена топливного филтра";
+serviceTypesDescriptions[serviceTypes.CHANGE_FUEL_FILTER] = "Замена топливного фильтра";
 serviceTypesDescriptions[serviceTypes.CHANGE_AIR_FILTER]  = "Замена воздушного фильтра";
 
 state.serviceTypes       = serviceTypesDescriptions;

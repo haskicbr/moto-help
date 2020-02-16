@@ -133,11 +133,13 @@
                         <md-list-item>
                             <div class="md-list-item-text">
                                 <span> {{getMileageDescription(mileage.type)}}</span>
+
+                                <br/>
                                 <span>lifetime {{mileage.lifetime}} km</span>
                                 <span>change date {{dateFormat(mileage.date)}}</span>
                                 <span>change mileage {{mileage.mileage}} km</span>
 
-                                <br>
+                                <br/>
 
                                 <md-progress-bar :class="getProgressClass(getMileageProgress(mileage.mileage, mileage.lifetime))"
                                                  md-mode="determinate"

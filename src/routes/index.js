@@ -7,6 +7,7 @@ Vue.use(VueRouter);
 
 import Service from "./../components/Service"
 import Index from "./../components/Index"
+import Login from "./../components/Login"
 import ServiceTypes from "./../components/ServiceTypes"
 
 const routes = [
@@ -19,6 +20,7 @@ const routes = [
     },
 
     {path: '/', component: Index},
+    {path: '/login', component: Login},
     {path: '/service-types', component: ServiceTypes},
 ];
 
