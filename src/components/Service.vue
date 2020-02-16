@@ -56,7 +56,7 @@
             return {
                 visibleServiceFormState : this.$props.visibleServiceForm,
                 lifetime: 100,
-                mileageValue: this.$store.state.currentService,
+                mileageValue: this.$store.state.currentMileage,
                 mileageDate : new Date(),
                 serviceTypesDescriptions,
                 mileageType,
