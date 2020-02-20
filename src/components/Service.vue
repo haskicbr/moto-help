@@ -66,13 +66,7 @@
 </script>
 
 
-<style lang="scss">
 
-    .add-mileage-container {
-        margin-bottom: 15px;
-    }
-
-</style>
 
 <template>
     <div>

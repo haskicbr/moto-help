@@ -1,4 +1,4 @@
-import VueMaterial from 'vue-material'
+
 import {SystemMutationTypes} from "./store/mutations/types";
 
 import Vue from 'vue'
@@ -9,16 +9,13 @@ import router from "./routes";
 
 Vue.config.productionTip = false;
 
+import vuetify from './plugins/vuetify' // path to vuetify export
 
-
-Vue.use(
-    VueMaterial
-);
 
 new Vue({
+    vuetify,
     store,
     router,
-
     beforeCreate() {
         this.$store.commit(SystemMutationTypes.INITIAL_STORE);
     },

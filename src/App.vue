@@ -1,104 +1,196 @@
-<script>
+<style lang="scss">
 
+
+</style>
+
+
+<template>
+    <v-app id="inspire">
+        <v-navigation-drawer
+                v-model="drawer"
+                app
+                clipped
+        >
+            <v-list dense>
+                <template v-if="$store.state.isLogged">
+                    <router-link tag="div" v-on:click="closeMenu" to="/">
+                        <v-list-item link>
+                            <v-list-item-action>
+                                <v-icon>mdi-view-dashboard</v-icon>
+                            </v-list-item-action>
+                            <v-list-item-content>
+                                <v-list-item-title>
+
+
+                                <span class="md-list-item-text" v-on:click="closeMenu">\
+                                    current mileage
+                                </span>
+
+
+                                </v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </router-link>
+
+
+                    <router-link tag="div" v-on:click="closeMenu" to="/service">
+                        <v-list-item link>
+                            <v-list-item-action>
+                                <v-icon>mdi-view-dashboard</v-icon>
+                            </v-list-item-action>
+                            <v-list-item-content>
+
+                                <v-list-item-title>
+                                <span
+                                        class="md-list-item-text"
+                                        v-on:click="closeMenu">services</span>
+                                </v-list-item-title>
+
+                            </v-list-item-content>
+                        </v-list-item>
+                    </router-link>
+
+
+                    <router-link tag="div" v-on:click="closeMenu" to="/service-types">
+                        <v-list-item link>
+                            <v-list-item-action>
+                                <v-icon>mdi-view-dashboard</v-icon>
+                            </v-list-item-action>
+                            <v-list-item-content>
+
+                                <v-list-item-title>
+                                    <span v-on:click="closeMenu">service types</span>
+                                </v-list-item-title>
+
+                            </v-list-item-content>
+                        </v-list-item>
+                    </router-link>
+
+                    <router-link tag="div" v-on:click="closeMenu" to="/service">
+                        <v-list-item link>
+                            <v-list-item-action>
+                                <v-icon>mdi-view-dashboard</v-icon>
+                            </v-list-item-action>
+                            <v-list-item-content>
+
+
+                                <v-list-item-title>
+                                    <span v-on:click="closeMenu">timeline</span>
+                                </v-list-item-title>
+
+                            </v-list-item-content>
+                        </v-list-item>
+                    </router-link>
+                </template>
+
+                <template v-else>
+
+                    <router-link tag="div" v-on:click="closeMenu" to="/">
+                        <v-list-item link>
+                            <v-list-item-action>
+                                <v-icon>mdi-view-dashboard</v-icon>
+                            </v-list-item-action>
+                            <v-list-item-content>
+                                <v-list-item-title>
+
+
+                                <span class="md-list-item-text" v-on:click="closeMenu">\
+                                    current mileage
+                                </span>
+
+
+                                </v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </router-link>
+
+                    <router-link tag="div" v-on:click="closeMenu" to="/">
+                    <v-list-item link>
+                        <v-list-item-action>
+                            <v-icon>mdi-view-dashboard</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>
+                            <v-list-item-title>
+
+                                <span
+                                        class="md-list-item-text"
+                                        v-on:click="closeMenu">service</span>
+
+
+                            </v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                    </router-link>
+
+                    <v-list-item link>
+                        <v-list-item-action>
+                            <v-icon>mdi-settings</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>
+                            <v-list-item-title>Settings</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+
+
+                </template>
+
+
+            </v-list>
+        </v-navigation-drawer>
+
+        <v-app-bar
+                app
+                clipped-left
+        >
+            <v-app-bar-nav-icon @click.stop="drawer = !drawer"/>
+            <v-toolbar-title>Application</v-toolbar-title>
+        </v-app-bar>
+
+        <v-content>
+            <v-container
+                    class="fill-height"
+                    fluid
+            >
+                <v-row
+                        align="center"
+                        justify="center"
+                >
+                    <v-col class="mb-md-3 offset-3 align-content-center">
+
+                        <md-app-content>
+                            <router-view></router-view>
+                        </md-app-content>
+
+                    </v-col>
+                </v-row>
+            </v-container>
+        </v-content>
+
+        <v-footer app>
+
+        </v-footer>
+    </v-app>
+</template>
+<script>
     export default {
+
         name: "app",
 
-
         methods: {
-
             closeMenu() {
                 this.menuVisible = false;
             }
         },
 
-        data() {
-            return {
-                menuVisible: false,
-            }
+        props: {
+            source: String,
         },
-    };
-</script>
-
-
-<style lang="scss">
-
-    @import '~vue-material/dist/vue-material.min.css';
-    @import '~vue-material/dist/theme/default-dark.css';
-    @import "~vue-material/dist/theme/engine";
-
-    .md-list-item-text, link {
-        color: white;
-        font-size: 16px;
+        data: () => ({
+            drawer: null,
+            menuVisible: false,
+        }),
+        created() {
+            this.$vuetify.theme.dark = true
+        },
     }
-
-</style>
-
-<template>
-
-    <md-app style="min-height: 100vh;" md-mode="fixed">
-        <md-app-toolbar class="md-primary">
-            <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
-                <md-icon>menu</md-icon>
-            </md-button>
-            <span class="md-title">app.moto.help</span>
-        </md-app-toolbar>
-
-        <md-app-drawer :md-active.sync="menuVisible">
-            <md-toolbar class="md-transparent" md-elevation="0" style="font-size: 16px">Navigation</md-toolbar>
-
-            <md-list>
-
-
-                <md-list-item>
-                    <router-link v-on:click="closeMenu" class="md-list-item-text link" to="/">
-                        <span
-                                class="md-list-item-text"
-                                v-on:click="closeMenu">
-                        current mileage
-                    </span></router-link>
-                </md-list-item>
-
-                <template v-if="$store.state.isLogged">
-                    <md-list-item>
-                        <md-icon>move_to_inbox</md-icon>
-
-                        <router-link v-on:click="closeMenu" class="md-list-item-text link" to="/service"><span
-                                class="md-list-item-text"
-                                v-on:click="closeMenu">services</span></router-link>
-                    </md-list-item>
-
-                    <md-list-item>
-                        <md-icon>move_to_inbox</md-icon>
-
-                        <router-link v-on:click="closeMenu" class="md-list-item-text link" to="/service-types"><span
-                                class="md-list-item-text"
-                                v-on:click="closeMenu">service types</span></router-link>
-                    </md-list-item>
-
-                    <md-list-item>
-                        <md-icon>move_to_inbox</md-icon>
-
-                        <router-link v-on:click="closeMenu" class="md-list-item-text link" to="/service"><span
-                                class="md-list-item-text"
-                                v-on:click="closeMenu">timeline</span></router-link>
-                    </md-list-item>
-                </template>
-
-                <template v-else>
-                    <md-list-item>
-                        <md-icon>move_to_inbox</md-icon>
-
-                        <router-link v-on:click="closeMenu" class="md-list-item-text link" to="/"><span
-                                class="md-list-item-text"
-                                v-on:click="closeMenu">service</span></router-link>
-                    </md-list-item>
-                </template>
-
-            </md-list>
-        </md-app-drawer>
-
-        <md-app-content>
-            <router-view></router-view>
-        </md-app-content>
-    </md-app>
-</template>
+</script>
