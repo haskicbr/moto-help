@@ -110,7 +110,11 @@
 
                 <md-field>
                     <label>Change current mileage</label>
-                    <md-input v-model="currentMileage" type="number"></md-input>
+
+                    <v-text-field type="number" v-model="currentMileage">
+                        <v-icon v-touch="currentMileage++" slot="append" color="red">mdi-plus</v-icon>
+                        <v-icon slot="prepend" color="green">mdi-minus</v-icon>
+                    </v-text-field>
                 </md-field>
 
                 <md-button v-on:click="changeCurrent" class="md-layout-item md-size-100 md-raised md-primary">
@@ -129,27 +133,25 @@
 
                     <md-subheader>Maintenance</md-subheader>
 
-                    <template v-for="mileage in getServices()">
-                        <md-list-item>
-                            <div class="md-list-item-text">
-                                <span> {{getMileageDescription(mileage.type)}}</span>
+                    <template v-for="(mileage) in getServices()">
+                        <div class="md-list-item-text">
+                            <span> {{getMileageDescription(mileage.type)}}</span>
+                            <v-progress-linear :buffer-value="100" :value="getMileageProgress(mileage.mileage, mileage.lifetime)"></v-progress-linear>
+                            <br/>
+                            <span>lifetime {{mileage.lifetime}} km</span>
+                            <span>change date {{dateFormat(mileage.date)}}</span>
+                            <span>change mileage {{mileage.mileage}} km</span>
 
-                                <br/>
-                                <span>lifetime {{mileage.lifetime}} km</span>
-                                <span>change date {{dateFormat(mileage.date)}}</span>
-                                <span>change mileage {{mileage.mileage}} km</span>
+                            <br/>
 
-                                <br/>
+                            <h1>{{getMileageProgress(mileage.mileage, mileage.lifetime)}}</h1>
 
-                                <md-progress-bar :class="getProgressClass(getMileageProgress(mileage.mileage, mileage.lifetime))"
-                                                 md-mode="determinate"
-                                                 :md-value="getMileageProgress(mileage.mileage, mileage.lifetime)">
-                                </md-progress-bar>
-
-                            </div>
-                        </md-list-item>
-                        <br>
-
+                            <!--                <md-progress-bar :class="getProgressClass(getMileageProgress(mileage.mileage, mileage.lifetime))"
+                                                             md-mode="determinate"
+                                                             :md-value="getMileageProgress(mileage.mileage, mileage.lifetime)">
+                                            </md-progress-bar>
+            -->
+                        </div>
                     </template>
 
                 </md-list>

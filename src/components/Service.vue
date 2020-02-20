@@ -8,10 +8,6 @@
 
         name: "Service",
 
-        components: {
-
-        },
-
         props: {
             visibleServiceForm: {
                 type: Boolean,
