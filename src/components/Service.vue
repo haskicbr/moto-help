@@ -8,7 +8,9 @@
 
         name: "Service",
 
-        components: {},
+        components: {
+
+        },
 
         props: {
             visibleServiceForm: {
@@ -18,6 +20,21 @@
         },
 
         methods: {
+
+            getServiceTypesAsArray() {
+
+                let serviceTypesDescriptions = this.$store.state.serviceTypes;
+                let serviceTypes = [];
+
+                for (let key in serviceTypesDescriptions) {
+                    serviceTypes.push({
+                        key,
+                        description: serviceTypesDescriptions[key].description
+                    })
+                }
+
+                return serviceTypes;
+            },
 
             changeVisibleServiceForm() {
                 this.visibleServiceFormState = !this.visibleServiceFormState;
@@ -50,22 +67,22 @@
 
         data() {
 
-            let serviceTypesDescriptions = this.$store.state.serviceTypes;
             let mileageType = this.$store.state.defaultServiceType;
 
+            let serviceTypesDescriptions = this.getServiceTypesAsArray();
+
+
             return {
-                visibleServiceFormState : this.$props.visibleServiceForm,
+                visibleServiceFormState: this.$props.visibleServiceForm,
                 lifetime: 100,
                 mileageValue: this.$store.state.currentMileage,
-                mileageDate : new Date(),
+                mileageDate: new Date().toISOString().substr(0, 10),
                 serviceTypesDescriptions,
                 mileageType,
             }
         }
     }
 </script>
-
-
 
 
 <template>
@@ -91,10 +108,50 @@
                             <md-input v-model="lifetime" type="number"></md-input>
                         </md-field>
                     </div>
+                    <v-col cols="12">
 
-                    <div class="md-layout-item  md-size-100">
-                        <md-datepicker v-model="mileageDate"/>
-                    </div>
+                    </v-col>
+
+                    <v-row>
+                        <v-col cols="12" sm="12" md="12">
+                            <v-dialog
+                                    ref="dialog"
+                                    v-model="modal"
+                                    :return-value.sync="mileageDate"
+                                    persistent
+                                    width="290px"
+                            >
+                                <template v-slot:activator="{ on }">
+                                    <v-text-field
+                                            v-model="mileageDate"
+                                            label="Picker in dialog"
+                                            prepend-icon="mdi-view-dashboard"
+                                            readonly
+                                            v-on="on"
+                                    ></v-text-field>
+                                </template>
+                                <v-date-picker v-model="mileageDate" scrollable>
+                                    <v-spacer></v-spacer>
+                                    <v-btn text color="primary" @click="modal = false">Cancel</v-btn>
+                                    <v-btn text color="primary" @click="$refs.dialog.save(mileageDate)">OK</v-btn>
+                                </v-date-picker>
+                            </v-dialog>
+                        </v-col>
+                    </v-row>
+
+                    <v-row>
+
+                        <v-col class="d-flex" cols="12" sm="6">
+                            <v-select
+                                    :items="serviceTypesDescriptions"
+                                    item-text="description"
+                                    item-value="key"
+                                    v-model="mileageType"
+                                    label="Solo field"
+                                    solo
+                            ></v-select>
+                        </v-col>
+                    </v-row>
                     <br>
                     <div class="md-layout-item md-size-100">
                         <md-field>
@@ -117,7 +174,8 @@
                 </div>
             </template>
 
-            <div v-if="$store.state.services.length !== 0" class="md-layout-item md-xsmall-size-100 md-size-45 md-xlarge-size-25 md-size-50">
+            <div v-if="$store.state.services.length !== 0"
+                 class="md-layout-item md-xsmall-size-100 md-size-45 md-xlarge-size-25 md-size-50">
                 <div class="md-layout-item md-size-100 md-elevation-4">
 
                     <md-list class="md-triple-line">
