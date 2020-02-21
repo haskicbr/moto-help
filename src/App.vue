@@ -1,5 +1,7 @@
 <style lang="scss">
-
+    .theme--dark.v-application {
+        background: #484848 !important;
+    }
 
 </style>
 
@@ -21,11 +23,9 @@
                             <v-list-item-content>
                                 <v-list-item-title>
 
-
                                 <span class="md-list-item-text" v-on:click="closeMenu">\
                                     current mileage
                                 </span>
-
 
                                 </v-list-item-title>
                             </v-list-item-content>
@@ -115,26 +115,22 @@
                                 <span
                                         class="md-list-item-text"
                                         v-on:click="closeMenu">service</span>
-
-
                             </v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
                     </router-link>
-
-                    <v-list-item link>
-                        <v-list-item-action>
-                            <v-icon>mdi-settings</v-icon>
-                        </v-list-item-action>
-                        <v-list-item-content>
-                            <v-list-item-title>Settings</v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
-
-
                 </template>
 
-
+                <router-link tag="div" v-on:click="closeMenu" to="/playground">
+                <v-list-item link>
+                    <v-list-item-action>
+                        <v-icon>mdi-settings</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-content>
+                        <v-list-item-title>Playground</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+                </router-link>
             </v-list>
         </v-navigation-drawer>
 
@@ -148,19 +144,10 @@
 
         <v-content>
             <v-container
-                    class="fill-height"
-                    fluid
-            >
-                <v-row
-                        align="center"
-                        justify="center"
-                >
-                    <v-col class="mb-md-3 offset-3 align-content-center">
-
-                        <md-app-content>
-                            <router-view></router-view>
-                        </md-app-content>
-
+                    class="fill-height" fluid>
+                <v-row align="center" justify="center">
+                    <v-col class="col-sm-12 col-md-6 align-content-center">
+                        <router-view></router-view>
                     </v-col>
                 </v-row>
             </v-container>
@@ -190,7 +177,7 @@
             menuVisible: false,
         }),
         created() {
-            this.$vuetify.theme.dark = true
+            this.$vuetify.theme.dark = false
         },
     }
 </script>
