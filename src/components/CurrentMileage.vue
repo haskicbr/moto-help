@@ -7,7 +7,6 @@
     export default {
         name: "CurrentMileage",
 
-
         methods: {
 
             getServices() {
@@ -19,7 +18,7 @@
                 services = services.filter(service => {
 
                     if (lastTypes.includes(service.type)) {
-                      return false;
+                        return false;
                     }
 
                     lastTypes.push(service.type);
@@ -34,6 +33,9 @@
                 return dateFormat('dd-MM-yyyy', new Date(dateString));
             },
             getMileageProgress(mileage, lifetime) {
+
+
+                console.log(this.currentMileage)
 
                 let compareMileage = this.currentMileage - mileage;
 
@@ -61,21 +63,23 @@
                 return this.$store.state.serviceTypes[type];
             },
 
-            getProgressClass(progress) {
+            getProgressColor(progress) {
 
-                if (progress >= 75) {
-
-                    return "md-accent";
+                if (progress >= 90) {
+                    return "red";
+                } else if (progress >= 70) {
+                    return "orange";
                 }
 
-                return "";
+                return "blue";
             }
         },
 
         data() {
             return {
                 currentMileage: this.$store.state.currentMileage,
-                isEditable: false
+                isEditable: false,
+
             }
         }
     }
@@ -90,17 +94,15 @@
 
         <div class="md-headline" v-if="!isEditable" style="vertical-align: middle; display: flex; align-self: center">
             <div style="display: flex; align-items: center">current mileage: {{$store.state.currentMileage}} km</div>
-            <md-button v-on:click="isEditable = !isEditable" class="md-icon-button md-tab-icon md-raised md-primary">
-                <md-icon>edit</md-icon>
-                <md-tooltip md-direction="bottom">change current mileage</md-tooltip>
-            </md-button>
 
+            <v-btn v-on:click="isEditable = !isEditable" class="mx-2" fab dark small color="cyan">
+                <v-icon dark>mdi-pencil</v-icon>
+            </v-btn>
 
-            <router-link to="/service/add">
-                <md-button class="md-icon-button md-tab-icon md-raised md-primary">
-                    <md-icon>add</md-icon>
-                    <md-tooltip md-direction="bottom">add service</md-tooltip>
-                </md-button>
+            <router-link tag="div" to="/service/add">
+                <v-btn class="mx-1" fab dark small color="cyan">
+                    <v-icon dark>mdi-plus</v-icon>
+                </v-btn>
             </router-link>
         </div>
 
@@ -108,55 +110,49 @@
         <div v-if="isEditable" class="md-layout md-gutter">
             <div class="md-layout-item md-xsmall-size-100  md-medium-size-25 md-size-25">
 
-                <md-field>
+                <div>
                     <label>Change current mileage</label>
 
-                    <v-text-field type="number" v-model="currentMileage">
-                        <v-icon v-touch="currentMileage++" slot="append" color="red">mdi-plus</v-icon>
-                        <v-icon slot="prepend" color="green">mdi-minus</v-icon>
-                    </v-text-field>
-                </md-field>
+                    <v-text-field type="number" v-model="currentMileage"></v-text-field>
+                </div>
 
-                <md-button v-on:click="changeCurrent" class="md-layout-item md-size-100 md-raised md-primary">
+                <button v-on:click="changeCurrent" class="md-layout-item md-size-100 md-raised md-primary">
                     Save
-                </md-button>
+                </button>
             </div>
         </div>
 
-        <br>
-
-
 
         <div v-if="getServices() !== 0" class="md-layout md-gutter">
-            <div class="md-layout-item md-xsmall-size-100 md-medium-size-30 md-size-30">
-                <md-list class="md-double-line md-elevation-4">
+            <div class="">
+                <div class="md-double-line md-elevation-4">
 
-                    <md-subheader>Maintenance</md-subheader>
+                    <h1>Maintenance</h1>
 
                     <template v-for="(mileage) in getServices()">
+
+
                         <div class="md-list-item-text">
-                            <span> {{getMileageDescription(mileage.type)}}</span>
-                            <v-progress-linear :buffer-value="100" :value="getMileageProgress(mileage.mileage, mileage.lifetime)"></v-progress-linear>
+
                             <br/>
+
                             <span>lifetime {{mileage.lifetime}} km</span>
                             <span>change date {{dateFormat(mileage.date)}}</span>
                             <span>change mileage {{mileage.mileage}} km</span>
 
                             <br/>
 
-                            <h1>{{getMileageProgress(mileage.mileage, mileage.lifetime)}}</h1>
-
-                            <!--                <md-progress-bar :class="getProgressClass(getMileageProgress(mileage.mileage, mileage.lifetime))"
-                                                             md-mode="determinate"
-                                                             :md-value="getMileageProgress(mileage.mileage, mileage.lifetime)">
-                                            </md-progress-bar>
-            -->
+                            <v-progress-linear
+                                    :color="getProgressColor(getMileageProgress(mileage.mileage, mileage.lifetime))"
+                                    :value="getMileageProgress(mileage.mileage, mileage.lifetime)"
+                                    height="10"
+                            ></v-progress-linear>
                         </div>
+
                     </template>
 
-                </md-list>
+                </div>
             </div>
-
 
         </div>
     </div>
