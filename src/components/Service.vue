@@ -86,11 +86,18 @@
         <div class="md-layout md-gutter">
             <template v-if="!visibleServiceFormState">
                 <div class="md-layout-item md-size=100 add-mileage-container">
-                    <md-button v-on:click="changeVisibleServiceForm" class="md-icon-button md-raised md-primary">
-                        <md-icon>add</md-icon>
+                    <v-tooltip bottom>
+                        <template v-slot:activator="{ on }">
 
-                        <md-tooltip md-direction="right">Add mileage</md-tooltip>
-                    </md-button>
+
+                            <v-btn v-on="on" v-on:click="changeVisibleServiceForm"   class="mx-1" fab dark small color="primary">
+                                <v-icon dark>mdi-plus</v-icon>
+                            </v-btn>
+
+                        </template>
+                        <span>add mileage</span>
+                    </v-tooltip>
+
                 </div>
             </template>
         </div>
