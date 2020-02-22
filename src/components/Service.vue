@@ -37,7 +37,7 @@
             },
 
             getServiceDescription(type) {
-                return this.$store.state.serviceTypes[type];
+                return this.$store.state.serviceTypes[type].description;
             },
 
             dateFormat(dateString) {
@@ -52,7 +52,8 @@
                     type: this.mileageType,
                     mileage: parseInt(this.mileageValue),
                     lifetime: parseInt(this.lifetime),
-                    date: this.mileageDate
+                    date: this.mileageDate,
+                    description: this.description
                 });
             },
 
@@ -71,10 +72,12 @@
             return {
                 visibleServiceFormState: this.$props.visibleServiceForm,
                 lifetime: 100,
+                description: '',
                 mileageValue: this.$store.state.currentMileage,
                 mileageDate: new Date().toISOString().substr(0, 10),
                 serviceTypesDescriptions,
                 mileageType,
+                modal: false,
             }
         }
     }
@@ -82,38 +85,35 @@
 
 
 <template>
-    <div>
-        <div class="md-layout md-gutter">
-            <template v-if="!visibleServiceFormState">
-                <div class="md-layout-item md-size=100 add-mileage-container">
-                    <v-tooltip bottom>
-                        <template v-slot:activator="{ on }">
+    <v-card max-width="700px">
+        <v-list-item>
+            <v-list-item-content>
+            <div class="md-layout md-gutter">
+                <template v-if="!visibleServiceFormState">
+                    <div class="md-layout-item md-size=100 add-mileage-container">
+                        <label class="title">Change services</label>
 
+                        <v-tooltip right>
+                            <template v-slot:activator="{ on }">
+                                <v-btn v-on="on" v-on:click="changeVisibleServiceForm" class="mx-2" fab dark small
+                                       color="primary">
+                                    <v-icon dark>mdi-plus</v-icon>
+                                </v-btn>
+                            </template>
+                            <span>add service</span>
+                        </v-tooltip>
 
-                            <v-btn v-on="on" v-on:click="changeVisibleServiceForm"   class="mx-1" fab dark small color="primary">
-                                <v-icon dark>mdi-plus</v-icon>
-                            </v-btn>
-
-                        </template>
-                        <span>add mileage</span>
-                    </v-tooltip>
-
-                </div>
-            </template>
-        </div>
-
-        <div class="md-layout md-gutter ">
-            <template v-if="visibleServiceFormState">
-                <div class="md-layout-item    md-xsmall-size-100 md-small-size-50 md-medium-size-40  md-size-20">
-                    <div class="md-layout-item md-size-100">
-                        <md-field>
-                            <label>lifetime</label>
-                            <md-input v-model="lifetime" type="number"></md-input>
-                        </md-field>
                     </div>
-                    <v-col cols="12">
+                </template>
+            </div>
 
-                    </v-col>
+            <template v-if="visibleServiceFormState">
+                <div>
+                    <span class="subtitle-1">lifetime</span>
+                    <v-text-field style="font-size: 16px" type="number" v-model="lifetime"></v-text-field>
+
+                    <span class="subtitle-1">description</span>
+                    <v-text-field style="font-size: 16px" type="text" v-model="description"></v-text-field>
 
                     <v-row>
                         <v-col cols="12" sm="12" md="12">
@@ -127,7 +127,7 @@
                                 <template v-slot:activator="{ on }">
                                     <v-text-field
                                             v-model="mileageDate"
-                                            label="Picker in dialog"
+                                            label="Change date"
                                             prepend-icon="mdi-view-dashboard"
                                             readonly
                                             v-on="on"
@@ -143,67 +143,68 @@
                     </v-row>
 
                     <v-row>
-
-                        <v-col class="d-flex" cols="12" sm="6">
-                            <v-select
-                                    :items="serviceTypesDescriptions"
-                                    item-text="description"
-                                    item-value="key"
-                                    v-model="mileageType"
-                                    label="Solo field"
-                                    solo
+                        <v-col class="d-flex" cols="12">
+                            <v-select full-width
+                                      :items="serviceTypesDescriptions"
+                                      item-text="description"
+                                      item-value="key"
+                                      v-model="mileageType"
+                                      label="Solo field"
+                                      solo
                             ></v-select>
                         </v-col>
                     </v-row>
-                    <br>
-                    <div class="md-layout-item md-size-100">
-                        <md-field>
-                            <label for="mileageType">Type</label>
-                            <md-select v-model="mileageType" name="mileageType" id="mileageType" md-dense>
 
-                                <template v-for="(description, type) in serviceTypesDescriptions">
-                                    <md-option :value="type">{{description}}</md-option>
-                                </template>
-
-                            </md-select>
-                        </md-field>
-                    </div>
-
-                    <br>
-
-                    <md-button v-on:click="addService" class="md-layout-item md-size-100 md-raised md-primary">
+                    <v-btn color="primary"  v-on:click="addService">
                         Save
-                    </md-button>
+                    </v-btn>
                 </div>
             </template>
 
-            <div v-if="$store.state.services.length !== 0"
-                 class="md-layout-item md-xsmall-size-100 md-size-45 md-xlarge-size-25 md-size-50">
-                <div class="md-layout-item md-size-100 md-elevation-4">
-
-                    <md-list class="md-triple-line">
-                        <md-list-item :key="key" v-for="(mileage,key) in $store.state.services">
-
-                            <div class="md-list-item"></div>
-
-                            <div class="md-list-item-text">
-                                <span>{{getServiceDescription(mileage.type)}}</span>
-                                <span>{{dateFormat(mileage.date)}}</span>
-                                <span>change mileage: {{mileage.mileage}} km</span>
-                                <span>lifetime: {{mileage.lifetime}} km</span>
-                            </div>
-
-                            <md-button v-on:click="deleteService(key)" class="md-icon-button md-raised md-accent ">
-                                <md-icon>delete</md-icon>
-                                <md-tooltip md-direction="left">Delete mileage</md-tooltip>
-                            </md-button>
-
-                        </md-list-item>
-                    </md-list>
-                </div>
-            </div>
-        </div>
-    </div>
+            </v-list-item-content>
+        </v-list-item>
 
 
+            <template v-if="$store.state.services.length !== 0">
+                <v-list-item :key="key" v-for="(mileage,key) in $store.state.services">
+                    <v-list-item-content>
+
+
+                        <v-list-item-title class="title">{{getServiceDescription(mileage.type)}}</v-list-item-title>
+                        <v-list-item-title>{{dateFormat(mileage.date)}}</v-list-item-title>
+                        <v-list-item-title>change mileage: {{mileage.mileage}} km</v-list-item-title>
+                        <v-list-item-title>lifetime: {{mileage.lifetime}} km</v-list-item-title>
+
+                        <template v-if="mileage.description">
+                            <v-list-item-title>description: {{mileage.description}}</v-list-item-title>
+                        </template>
+
+
+
+
+                        <v-tooltip bottom>
+                            <template v-slot:activator="{ on }">
+
+                                <v-btn
+                                        v-on="on" v-on:click="deleteService(key)"
+                                        small
+                                        absolute
+                                        dark
+                                        fab
+                                        middle
+                                        right
+                                        color="pink"
+                                >
+                                    <v-icon>mdi-minus</v-icon>
+                                </v-btn>
+
+
+                            </template>
+                            <span>delete service</span>
+                        </v-tooltip>
+
+                    </v-list-item-content>
+                </v-list-item>
+            </template>
+    </v-card>
 </template>

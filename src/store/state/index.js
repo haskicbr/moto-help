@@ -1,9 +1,9 @@
 const state = {
     services: [],
     currentMileage: 0,
-    isLogged: false
+    isLogged: false,
+    nightMode: false
 };
-
 
 let serviceTypes = {
     CHANGE_OIL: "CHANGE_OIL",

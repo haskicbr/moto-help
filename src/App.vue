@@ -3,8 +3,13 @@
         background: #484848 !important;
     }
 
-</style>
 
+
+    footer {
+        z-index: 100000 !important;
+    }
+
+</style>
 
 <template>
     <v-app id="inspire">
@@ -131,6 +136,13 @@
                         </v-list-item-content>
                     </v-list-item>
                 </router-link>
+
+
+                <v-list-item class="justify-space-between">
+                    <div class="subtitle-1 mx-5">night mode </div>
+                    <div class="mx-5"><v-switch class=" d-flex d-flex" v-model="nightMode"  ></v-switch></div>
+                </v-list-item>
+
             </v-list>
         </v-navigation-drawer>
 
@@ -155,25 +167,39 @@
     </v-app>
 </template>
 <script>
+    import {ServiceMutationTypes, SystemMutationTypes} from "./store/mutations/types";
+
     export default {
 
         name: "app",
 
         methods: {
-            closeMenu() {
+            closeMenu() {f
                 this.menuVisible = false;
+            }
+        },
+
+        watch: {
+            nightMode: function(state) {
+                this.$vuetify.theme.dark = state;
+                this.$store.commit(SystemMutationTypes.CHANGE_NIGHT_MODE, state);
             }
         },
 
         props: {
             source: String,
         },
-        data: () => ({
-            drawer: null,
-            menuVisible: false,
-        }),
-        created() {
-            this.$vuetify.theme.dark = false
+        data () {
+            let self = this;
+
+            return {
+                drawer: null,
+                menuVisible: false,
+                nightMode:self.$store.state.nightMode,
+            }
+        },
+        mounted() {
+            this.$vuetify.theme.dark =  this.nightMode;
         },
     }
 </script>

@@ -11,5 +11,8 @@ mutations[SystemMutationTypes.INITIAL_STORE] = function (state) {
         );
     }
 };
+mutations[SystemMutationTypes.CHANGE_NIGHT_MODE] = function (state, isActive) {
+    state.nightMode = isActive;
+};
 
 export default mutations;
