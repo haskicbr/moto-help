@@ -1,15 +1,29 @@
 <template>
     <div>
         <template>
-            <div>
-                <md-empty-state
-                        md-icon="devices_other"
-                        md-label="Create your first project"
-                        md-description="Creating project, you'll be able to upload your design and collaborate with people.">
-                    <md-button class="md-primary md-raised" v-on:click="login">Start free</md-button>
-                    <md-button class="md-primary md-raised" v-on:click="login">Registration</md-button>
-                </md-empty-state>
-            </div>
+            <v-banner one-line>
+                <v-avatar
+                        slot="icon"
+                        color="primary accent-4"
+                        size="40"
+                >
+                    <v-icon
+                            icon="mdi-lock"
+                            color="white"
+                    >
+                        mdi-wrench
+                    </v-icon>
+                </v-avatar>
+                <span class="subtitle-1">
+                    moto.help is a free app to help for service motorcycles
+                </span>
+            </v-banner>
+
+            <template>
+                <br>
+                <v-btn text color="primary accent-4" v-on:click="login">Start new history</v-btn>
+                <v-btn text color="primary accent-4" v-on:click="login">Registration</v-btn>
+            </template>
         </template>
     </div>
 
