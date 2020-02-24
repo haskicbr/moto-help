@@ -106,7 +106,7 @@
             <v-list-item-content v-if="!isEditable">
                 <div class="md-headline"
                      style="vertical-align: middle; display: flex; align-self: center">
-                    <div class="title" style="display: flex; align-items: center">current mileage:
+                    <div class="title font-weight-regular" style="display: flex; align-items: center">current mileage:
                         {{$store.state.currentMileage}} km
                     </div>
 
@@ -150,14 +150,7 @@
 
             <v-list-item>
                 <v-list-item-content>
-                    <v-list-item-title class="title">Maintenance</v-list-item-title>
-                </v-list-item-content>
-            </v-list-item>
-
-            <v-list-item two-line>
-                <v-list-item-content>
-                    <v-list-item-title></v-list-item-title>
-                    <v-list-item-subtitle></v-list-item-subtitle>
+                    <v-list-item-title class="title font-weight-regular">Services</v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
 
@@ -170,19 +163,19 @@
                         </v-list-item-title>
 
                         <v-list-item-title>
-                            Change through {{getChangeThought(mileage)}} km
+                            change through: {{getChangeThought(mileage)}} km
                         </v-list-item-title>
 
                         <v-list-item-title>
-                            Lifetime {{mileage.lifetime}} km
+                            lifetime: {{mileage.lifetime}} km
                         </v-list-item-title>
 
                         <v-list-item-title>
-                            Change date {{dateFormat(mileage.date)}}
+                            change date: {{dateFormat(mileage.date)}}
                         </v-list-item-title>
 
                         <v-list-item-title>
-                            Change mileage {{mileage.mileage}} km
+                            change mileage: {{mileage.mileage}} km
                         </v-list-item-title>
 
                         <v-progress-linear

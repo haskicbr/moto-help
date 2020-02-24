@@ -3,8 +3,6 @@
         background: #484848 !important;
     }
 
-
-
     footer {
         z-index: 100000 !important;
     }
@@ -26,9 +24,9 @@
                                 <v-icon>mdi-view-dashboard</v-icon>
                             </v-list-item-action>
                             <v-list-item-content>
-                                <v-list-item-title class="subtitle-1">
+                                <v-list-item-title>
 
-                                <span class="md-list-item-text" v-on:click="closeMenu">
+                                <span class="md-list-item-text subtitle-1" v-on:click="closeMenu">
                                     current mileage
                                 </span>
 
@@ -36,8 +34,6 @@
                             </v-list-item-content>
                         </v-list-item>
                     </router-link>
-
-
                     <router-link tag="div" v-on:click="closeMenu" to="/service">
                         <v-list-item link>
                             <v-list-item-action>
@@ -45,9 +41,9 @@
                             </v-list-item-action>
                             <v-list-item-content>
 
-                                <v-list-item-title class="subtitle-1">
+                                <v-list-item-title>
                                 <span
-                                        class="md-list-item-text"
+                                        class="md-list-item-text subtitle-1"
                                         v-on:click="closeMenu">services</span>
                                 </v-list-item-title>
 
@@ -63,8 +59,8 @@
                             </v-list-item-action>
                             <v-list-item-content>
 
-                                <v-list-item-title class="subtitle-1">
-                                    <span v-on:click="closeMenu">service types</span>
+                                <v-list-item-title>
+                                    <span v-on:click="closeMenu" class="subtitle-1">service types</span>
                                 </v-list-item-title>
 
                             </v-list-item-content>
@@ -79,8 +75,8 @@
                             <v-list-item-content>
 
 
-                                <v-list-item-title class="subtitle-1">
-                                    <span v-on:click="closeMenu">timeline</span>
+                                <v-list-item-title>
+                                    <span v-on:click="closeMenu" class="subtitle-1">timeline</span>
                                 </v-list-item-title>
 
                             </v-list-item-content>
@@ -96,14 +92,10 @@
                                 <v-icon>mdi-view-dashboard</v-icon>
                             </v-list-item-action>
                             <v-list-item-content>
-                                <v-list-item-title class="subtitle-1">
-
-
-                                <span class="md-list-item-text" v-on:click="closeMenu">\
-                                    current mileage
-                                </span>
-
-
+                                <v-list-item-title>
+                                    <span class="md-list-item-text subtitle-1" v-on:click="closeMenu">
+                                        current mileage
+                                    </span>
                                 </v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>
@@ -115,11 +107,8 @@
                                 <v-icon>mdi-view-dashboard</v-icon>
                             </v-list-item-action>
                             <v-list-item-content>
-                                <v-list-item-title class="subtitle-1">
-
-                                <span
-                                        class="md-list-item-text"
-                                        v-on:click="closeMenu">service</span>
+                                <v-list-item-title>
+                                    <span class="md-list-item-text subtitle-1" v-on:click="closeMenu">services</span>
                                 </v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>
@@ -132,15 +121,19 @@
                             <v-icon>mdi-settings</v-icon>
                         </v-list-item-action>
                         <v-list-item-content>
-                            <v-list-item-title class="subtitle-1">Playground</v-list-item-title>
+                            <v-list-item-title>
+                                <span class="subtitle-1">playground</span>
+                            </v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
                 </router-link>
 
 
                 <v-list-item class="justify-space-between">
-                    <div class="subtitle-1 mx-5">night mode </div>
-                    <div class="mx-5"><v-switch class=" d-flex d-flex" v-model="nightMode"  ></v-switch></div>
+                    <div class="subtitle-1 mx-5">night mode</div>
+                    <div class="mx-5">
+                        <v-switch class=" d-flex d-flex" v-model="nightMode"></v-switch>
+                    </div>
                 </v-list-item>
 
             </v-list>
@@ -154,7 +147,7 @@
         <v-content>
             <v-container>
                 <v-row align="center" justify="center">
-                    <v-col class="col-sm-12 align-content-center">
+                    <v-col cols="12" sm="8" md="4" class=" lign-content-center">
                         <router-view></router-view>
                     </v-col>
                 </v-row>
@@ -174,13 +167,13 @@
         name: "app",
 
         methods: {
-            closeMenu() {f
+            closeMenu() {
                 this.menuVisible = false;
             }
         },
 
         watch: {
-            nightMode: function(state) {
+            nightMode: function (state) {
                 this.$vuetify.theme.dark = state;
                 this.$store.commit(SystemMutationTypes.CHANGE_NIGHT_MODE, state);
             }
@@ -189,17 +182,17 @@
         props: {
             source: String,
         },
-        data () {
+        data() {
             let self = this;
 
             return {
                 drawer: null,
                 menuVisible: false,
-                nightMode:self.$store.state.nightMode,
+                nightMode: self.$store.state.nightMode,
             }
         },
         mounted() {
-            this.$vuetify.theme.dark =  this.nightMode;
+            this.$vuetify.theme.dark = this.nightMode;
         },
     }
 </script>

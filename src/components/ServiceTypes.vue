@@ -1,6 +1,7 @@
 <script>
 
     import {ServiceActionTypes} from "../store/actions/types";
+    import { v1 as uuidv1 } from "uuid";
 
     export default {
         name: "ServiceTypes",
@@ -15,7 +16,7 @@
 
             saveType() {
                 this.$store.dispatch(ServiceActionTypes.ADD_TYPE, {
-                    type: this.mileageType,
+                    type: uuidv1(),
                     description: this.mileageDescription,
                 });
             },
@@ -39,7 +40,6 @@
 
         data() {
             return {
-                mileageType: "",
                 mileageDescription: "",
             }
         }
@@ -48,66 +48,43 @@
 
 <template>
 
-    <div>
+    <v-card max-width="700px">
+        <v-list-item>
+            <v-list-item-content>
+                <div class="md-layout md-gutter ">
 
-        <div class="md-layout md-gutter ">
-            <template>
-                <div class="md-layout-item    md-xsmall-size-100 md-small-size-50 md-medium-size-40  md-size-20">
-                    <div class="md-layout-item md-size-100">
-                        <md-field>
-                            <label>type</label>
-                            <md-input v-model="mileageType" type="text"></md-input>
-                        </md-field>
+                    <div>
+                        <v-text-field label="Description" style="font-size: 24px" type="text"
+                                      v-model="mileageDescription"></v-text-field>
                     </div>
-
-                    <div class="md-layout-item  md-size-100">
-                        <md-field>
-                            <label>description</label>
-                            <md-input v-model="mileageDescription" type="text"></md-input>
-                        </md-field>
-                    </div>
-
-                    <br>
-
-                    <md-button v-on:click="saveType" class="md-layout-item md-size-100 md-raised md-primary">
-                        Save
-                    </md-button>
+                    <v-btn style="width:100%" v-on:click="saveType" color="primary">add service type</v-btn>
                 </div>
-            </template>
+            </v-list-item-content>
+        </v-list-item>
 
-            <div v-if="Object.keys($store.state.serviceTypes).length !== 0"
-                 class="md-layout-item md-xsmall-size-100 md-size-45 md-xlarge-size-25 md-size-50">
-                <div class="md-layout-item md-size-100 md-elevation-4">
+        <template v-if="Object.keys($store.state.serviceTypes).length !== 0">
+            <v-list-item :key="type" v-for="(item,type) in $store.state.serviceTypes">
+                <v-list-item-content>
+                    <v-list-item-title>{{item.description}}</v-list-item-title>
+                    <v-tooltip bottom>
+                        <template v-slot:activator="{ on }">
+                            <v-btn :disabled="checkExistsServiceWithType(type)"
+                                   v-on="on" v-on:click="deleteType(type)"
+                                   x-small
+                                   absolute
 
-                    <md-list class="md-triple-line">
-                        <md-list-item :key="type" v-for="(description, type) in $store.state.serviceTypes">
-
-                            <div class="md-list-item"></div>
-
-                            <div class="md-list-item-text">
-                                <span>{{type}}</span>
-                                <span>{{description}}</span>
-                            </div>
-
-                            <div v-if="!checkExistsServiceWithType(type)">
-                                <md-button v-on:click="deleteType(type)" class="md-icon-button md-raised md-accent ">
-                                    <md-icon>delete</md-icon>
-                                </md-button>
-                                <md-tooltip md-direction="left">Delete service type</md-tooltip>
-                            </div>
-                            <div v-else>
-                                <md-button class="md-icon-button md-raised md-accent" :disabled="true">
-                                    <md-icon>delete</md-icon>
-                                </md-button>
-
-                                <md-tooltip md-direction="left">Service type already used</md-tooltip>
-                            </div>
-
-
-                        </md-list-item>
-                    </md-list>
-                </div>
-            </div>
-        </div>
-    </div>
+                                   fab
+                                   middle
+                                   right
+                                   depressed
+                            >
+                                <v-icon>mdi-minus</v-icon>
+                            </v-btn>
+                        </template>
+                        <span>delete</span>
+                    </v-tooltip>
+                </v-list-item-content>
+            </v-list-item>
+        </template>
+    </v-card>
 </template>

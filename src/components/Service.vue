@@ -91,7 +91,7 @@
             <div class="md-layout md-gutter">
                 <template v-if="!visibleServiceFormState">
                     <div class="md-layout-item md-size=100 add-mileage-container">
-                        <label class="title">Change services</label>
+                        <label class="title font-weight-regular">Change services</label>
 
                         <v-tooltip right>
                             <template v-slot:activator="{ on }">
@@ -155,7 +155,7 @@
                         </v-col>
                     </v-row>
 
-                    <v-btn color="primary"  v-on:click="addService">
+                    <v-btn color="primary" style="width: 100%" v-on:click="addService">
                         Save
                     </v-btn>
                 </div>
@@ -169,8 +169,7 @@
                 <v-list-item :key="key" v-for="(mileage,key) in $store.state.services">
                     <v-list-item-content>
 
-
-                        <v-list-item-title class="title">{{getServiceDescription(mileage.type)}}</v-list-item-title>
+                        <v-list-item-title class="subtitle-1">{{getServiceDescription(mileage.type)}}</v-list-item-title>
                         <v-list-item-title>{{dateFormat(mileage.date)}}</v-list-item-title>
                         <v-list-item-title>change mileage: {{mileage.mileage}} km</v-list-item-title>
                         <v-list-item-title>lifetime: {{mileage.lifetime}} km</v-list-item-title>
@@ -179,26 +178,20 @@
                             <v-list-item-title>description: {{mileage.description}}</v-list-item-title>
                         </template>
 
-
-
-
                         <v-tooltip bottom>
                             <template v-slot:activator="{ on }">
-
                                 <v-btn
                                         v-on="on" v-on:click="deleteService(key)"
                                         small
                                         absolute
-                                        dark
+
                                         fab
                                         middle
                                         right
-                                        color="pink"
+                                        depressed
                                 >
                                     <v-icon>mdi-minus</v-icon>
                                 </v-btn>
-
-
                             </template>
                             <span>delete service</span>
                         </v-tooltip>
