@@ -1,6 +1,6 @@
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-
+const webpack  = require("webpack");
 
 console.log(path.resolve(__dirname, './public'))
 console.log(path.join(__dirname, './public'))
@@ -79,8 +79,10 @@ module.exports = {
         extensions: ['*', '.js', '.vue', '.json']
     },
     plugins: [
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        new webpack.SourceMapDevToolPlugin({})
     ],
+    devtool: false,
 
     devServer: {
         contentBase: path.join(__dirname, './public'),
