@@ -25,16 +25,15 @@ const store = new Vuex.Store({
     actions,
 
     getters: {
-        doneTodos: state => {
+/*        doneTodos: state => {
             return state.todos.filter(todo => todo.done)
         },
 
         countAsText: state => {
             return state.count + ' this is count from getters';
-        }
+        }*/
     }
 });
-
 
 store.subscribe((mutation, state) => {
     localStorage.setItem('store', JSON.stringify(state));

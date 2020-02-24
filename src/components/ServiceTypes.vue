@@ -15,10 +15,15 @@
             },
 
             saveType() {
-                this.$store.dispatch(ServiceActionTypes.ADD_TYPE, {
-                    type: uuidv1(),
-                    description: this.mileageDescription,
-                });
+
+                if (this.mileageDescription.trim() !== "") {
+                    this.$store.dispatch(ServiceActionTypes.ADD_TYPE, {
+                        type: uuidv1(),
+                        description: this.mileageDescription,
+                    });
+                }
+
+                this.mileageDescription = "";
             },
 
             checkExistsServiceWithType(type) {
@@ -51,14 +56,13 @@
     <v-card max-width="700px">
         <v-list-item>
             <v-list-item-content>
-                <div class="md-layout md-gutter ">
-
+                <form v-on:submit.prevent="saveType" >
                     <div>
-                        <v-text-field label="Description" style="font-size: 24px" type="text"
+                        <v-text-field label="Description" type="text"
                                       v-model="mileageDescription"></v-text-field>
                     </div>
-                    <v-btn style="width:100%" v-on:click="saveType" color="primary">add service type</v-btn>
-                </div>
+                    <v-btn style="width:100%" type="submit" color="primary">add service type</v-btn>
+                </form>
             </v-list-item-content>
         </v-list-item>
 

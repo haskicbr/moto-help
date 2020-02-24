@@ -115,20 +115,6 @@
                     </router-link>
                 </template>
 
-                <router-link tag="div" v-on:click="closeMenu" to="/playground">
-                    <v-list-item link>
-                        <v-list-item-action>
-                            <v-icon>mdi-settings</v-icon>
-                        </v-list-item-action>
-                        <v-list-item-content>
-                            <v-list-item-title>
-                                <span class="subtitle-1">playground</span>
-                            </v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
-                </router-link>
-
-
                 <v-list-item class="justify-space-between">
                     <div class="subtitle-1 mx-5">night mode</div>
                     <div class="mx-5">
@@ -154,9 +140,9 @@
             </v-container>
         </v-content>
 
-        <v-footer style="height: 100px" app>
+<!--        <v-footer style="height: 100px" app>
 
-        </v-footer>
+        </v-footer>-->
     </v-app>
 </template>
 <script>

@@ -57,9 +57,21 @@
                 });
             },
 
+            goToAddServiceType(){
+                this.$router.push('/service-types')
+            },
+
             deleteService(index) {
                 this.$store.dispatch(ServiceActionTypes.DELETE_MILEAGE, index);
             }
+        },
+
+        computed: {
+
+          serviceTypes() {
+              return this.$store.state.serviceTypes;
+          }
+
         },
 
         data() {
@@ -67,7 +79,6 @@
             let mileageType = this.$store.state.defaultServiceType;
 
             let serviceTypesDescriptions = this.getServiceTypesAsArray();
-
 
             return {
                 visibleServiceFormState: this.$props.visibleServiceForm,
@@ -91,17 +102,34 @@
             <div class="md-layout md-gutter">
                 <template v-if="!visibleServiceFormState">
                     <div class="md-layout-item md-size=100 add-mileage-container">
-                        <label class="title font-weight-regular">Change services</label>
+                        <label class="subtitle-1 font-weight-regular">Change services</label>
 
-                        <v-tooltip right>
-                            <template v-slot:activator="{ on }">
-                                <v-btn v-on="on" v-on:click="changeVisibleServiceForm" class="mx-2" fab dark small
-                                       color="primary">
-                                    <v-icon dark>mdi-plus</v-icon>
-                                </v-btn>
-                            </template>
-                            <span>add service</span>
-                        </v-tooltip>
+
+
+                        <template v-if="Object.keys(serviceTypes).length > 0">
+                            <v-tooltip right>
+                                <template v-slot:activator="{ on }">
+                                    <v-btn v-on="on" v-on:click="changeVisibleServiceForm" class="mx-2" fab dark small
+                                           color="primary">
+                                        <v-icon dark>mdi-plus</v-icon>
+                                    </v-btn>
+                                </template>
+                                <span>add service</span>
+                            </v-tooltip>
+                        </template>
+                        <template v-else>
+
+                            <v-tooltip right>
+                                <template v-slot:activator="{ on }">
+                                    <v-btn v-on="on" v-on:click="goToAddServiceType" class="mx-2" fab dark small
+                                           color="primary">
+                                        <v-icon dark>mdi-plus</v-icon>
+                                    </v-btn>
+                                </template>
+                                <span>add service type</span>
+                            </v-tooltip>
+                        </template>
+
 
                     </div>
                 </template>
@@ -163,7 +191,6 @@
 
             </v-list-item-content>
         </v-list-item>
-
 
             <template v-if="$store.state.services.length !== 0">
                 <v-list-item :key="key" v-for="(mileage,key) in $store.state.services">

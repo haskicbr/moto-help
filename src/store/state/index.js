@@ -9,22 +9,26 @@ let serviceTypes = {
     CHANGE_OIL: "CHANGE_OIL",
     CHANGE_OIL_FILTER: "CHANGE_OIL_FILTER",
     CHANGE_FUEL_FILTER: "CHANGE_FUEL_FILTER",
-    CHANGE_AIR_FILTER: "CHANGE_AIR_FILTER"
+    CHANGE_AIR_FILTER: "CHANGE_AIR_FILTER",
+    CHANGE_SPARK_PLUGS: "CHANGE_SPARK_PLUGS"
 };
 
 let serviceTypesDescriptions = {};
 
 serviceTypesDescriptions[serviceTypes.CHANGE_OIL] = {
-    description: "Замена масла"
+    description: "Change oil"
 };
 serviceTypesDescriptions[serviceTypes.CHANGE_OIL_FILTER] = {
-    description: "Замена маслянного фильтра"
+    description: "Change oil filter"
 };
 serviceTypesDescriptions[serviceTypes.CHANGE_FUEL_FILTER] = {
-    description: "Замена топливного фильтра"
+    description: "Change fuel filter"
 };
 serviceTypesDescriptions[serviceTypes.CHANGE_AIR_FILTER] = {
-    description: "Замена воздушного фильтра"
+    description: "Change air filter"
+};
+serviceTypesDescriptions[serviceTypes.CHANGE_SPARK_PLUGS] = {
+    description: "Change spark plugs"
 };
 
 state.serviceTypes = serviceTypesDescriptions;

@@ -30,6 +30,8 @@
 </template>
 
 <script>
+    import {SystemMutationTypes} from "../store/mutations/types";
+
     export default {
         name: 'Login',
 
@@ -41,7 +43,8 @@
 
         methods: {
             login() {
-                this.$store.state.isLogged = true;
+
+                this.$store.commit(SystemMutationTypes.LOGIN, true)
                 this.$router.push('/')
             }
         }

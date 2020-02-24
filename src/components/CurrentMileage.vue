@@ -34,9 +34,6 @@
             },
             getMileageProgress(mileage, lifetime) {
 
-
-                console.log(this.currentMileage)
-
                 let compareMileage = this.currentMileage - mileage;
 
                 let progress = compareMileage / lifetime * 100;
@@ -106,7 +103,7 @@
             <v-list-item-content v-if="!isEditable">
                 <div class="md-headline"
                      style="vertical-align: middle; display: flex; align-self: center">
-                    <div class="title font-weight-regular" style="display: flex; align-items: center">current mileage:
+                    <div class="subtitle-1 font-weight-regular" style="display: flex; align-items: center">current mileage:
                         {{$store.state.currentMileage}} km
                     </div>
 
@@ -135,14 +132,14 @@
             </v-list-item-content>
 
 
-            <div v-if="isEditable">
+            <v-list-item-content v-if="isEditable">
                 <div>
-                    <label class="title">Change current mileage</label>
+                    <label class="subtitle-1 font-weight-regular">Change current mileage</label>
 
-                    <v-text-field style="font-size: 24px" type="number" v-model="currentMileage"></v-text-field>
+                    <v-text-field type="number" v-model="currentMileage"></v-text-field>
                 </div>
                 <v-btn v-on:click="changeCurrent" color="primary">Save</v-btn>
-            </div>
+            </v-list-item-content>
         </v-list-item>
         <br>
 
@@ -150,7 +147,7 @@
 
             <v-list-item>
                 <v-list-item-content>
-                    <v-list-item-title class="title font-weight-regular">Services</v-list-item-title>
+                    <v-list-item-title class="subtitle-1 font-weight-regular">Services</v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
 
