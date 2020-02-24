@@ -18,8 +18,7 @@ mutations[ServiceMutationTypes.CHANGE_CURRENT] = (state, value) => {
 
 
 mutations[ServiceMutationTypes.ADD_TYPE] = (state, {type, description}) => {
-    state.serviceTypes[type] = description;
-
+    state.serviceTypes[type] = {description};
     state.serviceTypes = {...state.serviceTypes}
 };
 
