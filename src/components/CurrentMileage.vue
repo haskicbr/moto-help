@@ -159,20 +159,20 @@
                             </div>
                         </v-list-item-content>
 
-                        <v-list-item>
+                        <v-list-item class="justify-center flex-wrap">
                             <v-btn text>
                                 <span>{{getChangeThought(mileage)}} km</span>
-                                <v-icon class="mx-3" :color="progeressColor">mdi-history</v-icon>
+                                <v-icon class="mx-1" :color="progeressColor">mdi-history</v-icon>
                             </v-btn>
 
                             <v-btn text>
                                 <span>{{mileage.lifetime}} km</span>
-                                <v-icon class="mx-3" :color="progeressColor">mdi-heart</v-icon>
+                                <v-icon class="mx-1" :color="progeressColor">mdi-heart</v-icon>
                             </v-btn>
 
                             <v-btn text>
                                 <span>{{mileage.mileage}} km</span>
-                                <v-icon class="mx-3" icon="mdi-lock" :color="progeressColor">mdi-road-variant</v-icon>
+                                <v-icon class="mx-1" icon="mdi-lock" :color="progeressColor">mdi-road-variant</v-icon>
                             </v-btn>
                         </v-list-item>
 
