@@ -101,8 +101,7 @@
     <v-card max-width="700px">
         <v-list-item>
             <v-list-item-content v-if="!isEditable">
-                <div class="md-headline"
-                     style="vertical-align: middle; display: flex; align-self: center">
+                <div class="md-headline justify-center align-center d-flex">
                     <div class="v-btn " style="display: flex; align-items: center; justify-content: center">
                         current mileage: {{$store.state.currentMileage}} km
                     </div>
