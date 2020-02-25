@@ -103,8 +103,8 @@
             <v-list-item-content v-if="!isEditable">
                 <div class="md-headline"
                      style="vertical-align: middle; display: flex; align-self: center">
-                    <div class="v-btn subtitle-1 font-weight-regular" style="display: flex; align-items: center">current mileage:
-                        {{$store.state.currentMileage}} km
+                    <div class="v-btn " style="display: flex; align-items: center; justify-content: center">
+                        current mileage: {{$store.state.currentMileage}} km
                     </div>
 
                     <v-tooltip bottom>
@@ -145,20 +145,14 @@
 
         <div v-if="getServices() !== 0" class="md-layout md-gutter">
 
-            <v-list-item>
-                <v-list-item-content>
-                    <v-list-item-title class="subtitle-1 font-weight-regular">Services</v-list-item-title>
-                </v-list-item-content>
-            </v-list-item>
-
             <template v-for="(mileage) in getServices()">
 
                 {{(() => {
-                    progeressColor = getProgressColor(getMileageProgress(mileage.mileage, mileage.lifetime))
+                progeressColor = getProgressColor(getMileageProgress(mileage.mileage, mileage.lifetime))
                 })()}}
 
                 <v-list-item three-line>
-                    <v-list-item-content class="justify-center" >
+                    <v-list-item-content class="justify-center">
 
                         <v-list-item-content class="justify-center">
                             <div class="v-btn">
@@ -169,17 +163,17 @@
                         <v-list-item>
                             <v-btn text>
                                 <span>{{getChangeThought(mileage)}} km</span>
-                                <v-icon  class="mx-3" :color="progeressColor">mdi-history</v-icon>
+                                <v-icon class="mx-3" :color="progeressColor">mdi-history</v-icon>
                             </v-btn>
 
-                            <v-btn text >
+                            <v-btn text>
                                 <span>{{mileage.lifetime}} km</span>
                                 <v-icon class="mx-3" :color="progeressColor">mdi-heart</v-icon>
                             </v-btn>
 
-                            <v-btn text >
+                            <v-btn text>
                                 <span>{{mileage.mileage}} km</span>
-                                <v-icon  class="mx-3" icon="mdi-lock" :color="progeressColor">mdi-road-variant</v-icon>
+                                <v-icon class="mx-3" icon="mdi-lock" :color="progeressColor">mdi-road-variant</v-icon>
                             </v-btn>
                         </v-list-item>
 
