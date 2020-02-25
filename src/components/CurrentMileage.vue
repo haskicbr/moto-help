@@ -103,7 +103,7 @@
             <v-list-item-content v-if="!isEditable">
                 <div class="md-headline"
                      style="vertical-align: middle; display: flex; align-self: center">
-                    <div class="subtitle-1 font-weight-regular" style="display: flex; align-items: center">current mileage:
+                    <div class="v-btn subtitle-1 font-weight-regular" style="display: flex; align-items: center">current mileage:
                         {{$store.state.currentMileage}} km
                     </div>
 
@@ -152,31 +152,39 @@
             </v-list-item>
 
             <template v-for="(mileage) in getServices()">
+
+                {{(() => {
+                    progeressColor = getProgressColor(getMileageProgress(mileage.mileage, mileage.lifetime))
+                })()}}
+
                 <v-list-item three-line>
-                    <v-list-item-content>
+                    <v-list-item-content class="justify-center" >
 
-                        <v-list-item-title>
-                            {{getMileageDescription(mileage.type)}}
-                        </v-list-item-title>
+                        <v-list-item-content class="justify-center">
+                            <div class="v-btn">
+                                {{getMileageDescription(mileage.type)}}
+                            </div>
+                        </v-list-item-content>
 
-                        <v-list-item-title>
-                            change through: {{getChangeThought(mileage)}} km
-                        </v-list-item-title>
+                        <v-list-item>
+                            <v-btn text>
+                                <span>{{getChangeThought(mileage)}} km</span>
+                                <v-icon  class="mx-3" :color="progeressColor">mdi-history</v-icon>
+                            </v-btn>
 
-                        <v-list-item-title>
-                            lifetime: {{mileage.lifetime}} km
-                        </v-list-item-title>
+                            <v-btn text >
+                                <span>{{mileage.lifetime}} km</span>
+                                <v-icon class="mx-3" :color="progeressColor">mdi-heart</v-icon>
+                            </v-btn>
 
-                        <v-list-item-title>
-                            change date: {{dateFormat(mileage.date)}}
-                        </v-list-item-title>
-
-                        <v-list-item-title>
-                            change mileage: {{mileage.mileage}} km
-                        </v-list-item-title>
+                            <v-btn text >
+                                <span>{{mileage.mileage}} km</span>
+                                <v-icon  class="mx-3" icon="mdi-lock" :color="progeressColor">mdi-road-variant</v-icon>
+                            </v-btn>
+                        </v-list-item>
 
                         <v-progress-linear
-                                :color="getProgressColor(getMileageProgress(mileage.mileage, mileage.lifetime))"
+                                :color="progeressColor"
                                 :value="getMileageProgress(mileage.mileage, mileage.lifetime)"
                                 height="10"
                         ></v-progress-linear>
