@@ -1,6 +1,9 @@
 const state = {
     services: [],
     currentMileage: 0,
+    mileageHistory: {
+
+    },
     isLogged: false,
     nightMode: false
 };

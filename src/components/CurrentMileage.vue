@@ -97,7 +97,6 @@
 
 
 <template>
-
     <v-card max-width="700px">
         <v-list-item>
             <v-list-item-content v-if="!isEditable">

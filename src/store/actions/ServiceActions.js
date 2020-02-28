@@ -13,6 +13,8 @@ actions[ServiceActionTypes.DELETE_MILEAGE] = function ({commit, state}, index) {
 };
 
 actions[ServiceActionTypes.CHANGE_CURRENT] = function ({commit, state}, newValue) {
+
+    commit(ServiceMutationTypes.ADD_HISTORY, newValue);
     commit(ServiceMutationTypes.CHANGE_CURRENT, newValue);
 };
 

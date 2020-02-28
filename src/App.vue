@@ -113,18 +113,15 @@
                         </v-list-item>
                     </router-link>
 
-                    <router-link tag="div" v-on:click="closeMenu" to="/service">
+                    <router-link tag="div" v-on:click="closeMenu" to="/time-line">
                         <v-list-item link>
                             <v-list-item-action>
                                 <v-icon>mdi-view-dashboard</v-icon>
                             </v-list-item-action>
                             <v-list-item-content>
-
-
                                 <v-list-item-title>
                                     <span v-on:click="closeMenu" class="subtitle-1">timeline</span>
                                 </v-list-item-title>
-
                             </v-list-item-content>
                         </v-list-item>
                     </router-link>
