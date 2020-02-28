@@ -32,12 +32,7 @@ mutations[ServiceMutationTypes.DELETE_TYPE] = (state, type) => {
 
 mutations[ServiceMutationTypes.ADD_HISTORY] = (state, currentMileage) => {
 
-    let currentDate = new Date();
-    let d = currentDate.getDay();
-    let m = currentDate.getMonth() + 1;
-    let y = currentDate.getFullYear();
-
-    let date = `${y}-${m}-${d}`;
+    let date = new Date().toISOString().substr(0, 10);
 
     state.mileageHistory[date] = currentMileage;
     state.mileageHistory = {...state.mileageHistory};
