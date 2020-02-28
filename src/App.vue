@@ -1,3 +1,49 @@
+<script>
+    import {ServiceMutationTypes, SystemMutationTypes} from "./store/mutations/types";
+
+
+
+    export default {
+
+        name: "app",
+
+        components: {
+
+        },
+
+        methods: {
+            closeMenu() {
+                this.menuVisible = false;
+            }
+        },
+
+        watch: {
+            nightMode: function (state) {
+                this.$vuetify.theme.dark = state;
+                this.$store.commit(SystemMutationTypes.CHANGE_NIGHT_MODE, state);
+            }
+        },
+
+        props: {
+            source: String,
+        },
+
+        data() {
+            let self = this;
+
+            return {
+                drawer: null,
+                menuVisible: false,
+                nightMode: self.$store.state.nightMode
+            }
+        },
+
+        mounted() {
+            this.$vuetify.theme.dark = this.nightMode;
+        },
+    }
+</script>
+
 <style lang="scss">
     .theme--dark.v-application {
         background: #484848 !important;
@@ -127,7 +173,7 @@
 
         <v-app-bar app clipped-left>
             <v-app-bar-nav-icon @click.stop="drawer = !drawer"/>
-            <v-toolbar-title>moto.help service</v-toolbar-title>
+            <v-toolbar-title></v-toolbar-title>
         </v-app-bar>
 
         <v-content>
@@ -145,40 +191,3 @@
         </v-footer>-->
     </v-app>
 </template>
-<script>
-    import {ServiceMutationTypes, SystemMutationTypes} from "./store/mutations/types";
-
-    export default {
-
-        name: "app",
-
-        methods: {
-            closeMenu() {
-                this.menuVisible = false;
-            }
-        },
-
-        watch: {
-            nightMode: function (state) {
-                this.$vuetify.theme.dark = state;
-                this.$store.commit(SystemMutationTypes.CHANGE_NIGHT_MODE, state);
-            }
-        },
-
-        props: {
-            source: String,
-        },
-        data() {
-            let self = this;
-
-            return {
-                drawer: null,
-                menuVisible: false,
-                nightMode: self.$store.state.nightMode,
-            }
-        },
-        mounted() {
-            this.$vuetify.theme.dark = this.nightMode;
-        },
-    }
-</script>

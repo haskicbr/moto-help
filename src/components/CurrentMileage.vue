@@ -147,7 +147,7 @@
             <template v-for="(mileage) in getServices()">
 
                 {{(() => {
-                progeressColor = getProgressColor(getMileageProgress(mileage.mileage, mileage.lifetime))
+                    progeressColor = getProgressColor(getMileageProgress(mileage.mileage, mileage.lifetime))
                 })()}}
 
                 <v-list-item three-line>
@@ -162,17 +162,17 @@
                         <v-list-item class="justify-center flex-wrap">
                             <v-btn text>
                                 <span>{{getChangeThought(mileage)}} km</span>
-                                <v-icon class="mx-1" :color="progeressColor">mdi-history</v-icon>
+                                <v-icon class="mx-1" :color="progeressColor">mdi-cog-clockwise</v-icon>
                             </v-btn>
 
                             <v-btn text>
                                 <span>{{mileage.lifetime}} km</span>
-                                <v-icon class="mx-1" :color="progeressColor">mdi-heart</v-icon>
+                                <v-icon class="mx-1" :color="progeressColor">mdi-cogs</v-icon>
                             </v-btn>
 
                             <v-btn text>
                                 <span>{{mileage.mileage}} km</span>
-                                <v-icon class="mx-1" icon="mdi-lock" :color="progeressColor">mdi-road-variant</v-icon>
+                                <v-icon class="mx-1" icon="mdi-lock" :color="progeressColor">mdi-wrench</v-icon>
                             </v-btn>
                         </v-list-item>
 
