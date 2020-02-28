@@ -49,9 +49,9 @@
 
                 <span slot="opposite"><span class="title">{{key}} <br>{{val}} km</span></span>
 
-                <v-card class="">
+                <v-card v-if="getServicesByDate(key).length > 0" class="">
                     <v-card-title class="headline">Lorem ipsum</v-card-title>
-                    <div>
+                    <div >
                         {{getServicesByDate(key)}}
                     </div>
                 </v-card>
