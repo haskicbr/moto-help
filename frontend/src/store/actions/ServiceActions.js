@@ -1,5 +1,5 @@
 import {ServiceActionTypes} from "./types";
-import {ServiceMutationTypes} from "./../mutations/types"
+import {ServiceMutationTypes} from "../mutations/types"
 
 
 const actions = {};

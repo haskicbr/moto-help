@@ -3,10 +3,10 @@ import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
 
-import Service      from "./../components/Service";
-import Index        from "./../components/Index";
-import Login        from "./../components/Login";
-import ServiceTypes from "./../components/ServiceTypes";
+import Service      from "../components/Service";
+import Index        from "../components/Index";
+import Login        from "../components/Login";
+import ServiceTypes from "../components/ServiceTypes";
 import TimeLine     from "../components/TimeLine";
 
 const routes = [
