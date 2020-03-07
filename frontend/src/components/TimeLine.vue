@@ -70,81 +70,63 @@
 <template>
 
     <div>
-        <v-timeline
-                :align-top="false"
-                :dense="false"
-                :reverse="false"
-        >
-            <v-timeline-item
-                    v-for="(val, key) in mileageHistory"
-                    :key="key"
-                    :fill-dot="true"
-                    :hide-dot="false"
-                    :icon="'mdi-star'"
-                    :icon-color="'white'"
-                    :left="false"
-                    :right="true"
-                    :small="true"
-            >
-                <template v-slot:icon>
-                    <v-avatar v-if="false">
-                        <img src="http://i.pravatar.cc/64">
-                    </v-avatar>
-                </template>
+        <v-timeline dense clipped>
+            <v-timeline-item color="grey" :key="key" v-for="(val, key) in mileageHistory">
 
-                <span slot="opposite"><span class="title">{{key}} <br>{{val}} km</span></span>
+                <v-row justify="center">
+                    <v-col cols="3">
+                        {{key}}
+                    </v-col>
+                    <v-col cols="3">
+                        {{val}} km
+                    </v-col>
+                </v-row>
 
-                <v-card v-if="getServicesByDate(key).length > 0" class="">
+                <div class="mb-4" small v-if="getServicesByDate(key).length > 0">
                     <div v-for="service in getServicesByDate(key)">
+                        <div class="justify-center">
 
-                        <v-list-item three-line>
                             <v-list-item-content class="justify-center">
-
-                                <v-list-item-content class="justify-center">
-                                    <div class="v-btn">
-                                        {{getMileageDescription(service.type)}}
-
-                                    </div>
-                                </v-list-item-content>
-
-
-                                {{(() => {
-                                    progeressColor = getProgressColor(getMileageProgress(service.mileage, service.lifetime, val))
-                                })()}}
-
-                                <v-list-item class="justify-center flex-wrap">
-                                    <v-btn text>
-                                        <span>{{getChangeThought(service, val)}} km</span>
-                                        <v-icon class="mx-1" :color="progeressColor">mdi-cog-clockwise</v-icon>
-                                    </v-btn>
-
-                                    <v-btn text>
-                                        <span>{{service.lifetime}} km</span>
-                                        <v-icon class="mx-1" :color="progeressColor">mdi-cogs</v-icon>
-                                    </v-btn>
-
-                                    <v-btn text>
-                                        <span>{{service.mileage}} km</span>
-                                        <v-icon class="mx-1" icon="mdi-lock" :color="progeressColor">mdi-wrench</v-icon>
-                                    </v-btn>
-                                </v-list-item>
-                                <!--
-                                                                <v-progress-linear
-                                                                        :color="progeressColor"
-                                                                        :value="getMileageProgress(mileage.mileage, mileage.lifetime)"
-                                                                        height="10"
-                                                                ></v-progress-linear>-->
-
+                                <div class="v-btn">
+                                    {{getMileageDescription(service.type)}}
+                                </div>
                             </v-list-item-content>
-                        </v-list-item>
 
+                            {{(() => {
+                                progeressColor = getProgressColor(getMileageProgress(service.mileage, service.lifetime, val))
+                            })()}}
+
+                            <v-list-item class="justify-center flex-wrap">
+                                <v-btn text>
+                                    <span>{{getChangeThought(service, val)}} km</span>
+                                    <v-icon class="mx-1" :color="progeressColor">mdi-cog-clockwise</v-icon>
+                                </v-btn>
+                            </v-list-item>
+
+                            <v-list-item class="justify-center flex-wrap">
+                                <v-btn text>
+                                    <span>{{service.lifetime}} km</span>
+                                    <v-icon class="mx-1" :color="progeressColor">mdi-cogs</v-icon>
+                                </v-btn>
+
+                                <v-btn text>
+                                    <span>{{service.mileage}} km</span>
+                                    <v-icon class="mx-1" icon="mdi-lock" :color="progeressColor">mdi-wrench</v-icon>
+                                </v-btn>
+                            </v-list-item>
+                            <v-progress-linear
+                                    :color="progeressColor"
+                                    :value="getMileageProgress(service.mileage, service.lifetime, val)"
+                                    height="10"
+                            ></v-progress-linear>
+
+                        </div>
 
                     </div>
-                </v-card>
+                </div>
             </v-timeline-item>
         </v-timeline>
-
     </div>
 
-
 </template>
+
