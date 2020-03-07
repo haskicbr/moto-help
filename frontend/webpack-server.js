@@ -82,7 +82,7 @@ module.exports = {
         new VueLoaderPlugin(),
         new webpack.SourceMapDevToolPlugin({})
     ],
-    devtool: false,
+    devtool: 'inline-source-map',
 
     devServer: {
         headers: {
