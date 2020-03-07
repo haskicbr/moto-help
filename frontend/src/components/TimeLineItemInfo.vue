@@ -59,9 +59,14 @@
         data() {
 
 
+            let service = this.$props.service;
+            let mileage = this.$props.mileage;
+
+            let progressColor = this.getProgressColor(this.getMileageProgress(service.mileage, service.lifetime, mileage));
 
             return {
-                showInfo: false
+                showInfo: false,
+                progressColor
             }
         }
     }
@@ -79,28 +84,22 @@
                 <template v-else>
                     <v-icon>mdi-magnify-minus-outline</v-icon>
                 </template>
-
-
             </button>
         </v-list-item-content>
 
         <template v-if="showInfo">
 
-            {{(() => {
-                progeressColor = getProgressColor(getMileageProgress(service.mileage, service.lifetime, mileage))
-            })()}}
-
             <v-list-item class="justify-center flex-wrap">
                 <v-btn text>
                     <span>{{getChangeThought(service, mileage)}} km</span>
-                    <v-icon class="mx-1" :color="progeressColor">mdi-cog-clockwise</v-icon>
+                    <v-icon class="mx-1" :color="progressColor">mdi-cog-clockwise</v-icon>
                 </v-btn>
             </v-list-item>
 
             <v-list-item class="justify-center flex-wrap">
                 <v-btn text>
                     <span>{{service.lifetime}} km</span>
-                    <v-icon class="mx-1" :color="progeressColor">mdi-cogs</v-icon>
+                    <v-icon class="mx-1" :color="progressColor">mdi-cogs</v-icon>
                 </v-btn>
 
                 <v-btn text>
@@ -109,7 +108,7 @@
                 </v-btn>
             </v-list-item>
             <v-progress-linear
-                    :color="progeressColor"
+                    :color="progressColor"
                     :value="getMileageProgress(service.mileage, service.lifetime, mileage)"
                     height="10"
             ></v-progress-linear>

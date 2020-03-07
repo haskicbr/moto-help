@@ -25,11 +25,11 @@
 <template>
 
     <div>
-        <v-timeline dense clipped>
-            <v-timeline-item hide-dot color="grey" :key="date" v-for="(val, date) in mileageHistory">
+
+            <div :key="date" v-for="(val, date) in mileageHistory">
                 <TimeLineItem  :key="date" v-bind:date="date" v-bind:mileage="val"></TimeLineItem>
-            </v-timeline-item>
-        </v-timeline>
+            </div>
+
     </div>
 
 </template>
