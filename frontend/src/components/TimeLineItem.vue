@@ -37,15 +37,27 @@
 <template>
     <div>
         <v-row justify="center">
-            <v-col cols="3">
-                {{date}}
-            </v-col>
-            <v-col cols="3">
-                {{mileage}} km
-            </v-col>
+
+            <button style="width: 100%" v-on:click="showInfo = !showInfo" class="v-btn pointer">
+                <v-col cols="3">
+                    {{date}}
+                </v-col>
+                <v-col cols="3">
+                    {{mileage}} km
+                </v-col>
+
+                <template v-if="!showInfo">
+                    <v-icon>mdi-magnify</v-icon>
+                </template>
+                <template v-else>
+                    <v-icon>mdi-magnify-minus-outline</v-icon>
+                </template>
+            </button>
+
+
         </v-row>
 
-        <div class="mb-4" v-if="getServicesByDate(date).length > 0">
+        <div  class="mb-4" v-if="getServicesByDate(date).length > 0 && showInfo">
             <div v-for="(service, key) in getServicesByDate(date)">
                 <TimeLineItemInfo :mileage="mileage" :key="key" :service="service"></TimeLineItemInfo>
             </div>
