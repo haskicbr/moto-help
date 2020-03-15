@@ -104,7 +104,7 @@
 
                 <v-btn text>
                     <span>{{service.mileage}} km</span>
-                    <v-icon class="mx-1" icon="mdi-lock" :color="progeressColor">mdi-wrench</v-icon>
+                    <v-icon class="mx-1" icon="mdi-lock" :color="progressColor">mdi-wrench</v-icon>
                 </v-btn>
             </v-list-item>
             <v-progress-linear
