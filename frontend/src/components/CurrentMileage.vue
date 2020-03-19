@@ -164,39 +164,39 @@
                                 ></v-progress-linear>
                             </div>
                         </v-list-item-content>
-
-                        <v-list-item>
-                            <v-list-item-action>
-                                <v-icon  :color="progeressColor">mdi-cog-clockwise</v-icon>
-                            </v-list-item-action>
-
-                            <v-list-item-content>
-                                <span>{{getChangeThought(mileage)}} km</span>
-                            </v-list-item-content>
-                        </v-list-item>
-
-                        <v-list-item>
-                            <v-list-item-action>
-                                <v-icon :color="progeressColor">mdi-cogs</v-icon>
-                            </v-list-item-action>
-
-                            <v-list-item-content>
-                                <span>{{mileage.lifetime}} km</span>
-                            </v-list-item-content>
-                        </v-list-item>
-
-                        <v-list-item>
-                            <v-list-item-action>
-                                <v-icon :color="progeressColor">mdi-wrench</v-icon>
-                            </v-list-item-action>
-
-                            <v-list-item-content>
-                                <span>{{mileage.mileage}} km</span>
-                            </v-list-item-content>
-                        </v-list-item>
-
                     </v-list-item-content>
                 </v-list-item>
+
+                <v-list-item>
+                    <v-list-item-action>
+                        <v-icon  :color="progeressColor">mdi-cog-clockwise</v-icon>
+                    </v-list-item-action>
+
+                    <v-list-item-content>
+                        <span>{{getChangeThought(mileage)}} km</span>
+                    </v-list-item-content>
+                </v-list-item>
+
+                <v-list-item>
+                    <v-list-item-action>
+                        <v-icon :color="progeressColor">mdi-cogs</v-icon>
+                    </v-list-item-action>
+
+                    <v-list-item-content>
+                        <span>{{mileage.lifetime}} km</span>
+                    </v-list-item-content>
+                </v-list-item>
+
+                <v-list-item>
+                    <v-list-item-action>
+                        <v-icon :color="progeressColor">mdi-wrench</v-icon>
+                    </v-list-item-action>
+
+                    <v-list-item-content>
+                        <span>{{mileage.mileage}} km</span>
+                    </v-list-item-content>
+                </v-list-item>
+
             </template>
         </div>
     </div>
