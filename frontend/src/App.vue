@@ -57,6 +57,10 @@
         z-index: 100000 !important;
     }
 
+    .container {
+        padding: 0 0 50px 0 !important;
+    }
+
 </style>
 
 <template>
@@ -179,7 +183,7 @@
         <v-content>
             <v-container style="padding-bottom: 50px">
                 <v-row align="center" justify="center">
-                    <v-col cols="12" sm="8" md="4" class=" lign-content-center">
+                    <v-col cols="12" sm="8" md="4">
                         <router-view></router-view>
                     </v-col>
                 </v-row>
@@ -214,7 +218,7 @@
                     </v-btn>
                 </router-link>
 
-                <v-btn v-on:click="showMenu">
+                <v-btn v-on:click="menuVisible = !menuVisible">
                     <span>Other</span>
                     <v-icon>mdi-menu</v-icon>
                 </v-btn>
