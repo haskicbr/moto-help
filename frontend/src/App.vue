@@ -50,7 +50,7 @@
 
 <style lang="scss">
     .theme--dark.v-application {
-        background: #484848 !important;
+        background: #1e1e1e !important;
     }
 
     footer {
