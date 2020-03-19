@@ -97,12 +97,12 @@
 
 
 <template>
-    <v-card max-width="700px">
+    <div>
         <v-list-item>
             <v-list-item-content v-if="!isEditable">
                 <div class="md-headline justify-center align-center d-flex">
-                    <div class="v-btn " style="display: flex; align-items: center; justify-content: center">
-                        current mileage: {{$store.state.currentMileage}} km
+                    <div class="subtitle" style="display: flex; align-items: center; justify-content: center">
+                        current mileage {{$store.state.currentMileage}} km
                     </div>
 
                     <v-tooltip bottom>
@@ -115,7 +115,7 @@
                         <span>change mileage</span>
                     </v-tooltip>
 
-                    <v-tooltip bottom>
+<!--                    <v-tooltip bottom>
                         <template v-slot:activator="{ on }">
                             <router-link tag="div" to="/service/add">
                                 <v-btn v-on="on" class="mx-1" fab dark small color="primary">
@@ -125,7 +125,7 @@
                         </template>
 
                         <span>add service</span>
-                    </v-tooltip>
+                    </v-tooltip>-->
                 </div>
             </v-list-item-content>
 
@@ -185,5 +185,5 @@
                 </v-list-item>
             </template>
         </div>
-    </v-card>
+    </div>
 </template>
