@@ -94,37 +94,39 @@
         </v-list-item>
 
 
-        <v-list-item v-if="showInfo">
+        <template v-if="showInfo">
+            <v-list-item>
+                <v-list-item-action>
+                    <v-icon :color="progressColor">mdi-cog-clockwise</v-icon>
+                </v-list-item-action>
+                <v-list-item-content>
+                    <span>{{getChangeThought(service, mileage)}} km</span>
+                </v-list-item-content>
+            </v-list-item>
+            <v-list-item>
+                <v-list-item-action>
+                    <v-icon :color="progressColor">mdi-cogs</v-icon>
+                </v-list-item-action>
+                <v-list-item-content>
+                    <span>{{service.lifetime}} km</span>
+                </v-list-item-content>
+            </v-list-item>
+            <v-list-item>
+                <v-list-item-action>
+                    <v-icon icon="mdi-lock" :color="progressColor">mdi-wrench</v-icon>
+                </v-list-item-action>
+                <v-list-item-content>
+                    <span>{{service.mileage}} km</span>
+                </v-list-item-content>
+            </v-list-item>
 
+            <v-progress-linear
+                    :color="progressColor"
+                    :value="getMileageProgress(service.mileage, service.lifetime, mileage)"
+                    height="10"
+            ></v-progress-linear>
 
-
-            <v-list-item-content>
-
-                <div>
-                    <v-icon class="mx-1" :color="progressColor">mdi-cog-clockwise</v-icon>
-                    <span class="mx-2">{{getChangeThought(service, mileage)}} km</span>
-
-                </div>
-
-                <div>
-                    <v-icon class="mx-1" :color="progressColor">mdi-cogs</v-icon>
-                    <span class="mx-2">{{service.lifetime}} km</span>
-                </div>
-
-                <div>
-                    <v-icon class="mx-1" icon="mdi-lock" :color="progressColor">mdi-wrench</v-icon>
-                    <span class="mx-2">{{service.mileage}} km</span>
-
-                </div>
-
-
-                <v-progress-linear
-                        :color="progressColor"
-                            :value="getMileageProgress(service.mileage, service.lifetime, mileage)"
-                            height="10"
-                    ></v-progress-linear>
-            </v-list-item-content>
-        </v-list-item>
+        </template>
     </div>
 
 </template>
