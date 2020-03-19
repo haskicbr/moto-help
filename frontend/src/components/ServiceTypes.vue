@@ -53,7 +53,7 @@
 
 <template>
 
-    <v-card max-width="700px">
+    <div>
         <v-list-item>
             <v-list-item-content>
                 <form v-on:submit.prevent="saveType" >
@@ -90,5 +90,5 @@
                 </v-list-item-content>
             </v-list-item>
         </template>
-    </v-card>
+    </div>
 </template>
