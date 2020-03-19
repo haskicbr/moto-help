@@ -106,40 +106,47 @@
     }
 </script>
 
+<style lang="scss">
 
+    .add-mileage-container {
+        display: flex;
+        justify-content: flex-start;
+
+    }
+
+    .button--add-service-type, .button--add-service {
+
+        height: auto !important;
+        padding: 5px 10px 5px 10px !important;
+        margin-right: 15px;
+        i {
+            display: block;
+        }
+
+        span {
+            display: block;
+        }
+    }
+
+</style>
 <template>
-    <v-card max-width="700px">
+    <div>
         <v-list-item>
             <v-list-item-content>
                 <div class="md-layout md-gutter">
                     <template v-if="!visibleServiceFormState">
                         <div class="md-layout-item md-size=100 add-mileage-container">
-                            <label class="subtitle-1 font-weight-regular">Change services</label>
-
                             <template v-if="Object.keys(serviceTypes).length > 0">
-                                <v-tooltip right>
-                                    <template v-slot:activator="{ on }">
-                                        <v-btn v-on="on" v-on:click="changeVisibleServiceForm" class="mx-2" fab dark
-                                               small
-                                               color="primary">
-                                            <v-icon dark>mdi-plus</v-icon>
-                                        </v-btn>
-                                    </template>
+                                <v-btn class="button--add-service" v-on:click="changeVisibleServiceForm" color="primary">
                                     <span>add service</span>
-                                </v-tooltip>
+                                    <v-icon>mdi-cogs</v-icon>
+                                </v-btn>
                             </template>
-                            <template v-else>
 
-                                <v-tooltip right>
-                                    <template v-slot:activator="{ on }">
-                                        <v-btn v-on="on" v-on:click="goToAddServiceType" class="mx-2" fab dark small
-                                               color="primary">
-                                            <v-icon dark>mdi-plus</v-icon>
-                                        </v-btn>
-                                    </template>
-                                    <span>add service type</span>
-                                </v-tooltip>
-                            </template>
+                            <v-btn class="button--add-service-type" v-on:click="goToAddServiceType" color="primary">
+                                <span>add service type</span>
+                                <v-icon>mdi-wrench</v-icon>
+                            </v-btn>
 
 
                         </div>
@@ -150,10 +157,7 @@
 
 
                     <div class="justify-start d-flex ">
-                        <v-chip
-                                v-on:click="changeActiveLifetime"
-                                style="cursor: pointer;display: flex"
-                        >
+                        <v-chip v-on:click="changeActiveLifetime" style="cursor: pointer;display: flex">
                             <v-avatar left>
                                 <template v-if="!isActiveLifetime">
                                     <v-icon>mdi-plus-circle-outline</v-icon>
@@ -287,5 +291,5 @@
                 </v-list-item-content>
             </v-list-item>
         </template>
-    </v-card>
+    </div>
 </template>
