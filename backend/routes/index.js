@@ -5,6 +5,11 @@ const DB = require("./../components/db");
 
 router
 
+    .get('/', async (ctx, next) => {
+
+
+    })
+
     .post('/mileage', async (ctx, next) => {
 
         let { value } = ctx.request.body;
