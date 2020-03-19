@@ -98,48 +98,34 @@
 
 <template>
     <div>
-        <v-list-item>
-            <v-list-item-content v-if="!isEditable">
-                <div class="md-headline justify-center align-center d-flex">
-                    <div class="subtitle" style="display: flex; align-items: center; justify-content: center">
-                        current mileage {{$store.state.currentMileage}} km
+        <v-list-item v-if="!isEditable">
+            <v-list-item-title>
+                <span >current mileage {{$store.state.currentMileage}} km</span>
+                <v-tooltip bottom>
+                    <template v-slot:activator="{ on }">
+                        <v-btn v-on="on" v-on:click="isEditable = !isEditable" class="mx-2"  fab small color="primary">
+                            <v-icon small dark>mdi-pencil</v-icon>
+                        </v-btn>
+                    </template>
+                    <span>change mileage</span>
+                </v-tooltip>
+            </v-list-item-title>
+        </v-list-item>
+
+        <v-list-item v-if="isEditable">
+            <v-list-item-content>
+
+                <form v-on:submit.prevent="changeCurrent">
+                    <div>
+                        <label class="subtitle-1 font-weight-regular">Change current mileage</label>
+
+                        <v-text-field type="number" v-model="currentMileage"></v-text-field>
                     </div>
+                    <v-btn type="submit" color="primary">Save</v-btn>
+                </form>
 
-                    <v-tooltip bottom>
-                        <template v-slot:activator="{ on }">
-                            <v-btn v-on="on" v-on:click="isEditable = !isEditable" class="mx-2" fab dark small
-                                   color="primary">
-                                <v-icon dark>mdi-pencil</v-icon>
-                            </v-btn>
-                        </template>
-                        <span>change mileage</span>
-                    </v-tooltip>
-
-<!--                    <v-tooltip bottom>
-                        <template v-slot:activator="{ on }">
-                            <router-link tag="div" to="/service/add">
-                                <v-btn v-on="on" class="mx-1" fab dark small color="primary">
-                                    <v-icon dark>mdi-plus</v-icon>
-                                </v-btn>
-                            </router-link>
-                        </template>
-
-                        <span>add service</span>
-                    </v-tooltip>-->
-                </div>
-            </v-list-item-content>
-
-
-            <v-list-item-content v-if="isEditable">
-                <div>
-                    <label class="subtitle-1 font-weight-regular">Change current mileage</label>
-
-                    <v-text-field type="number" v-model="currentMileage"></v-text-field>
-                </div>
-                <v-btn v-on:click="changeCurrent" color="primary">Save</v-btn>
             </v-list-item-content>
         </v-list-item>
-        <br>
 
         <div v-if="getServices() !== 0" class="md-layout md-gutter">
 
@@ -152,7 +138,6 @@
                 <v-list-item three-line>
                     <v-list-item-content class="justify-center">
 
-                        <v-list-item-content class="justify-center d-flex">
                             <div class="subtitle-1 d-flex">
                                 {{getMileageDescription(mileage.type)}}
                             </div>
@@ -163,7 +148,7 @@
                                         height="10"
                                 ></v-progress-linear>
                             </div>
-                        </v-list-item-content>
+
                     </v-list-item-content>
                 </v-list-item>
 
