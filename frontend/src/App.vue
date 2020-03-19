@@ -184,16 +184,17 @@
                     </v-col>
                 </v-row>
             </v-container>
+
             <v-bottom-navigation
+                    v-if="$store.state.isLogged"
                     scroll-target="#scroll-area-1"
                     hide-on-scroll
                     fixed
-
             >
 
                 <router-link tag="div" style="height: 100%" v-on:click="closeMenu" to="/">
                     <v-btn>
-                        <span>Current mileage</span>
+                        <span>Mileage</span>
                         <v-icon>mdi-history</v-icon>
                     </v-btn>
                 </router-link>

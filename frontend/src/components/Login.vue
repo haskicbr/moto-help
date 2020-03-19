@@ -21,8 +21,8 @@
 
             <template>
                 <br>
-                <v-btn text color="primary accent-4" v-on:click="login">Start new history</v-btn>
-                <v-btn text color="primary accent-4" v-on:click="login">Registration</v-btn>
+                <v-btn  style="display: none" text color="primary accent-4" v-on:click="login">Start new history</v-btn>
+                <v-btn text color="primary accent-4" v-on:click="login">Continue without Registration</v-btn>
             </template>
         </template>
     </div>
@@ -43,7 +43,6 @@
 
         methods: {
             login() {
-
                 this.$store.commit(SystemMutationTypes.LOGIN, true)
                 this.$router.push('/')
             }

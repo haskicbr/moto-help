@@ -85,8 +85,7 @@
 
         data() {
 
-            let mileageType = this.$store.state.defaultServiceType;
-
+            let mileageType = this.$store.getters.defaultServiceType;
             let serviceTypesDescriptions = this.getServiceTypesAsArray();
 
             return {
@@ -144,11 +143,9 @@
                             </template>
 
                             <v-btn class="button--add-service-type" v-on:click="goToAddServiceType" color="primary">
-                                <span>add service type</span>
+                                <span>add type</span>
                                 <v-icon>mdi-wrench</v-icon>
                             </v-btn>
-
-
                         </div>
                     </template>
                 </div>
