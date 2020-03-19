@@ -152,34 +152,48 @@
                 <v-list-item three-line>
                     <v-list-item-content class="justify-center">
 
-                        <v-list-item-content class="justify-center">
-                            <div class="v-btn">
+                        <v-list-item-content class="justify-center d-flex">
+                            <div class="subtitle-1 d-flex">
                                 {{getMileageDescription(mileage.type)}}
+                            </div>
+                            <div class="d-flex">
+                                <v-progress-linear
+                                        :color="progeressColor"
+                                        :value="getMileageProgress(mileage.mileage, mileage.lifetime)"
+                                        height="10"
+                                ></v-progress-linear>
                             </div>
                         </v-list-item-content>
 
-                        <v-list-item class="justify-center flex-wrap">
-                            <v-btn text>
+                        <v-list-item>
+                            <v-list-item-action>
+                                <v-icon  :color="progeressColor">mdi-cog-clockwise</v-icon>
+                            </v-list-item-action>
+
+                            <v-list-item-content>
                                 <span>{{getChangeThought(mileage)}} km</span>
-                                <v-icon class="mx-1" :color="progeressColor">mdi-cog-clockwise</v-icon>
-                            </v-btn>
-
-                            <v-btn text>
-                                <span>{{mileage.lifetime}} km</span>
-                                <v-icon class="mx-1" :color="progeressColor">mdi-cogs</v-icon>
-                            </v-btn>
-
-                            <v-btn text>
-                                <span>{{mileage.mileage}} km</span>
-                                <v-icon class="mx-1" icon="mdi-lock" :color="progeressColor">mdi-wrench</v-icon>
-                            </v-btn>
+                            </v-list-item-content>
                         </v-list-item>
 
-                        <v-progress-linear
-                                :color="progeressColor"
-                                :value="getMileageProgress(mileage.mileage, mileage.lifetime)"
-                                height="10"
-                        ></v-progress-linear>
+                        <v-list-item>
+                            <v-list-item-action>
+                                <v-icon :color="progeressColor">mdi-cogs</v-icon>
+                            </v-list-item-action>
+
+                            <v-list-item-content>
+                                <span>{{mileage.lifetime}} km</span>
+                            </v-list-item-content>
+                        </v-list-item>
+
+                        <v-list-item>
+                            <v-list-item-action>
+                                <v-icon :color="progeressColor">mdi-wrench</v-icon>
+                            </v-list-item-action>
+
+                            <v-list-item-content>
+                                <span>{{mileage.mileage}} km</span>
+                            </v-list-item-content>
+                        </v-list-item>
 
                     </v-list-item-content>
                 </v-list-item>
