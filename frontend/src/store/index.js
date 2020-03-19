@@ -25,13 +25,20 @@ const store = new Vuex.Store({
     actions,
 
     getters: {
-/*        doneTodos: state => {
-            return state.todos.filter(todo => todo.done)
-        },
+        defaultServiceType(state) {
 
-        countAsText: state => {
-            return state.count + ' this is count from getters';
-        }*/
+            let defaultServiceType = state.defaultServiceType;
+
+            if (typeof (state.serviceTypes[defaultServiceType]) !== 'undefined') {
+                return defaultServiceType;
+            }
+
+            if (Object.keys(state.serviceTypes).length > 0) {
+                return Object.keys(state.serviceTypes)[0];
+            }
+
+            return null;
+        }
     }
 });
 
