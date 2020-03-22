@@ -1,6 +1,7 @@
 <script>
     import {ServiceMutationTypes, SystemMutationTypes} from "./store/mutations/types";
 
+    import {AuthActionTypes} from "./store/actions/types";
 
 
     export default {
@@ -18,6 +19,10 @@
 
             showMenu() {
                 this.menuVisible = true;
+            },
+
+            logout() {
+                this.$store.dispatch(AuthActionTypes.LOGOUT);
             }
         },
 
@@ -132,6 +137,18 @@
                             </v-list-item-content>
                         </v-list-item>
                     </router-link>
+
+                    <v-list-item link v-on:click="logout">
+                        <v-list-item-action>
+                            <v-icon>mdi-logout</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>
+                            <v-list-item-title>
+                                <span class="md-list-item-text subtitle-1">logout</span>
+                            </v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+
                 </template>
 
                 <template v-else>
@@ -191,8 +208,7 @@
 
             <v-bottom-navigation
                     v-if="$store.state.isLogged"
-                    scroll-target="#scroll-area-1"
-                    hide-on-scroll
+
                     fixed
             >
 

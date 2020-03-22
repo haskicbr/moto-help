@@ -95,7 +95,7 @@ module.exports = {
         host: '0.0.0.0',
         disableHostCheck: true,
         hot: true,
-        compress: true,
+        compress: false,
         port: 9000
     },
 };

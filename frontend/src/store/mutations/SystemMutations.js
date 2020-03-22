@@ -45,12 +45,14 @@ mutations[SystemMutationTypes.INITIAL_STORE] = function (state) {
         {...state, ...currentState}
     );
 };
+
 mutations[SystemMutationTypes.CHANGE_NIGHT_MODE] = function (state, isActive) {
     state.nightMode = isActive;
 };
 
-mutations[SystemMutationTypes.LOGIN] = function (state, isLogged) {
+mutations[SystemMutationTypes.LOGIN] = function (state, {isLogged, isRegisterUser}) {
     state.isLogged = isLogged;
+    state.isRegisterUser = isRegisterUser;
 };
 
 export default mutations;

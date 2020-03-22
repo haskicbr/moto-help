@@ -5,6 +5,7 @@ const state = {
 
     },
     isLogged: false,
+    isRegisterUser: false,
     nightMode: false
 };
 

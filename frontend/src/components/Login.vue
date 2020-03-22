@@ -1,3 +1,39 @@
+<script>
+    import {AuthActionTypes, RegistrationsActionTypes} from "../store/actions/types";
+    import Registration from "./Registration";
+
+    export default {
+        name: 'Login',
+
+        components: {
+          Registration
+        },
+
+        beforeMount() {
+            if(this.$store.state.isLogged) {
+                this.$router.push('/')
+            }
+        },
+
+        methods: {
+
+            showRegistrationForm() {
+                this.isShowedRegistrationForm = true;
+            },
+
+            loginWithoutRegistration() {
+                this.$store.dispatch(AuthActionTypes.AUTH_WITHOUT_REGISTRATION)
+            }
+        },
+
+        data() {
+            return {
+                isShowedRegistrationForm: false
+            }
+        }
+    }
+</script>
+
 <template>
     <div>
         <template>
@@ -21,31 +57,11 @@
 
             <template>
                 <br>
-                <v-btn  style="display: none" text color="primary accent-4" v-on:click="login">Start new history</v-btn>
-                <v-btn text color="primary accent-4" v-on:click="login">Continue without Registration</v-btn>
+                <v-btn  text block color="primary accent-4" v-on:click="showRegistrationForm">Start new history</v-btn>
+                <Registration v-if="isShowedRegistrationForm" />
+                <v-btn text block color="primary accent-4" v-on:click="loginWithoutRegistration">Without registration </v-btn>
             </template>
         </template>
     </div>
 
 </template>
-
-<script>
-    import {SystemMutationTypes} from "../store/mutations/types";
-
-    export default {
-        name: 'Login',
-
-        beforeMount() {
-            if(this.$store.state.isLogged) {
-                this.$router.push('/')
-            }
-        },
-
-        methods: {
-            login() {
-                this.$store.commit(SystemMutationTypes.LOGIN, true)
-                this.$router.push('/')
-            }
-        }
-    }
-</script>

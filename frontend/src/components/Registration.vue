@@ -1,0 +1,126 @@
+<script>
+
+    import router from "../routes";
+
+    import {RegistrationsActionTypes} from "../store/actions/types";
+    import {AuthActionTypes} from "../store/actions/types";
+
+    export default {
+        data: () => ({
+            valid: true,
+            name: '',
+            nameRules: [
+                v => !!v || 'Name is required',
+                v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+            ],
+            email: '',
+            emailRules: [
+                v => !!v || 'E-mail is required',
+                v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+            ],
+            select: null,
+            items: [
+                'Item 1',
+                'Item 2',
+                'Item 3',
+                'Item 4',
+            ],
+            checkbox: false,
+            lazy: false,
+            rules: {
+                emailServer: true,
+                passwordServer: true,
+                required: value => !!value || 'Required.',
+                min: v => v.length >= 8 || 'Min 8 characters',
+                emailMatch: () => ('The email and password you entered don\'t match'),
+            },
+            password: '',
+            isShowedPassword: false,
+
+        }),
+
+        methods: {
+
+            clearServerErrors() {
+                this.rules.emailServer = true;
+                this.rules.passwordServer = true;
+            },
+
+            validate() {
+
+                if (this.$refs.form.validate()) {
+
+                    this.$store.dispatch(RegistrationsActionTypes.REGISTRATION, {
+                        email: this.email,
+                        password: this.password
+                    }).then((response) => {
+
+                        this.$store.dispatch(AuthActionTypes.AUTH);
+
+                    }).catch((error) => {
+                        if (error.response) {
+
+                            let errors = error.response.data;
+
+                            this.rules.emailServer = errors.email ? errors.email.join(' ') : true;
+                            this.rules.passwordServer = errors.password ? errors.password.join(' ') : true;
+                        }
+                    }).then(function () {
+                        // always executed
+                    });
+                }
+            },
+            reset() {
+                this.$refs.form.reset()
+            },
+            resetValidation() {
+                this.$refs.form.resetValidation()
+            },
+        },
+    }
+</script>
+
+<template>
+
+
+        <v-col cols="12">
+
+            <v-form
+                    ref="form"
+                    v-model="valid"
+                    :lazy-validation="lazy"
+            >
+
+                <v-text-field
+                        v-model="email"
+                        :rules="[...emailRules, rules.emailServer]"
+                        label="E-mail"
+                        required
+                        v-on:keydown="clearServerErrors"
+                ></v-text-field>
+
+                <v-text-field
+                        v-model="password"
+                        :append-icon="isShowedPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                        :rules="[rules.required, rules.min, rules.passwordServer]"
+                        :type="isShowedPassword ? 'text' : 'password'"
+                        name="input-10-1"
+                        label="Password"
+                        hint="At least 8 characters"
+                        counter
+                        v-on:keydown="clearServerErrors"
+                        @click:append="isShowedPassword = !isShowedPassword"
+                ></v-text-field>
+
+                <v-btn class="mt-10"
+                       :disabled="!valid"
+                       color="primary"
+                       style="width: 100%"
+                       @click="validate"
+                >
+                    Registration
+                </v-btn>
+            </v-form>
+        </v-col>
+
+</template>

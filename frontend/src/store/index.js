@@ -1,5 +1,5 @@
 import {SystemMutations, ServiceMutations} from "./mutations";
-import {ServiceActions} from "./actions";
+import {ServiceActions, RegistrationActions, AuthActions} from "./actions";
 import state from "./state";
 
 import Vuex from "vuex";
@@ -14,7 +14,9 @@ let mutations = {
 };
 
 let actions = {
-    ...ServiceActions
+    ...ServiceActions,
+    ...RegistrationActions,
+    ...AuthActions,
 };
 
 
