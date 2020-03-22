@@ -1,6 +1,7 @@
 import {AuthActionTypes} from "./types";
 import axios from "axios";
 import router from "../../routes";
+import Urls from "../../services/api/Urls";
 
 import {SystemMutationTypes} from "../mutations/types";
 
@@ -34,7 +35,7 @@ actions[AuthActionTypes.AUTH_WITHOUT_REGISTRATION] = function ({commit, state}, 
 };
 
 actions[AuthActionTypes.RATE] = function ({commit, state}, rateValue) {
-    return axios.post("http://localhost:8001/api/rate", {
+    return axios.post(Urls.POST_RATE, {
         rate : rateValue
     });
 };
