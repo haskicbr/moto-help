@@ -1,5 +1,6 @@
 export default {
     AUTH: "AUTH",
     AUTH_WITHOUT_REGISTRATION: "AUTH_WITHOUT_REGISTRATION",
-    LOGOUT: "LOGOUT"
+    LOGOUT: "LOGOUT",
+    RATE: "RATE"
 }

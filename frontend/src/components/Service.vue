@@ -109,22 +109,11 @@
 
     .add-mileage-container {
         display: flex;
-        justify-content: flex-start;
-
+        justify-content: space-between;
     }
 
     .button--add-service-type, .button--add-service {
-
-        height: auto !important;
-        padding: 5px 10px 5px 10px !important;
-        margin-right: 15px;
-        i {
-            display: block;
-        }
-
-        span {
-            display: block;
-        }
+        width: 47%;
     }
 
 </style>
@@ -138,13 +127,12 @@
                             <template v-if="Object.keys(serviceTypes).length > 0">
                                 <v-btn class="button--add-service" v-on:click="changeVisibleServiceForm" color="primary">
                                     <span>add service</span>
-                                    <v-icon>mdi-cogs</v-icon>
+
                                 </v-btn>
                             </template>
 
                             <v-btn class="button--add-service-type" v-on:click="goToAddServiceType" color="primary">
                                 <span>add type</span>
-                                <v-icon>mdi-wrench</v-icon>
                             </v-btn>
                         </div>
                     </template>

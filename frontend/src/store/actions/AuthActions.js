@@ -17,11 +17,8 @@ actions[AuthActionTypes.AUTH] = function ({commit, state}, data) {
 };
 
 actions[AuthActionTypes.LOGOUT] = function ({commit, state}, data) {
-
-    commit(SystemMutationTypes.LOGIN, {
-        isLogged: false,
-        isRegisterUser: false
-    });
+    localStorage.removeItem('store');
+    commit(SystemMutationTypes.INITIAL_STORE);
 
     router.push('/login');
 };
@@ -35,5 +32,13 @@ actions[AuthActionTypes.AUTH_WITHOUT_REGISTRATION] = function ({commit, state}, 
 
     router.push('/');
 };
+
+actions[AuthActionTypes.RATE] = function ({commit, state}, rateValue) {
+    return axios.post("http://localhost:8001/api/rate", {
+        rate : rateValue
+    });
+};
+
+
 
 export default actions;

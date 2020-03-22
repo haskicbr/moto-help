@@ -8,6 +8,7 @@ import Index        from "../components/Index";
 import Login        from "../components/Login";
 import ServiceTypes from "../components/ServiceTypes";
 import TimeLine     from "../components/TimeLine";
+import Settings     from "../components/Settings";
 
 const routes = [
     {path: '/service', component: Service},
@@ -22,6 +23,7 @@ const routes = [
     {path: '/login', component: Login},
     {path: '/service-types', component: ServiceTypes},
     {path: '/time-line', component: TimeLine},
+    {path: '/settings', component: Settings},
 ];
 
 const router = new VueRouter({

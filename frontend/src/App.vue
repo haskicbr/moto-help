@@ -2,6 +2,9 @@
     import {ServiceMutationTypes, SystemMutationTypes} from "./store/mutations/types";
 
     import {AuthActionTypes} from "./store/actions/types";
+    import RateApp from "./components/RateApp";
+    import EventBus from "./events/EventBus";
+    import {ModalEventTypes} from "./events/types";
 
 
     export default {
@@ -9,7 +12,7 @@
         name: "app",
 
         components: {
-
+            RateApp
         },
 
         methods: {
@@ -17,11 +20,14 @@
                 this.menuVisible = false;
             },
 
-            showMenu() {
-                this.menuVisible = true;
+            showRateModal() {
+                this.closeMenu();
+                EventBus.$emit(ModalEventTypes.SHOW_RATE_MODAL);
             },
 
             logout() {
+                this.closeMenu();
+
                 this.$store.dispatch(AuthActionTypes.LOGOUT);
             }
         },
@@ -76,64 +82,61 @@
         >
             <v-list dense>
                 <template v-if="$store.state.isLogged">
-                    <router-link tag="div" v-on:click="closeMenu" to="/">
-                        <v-list-item link>
-                            <v-list-item-action>
-                                <v-icon>mdi-view-dashboard</v-icon>
-                            </v-list-item-action>
-                            <v-list-item-content>
-                                <v-list-item-title>
 
-                                <span class="md-list-item-text subtitle-1" v-on:click="closeMenu">
-                                    current mileage
-                                </span>
-
-                                </v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </router-link>
                     <router-link tag="div" v-on:click="closeMenu" to="/service">
                         <v-list-item link>
                             <v-list-item-action>
-                                <v-icon>mdi-view-dashboard</v-icon>
+                                <v-icon>mdi-cogs</v-icon>
                             </v-list-item-action>
                             <v-list-item-content>
 
                                 <v-list-item-title>
-                                <span
-                                        class="md-list-item-text subtitle-1"
-                                        v-on:click="closeMenu">services</span>
+                                    <span class="md-list-item-text subtitle-1">service</span>
                                 </v-list-item-title>
 
                             </v-list-item-content>
                         </v-list-item>
                     </router-link>
-
 
                     <router-link tag="div" v-on:click="closeMenu" to="/service-types">
                         <v-list-item link>
                             <v-list-item-action>
-                                <v-icon>mdi-view-dashboard</v-icon>
+                                <v-icon>mdi-wrench</v-icon>
                             </v-list-item-action>
                             <v-list-item-content>
 
                                 <v-list-item-title>
-                                    <span v-on:click="closeMenu" class="subtitle-1">service types</span>
+                                    <span  class="subtitle-1">service types</span>
                                 </v-list-item-title>
 
                             </v-list-item-content>
                         </v-list-item>
                     </router-link>
 
-                    <router-link tag="div" v-on:click="closeMenu" to="/time-line">
+                    <v-list-item link v-on:click="showRateModal">
+                        <v-list-item-action>
+                            <v-icon>mdi-star</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>
+
+                            <v-list-item-title>
+                                <span class="subtitle-1">rate app</span>
+                            </v-list-item-title>
+
+                        </v-list-item-content>
+                    </v-list-item>
+
+                    <router-link tag="div" v-on:click="closeMenu" to="/settings">
                         <v-list-item link>
                             <v-list-item-action>
-                                <v-icon>mdi-view-dashboard</v-icon>
+                                <v-icon>mdi-settings</v-icon>
                             </v-list-item-action>
                             <v-list-item-content>
+
                                 <v-list-item-title>
-                                    <span v-on:click="closeMenu" class="subtitle-1">timeline</span>
+                                    <span class="subtitle-1">settings</span>
                                 </v-list-item-title>
+
                             </v-list-item-content>
                         </v-list-item>
                     </router-link>
@@ -153,49 +156,20 @@
 
                 <template v-else>
 
-                    <router-link tag="div" v-on:click="closeMenu" to="/">
-                        <v-list-item link>
-                            <v-list-item-action>
-                                <v-icon>mdi-view-dashboard</v-icon>
-                            </v-list-item-action>
-                            <v-list-item-content>
-                                <v-list-item-title>
-                                    <span class="md-list-item-text subtitle-1" v-on:click="closeMenu">
-                                        current mileage
-                                    </span>
-                                </v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </router-link>
-
-                    <router-link tag="div" v-on:click="closeMenu" to="/">
-                        <v-list-item link>
-                            <v-list-item-action>
-                                <v-icon>mdi-view-dashboard</v-icon>
-                            </v-list-item-action>
-                            <v-list-item-content>
-                                <v-list-item-title>
-                                    <span class="md-list-item-text subtitle-1" v-on:click="closeMenu">services</span>
-                                </v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </router-link>
-                </template>
-
                 <v-list-item class="justify-space-between">
                     <div class="subtitle-1 mx-5">night mode</div>
                     <div class="mx-5">
                         <v-switch class=" d-flex d-flex" v-model="nightMode"></v-switch>
                     </div>
                 </v-list-item>
+                </template>
 
             </v-list>
         </v-navigation-drawer>
 
-        <v-app-bar app clipped-left>
-          <!--  <v-app-bar-nav-icon @click.stop="menuVisible = !menuVisible"/>-->
-            <v-toolbar-title></v-toolbar-title>
-        </v-app-bar>
+        <template>
+            <v-system-bar></v-system-bar>
+        </template>
 
         <v-content>
             <v-container style="padding-bottom: 50px">
@@ -208,7 +182,6 @@
 
             <v-bottom-navigation
                     v-if="$store.state.isLogged"
-
                     fixed
             >
 
@@ -242,8 +215,7 @@
             </v-bottom-navigation>
         </v-content>
 
-<!--        <v-footer style="height: 100px" app>
+        <RateApp />
 
-        </v-footer>-->
     </v-app>
 </template>
