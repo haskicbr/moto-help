@@ -15,7 +15,13 @@ const initialState = {
         "lifetime": 5000,
         "date": "2020-02-24",
         "description": ""
-    }, {"type": "CHANGE_OIL", "mileage": 17000, "lifetime": 5000, "date": "2020-02-24", "description": "10 W 40"}],
+    }, {
+        "type": "CHANGE_OIL",
+        "mileage": 17000,
+        "lifetime": 5000,
+        "date": "2020-02-24",
+        "description": "10 W 40"
+    }],
     "currentMileage": "21000",
     "isLogged": false,
     "nightMode": false,
@@ -29,15 +35,24 @@ const initialState = {
     "defaultServiceType": "CHANGE_OIL"
 };
 
-mutations[SystemMutationTypes.INITIAL_STORE] = function (state) {
-    // Check if the ID exists
+mutations[SystemMutationTypes.UPDATE_STORE] = function(state, newStore) {
+    this.replaceState(...newStore);
+};
+
+mutations[SystemMutationTypes.INITIAL_STORE] = function (state, data) {
 
     let currentState;
 
-    if (localStorage.getItem('store')) {
-        currentState =  JSON.parse(localStorage.getItem('store'));
-    } else {
+    let needResetStore = false;
+
+    if (typeof (data) !== 'undefined') {
+        needResetStore = data.needToResetStore ? data.needToResetStore : false;
+    }
+
+    if (needResetStore) {
         currentState = initialState;
+    } else {
+        currentState = JSON.parse(localStorage.getItem('store'));
     }
 
     // Replace the state object with the stored item

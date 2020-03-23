@@ -18,8 +18,8 @@ actions[AuthActionTypes.AUTH] = function ({commit, state}, data) {
 };
 
 actions[AuthActionTypes.LOGOUT] = function ({commit, state}, data) {
-    localStorage.removeItem('store');
-    commit(SystemMutationTypes.INITIAL_STORE);
+
+    commit(SystemMutationTypes.INITIAL_STORE, {needToResetStore: true});
 
     router.push('/login');
 };
