@@ -1,16 +1,18 @@
 <script>
     import {AuthActionTypes, RegistrationsActionTypes} from "../store/actions/types";
     import Registration from "./Registration";
+    import Auth from "./Auth";
 
     export default {
         name: 'Login',
 
         components: {
-          Registration
+            Registration,
+            Auth
         },
 
         beforeMount() {
-            if(this.$store.state.isLogged) {
+            if (this.$store.state.isLogged) {
                 this.$router.push('/')
             }
         },
@@ -19,16 +21,23 @@
 
             showRegistrationForm() {
                 this.isShowedRegistrationForm = true;
+                this.isShowedAuthForm = false;
             },
 
-            loginWithoutRegistration() {
+            showAuthForm() {
+                this.isShowedAuthForm = true;
+                this.isShowedRegistrationForm = false;
+            },
+
+            authWithoutRegistration() {
                 this.$store.dispatch(AuthActionTypes.AUTH_WITHOUT_REGISTRATION)
             }
         },
 
         data() {
             return {
-                isShowedRegistrationForm: false
+                isShowedRegistrationForm: false,
+                isShowedAuthForm: false
             }
         }
     }
@@ -56,10 +65,19 @@
             </v-banner>
 
             <template>
+
                 <br>
-                <v-btn  text block color="primary accent-4" v-on:click="showRegistrationForm">Start new history</v-btn>
+
+                <div class="d-flex justify-center">
+                    <v-btn text color="primary accent-4" v-on:click="showRegistrationForm">Start new history</v-btn>
+                    <v-btn text color="success" v-on:click="showAuthForm">Sign in</v-btn>
+                </div>
+
                 <Registration v-if="isShowedRegistrationForm" />
-                <v-btn text block color="primary accent-4" v-on:click="loginWithoutRegistration">Without registration </v-btn>
+                <Auth v-if="isShowedAuthForm" />
+
+                <v-btn text block color="primary accent-4" v-on:click="authWithoutRegistration">Without registration
+                </v-btn>
             </template>
         </template>
     </div>

@@ -99,11 +99,11 @@
 <template>
     <div>
         <v-list-item v-if="!isEditable">
-            <v-list-item-title>
-                <span >current mileage {{$store.state.currentMileage}} km</span>
+            <v-list-item-title class="d-flex" style="padding: 10px 0px 10px 0px;">
+                <span class="d-flex align-self-center" style="width: 80%" >current mileage {{$store.state.currentMileage}} km</span>
                 <v-tooltip bottom>
                     <template v-slot:activator="{ on }">
-                        <v-btn v-on="on" v-on:click="isEditable = !isEditable" class="mx-2"  fab small color="primary">
+                        <v-btn v-on="on" v-on:click="isEditable = !isEditable" class="mx-2"  fab x-small >
                             <v-icon small dark>mdi-pencil</v-icon>
                         </v-btn>
                     </template>
@@ -132,14 +132,21 @@
             <template v-for="(mileage) in getServices()">
 
                 {{(() => {
-                    progeressColor = getProgressColor(getMileageProgress(mileage.mileage, mileage.lifetime))
+                    progeressColor = getProgressColor(getMileageProgress(mileage.mileage, mileage.lifetime));
+                    showMore = false;
                 })()}}
 
                 <v-list-item three-line>
                     <v-list-item-content class="justify-center">
 
-                            <div class="subtitle-1 d-flex">
-                                {{getMileageDescription(mileage.type)}}
+                            <div class="subtitle-1 d-flex ">
+
+                                <div style="width: 80%">
+                                    <span  class="d-flex align-center">{{getMileageDescription(mileage.type)}}</span>
+                                </div>
+                                <v-btn x-small class="d-flex mx-2" fab v-on:click="showMore= !showMore">
+                                    <v-icon>mdi-plus</v-icon>
+                                </v-btn>
                             </div>
                             <div class="d-flex">
                                 <v-progress-linear
@@ -152,35 +159,37 @@
                     </v-list-item-content>
                 </v-list-item>
 
-                <v-list-item>
-                    <v-list-item-action>
-                        <v-icon  :color="progeressColor">mdi-cog-clockwise</v-icon>
-                    </v-list-item-action>
+                <template v-if="showMore">
+                    <v-list-item>
+                        <v-list-item-action>
+                            <v-icon :color="progeressColor">mdi-cog-clockwise</v-icon>
+                        </v-list-item-action>
 
-                    <v-list-item-content>
-                        <span>{{getChangeThought(mileage)}} km</span>
-                    </v-list-item-content>
-                </v-list-item>
+                        <v-list-item-content>
+                            <span>{{getChangeThought(mileage)}} km</span>
+                        </v-list-item-content>
+                    </v-list-item>
 
-                <v-list-item>
-                    <v-list-item-action>
-                        <v-icon :color="progeressColor">mdi-cogs</v-icon>
-                    </v-list-item-action>
+                    <v-list-item>
+                        <v-list-item-action>
+                            <v-icon :color="progeressColor">mdi-cogs</v-icon>
+                        </v-list-item-action>
 
-                    <v-list-item-content>
-                        <span>{{mileage.lifetime}} km</span>
-                    </v-list-item-content>
-                </v-list-item>
+                        <v-list-item-content>
+                            <span>{{mileage.lifetime}} km</span>
+                        </v-list-item-content>
+                    </v-list-item>
 
-                <v-list-item>
-                    <v-list-item-action>
-                        <v-icon :color="progeressColor">mdi-wrench</v-icon>
-                    </v-list-item-action>
+                    <v-list-item>
+                        <v-list-item-action>
+                            <v-icon :color="progeressColor">mdi-wrench</v-icon>
+                        </v-list-item-action>
 
-                    <v-list-item-content>
-                        <span>{{mileage.mileage}} km</span>
-                    </v-list-item-content>
-                </v-list-item>
+                        <v-list-item-content>
+                            <span>{{mileage.mileage}} km</span>
+                        </v-list-item-content>
+                    </v-list-item>
+                </template>
 
             </template>
         </div>

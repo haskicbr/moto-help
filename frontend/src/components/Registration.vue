@@ -8,7 +8,6 @@
     export default {
         data: () => ({
             valid: true,
-            name: '',
             nameRules: [
                 v => !!v || 'Name is required',
                 v => (v && v.length <= 10) || 'Name must be less than 10 characters',
@@ -18,15 +17,6 @@
                 v => !!v || 'E-mail is required',
                 v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
             ],
-            select: null,
-            items: [
-                'Item 1',
-                'Item 2',
-                'Item 3',
-                'Item 4',
-            ],
-            checkbox: false,
-            lazy: false,
             rules: {
                 emailServer: true,
                 passwordServer: true,
@@ -36,7 +26,6 @@
             },
             password: '',
             isShowedPassword: false,
-
         }),
 
         methods: {
@@ -53,10 +42,6 @@
                     this.$store.dispatch(RegistrationsActionTypes.REGISTRATION, {
                         email: this.email,
                         password: this.password
-                    }).then((response) => {
-
-                        this.$store.dispatch(AuthActionTypes.AUTH);
-
                     }).catch((error) => {
                         if (error.response) {
 
@@ -88,7 +73,7 @@
             <v-form
                     ref="form"
                     v-model="valid"
-                    :lazy-validation="lazy"
+                    v-on:submit.prevent="validate"
             >
 
                 <v-text-field
@@ -116,7 +101,7 @@
                        :disabled="!valid"
                        color="primary"
                        style="width: 100%"
-                       @click="validate"
+                       type="submit"
                 >
                     Registration
                 </v-btn>

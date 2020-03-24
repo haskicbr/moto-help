@@ -44,9 +44,8 @@
 
 <template>
     <v-row justify="center">
-
-
         <v-dialog
+                max-width="300"
                 v-model="dialog"
         >
             <v-card

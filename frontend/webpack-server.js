@@ -78,11 +78,13 @@ module.exports = {
         },
         extensions: ['*', '.js', '.vue', '.json']
     },
+
+    devtool: 'eval-source-map',
+
     plugins: [
         new VueLoaderPlugin(),
         new webpack.SourceMapDevToolPlugin({})
     ],
-    devtool: 'inline-source-map',
 
     devServer: {
         headers: {

@@ -151,10 +151,8 @@
                             </v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
-
                 </template>
 
-                <template v-else>
 
                 <v-list-item class="justify-space-between">
                     <div class="subtitle-1 mx-5">night mode</div>
@@ -162,8 +160,6 @@
                         <v-switch class=" d-flex d-flex" v-model="nightMode"></v-switch>
                     </div>
                 </v-list-item>
-                </template>
-
             </v-list>
         </v-navigation-drawer>
 

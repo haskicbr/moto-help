@@ -24,6 +24,7 @@ const initialState = {
     }],
     "currentMileage": "21000",
     "isLogged": false,
+    "isRegisterUser": false,
     "nightMode": false,
     "serviceTypes": {
         "CHANGE_OIL": {"description": "Change oil"},
@@ -36,7 +37,7 @@ const initialState = {
 };
 
 mutations[SystemMutationTypes.UPDATE_STORE] = function(state, newStore) {
-    this.replaceState(...newStore);
+    this.replaceState({...newStore});
 };
 
 mutations[SystemMutationTypes.INITIAL_STORE] = function (state, data) {
