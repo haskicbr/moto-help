@@ -45,12 +45,7 @@
                         email: this.email,
                         password: this.password
                     }).catch((error) => {
-
-                        console.log(error);
-
-                        console.log("НЕВЕРНОЕ ИМЯ ПОЛЬЗОВАТЕЛЯ ИЛИ ПАРОЛЬ")
-                    }).then(function () {
-                        // always executed
+                        this.rules.emailServer = "user not found"
                     });
                 }
             },
