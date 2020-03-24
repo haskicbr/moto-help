@@ -49,7 +49,6 @@ const store = new Vuex.Store({
 store.subscribe((mutation, state, dispatch) => {
 
     if (state.isRegisterUser) {
-        debugger;
 
         axios.post(Urls.POST_UPDATE_STORE, {
             store: JSON.stringify(state)

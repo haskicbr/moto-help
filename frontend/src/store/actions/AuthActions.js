@@ -34,9 +34,6 @@ actions[AuthActionTypes.LOGOUT] = function ({commit, dispatch, state}, data) {
 
     dispatch(AuthActionTypes.REMOVE_TOKEN);
 
-
-    debugger;
-
     commit(SystemMutationTypes.INITIAL_STORE, {needToResetStore: true});
 
     router.push('/login');
