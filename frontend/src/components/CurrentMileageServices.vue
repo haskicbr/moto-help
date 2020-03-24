@@ -9,7 +9,8 @@
                         <span  class="d-flex align-center">{{getMileageDescription(mileage.type)}}</span>
                     </div>
                     <v-btn x-small class="d-flex mx-2" fab v-on:click="showMore= !showMore">
-                        <v-icon>mdi-plus</v-icon>
+                        <v-icon  v-if="!showMore">mdi-layers-search-outline</v-icon>
+                        <v-icon v-if="showMore">mdi-layers</v-icon>
                     </v-btn>
                 </div>
                 <div class="d-flex">
