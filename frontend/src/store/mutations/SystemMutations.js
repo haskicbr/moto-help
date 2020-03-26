@@ -50,9 +50,6 @@ mutations[SystemMutationTypes.INITIAL_STORE] = function (state, data) {
         needResetStore = data.needToResetStore ? data.needToResetStore : false;
     }
 
-
-    debugger;
-
     if (needResetStore) {
         currentState = initialState;
     } else {

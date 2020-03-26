@@ -25,6 +25,7 @@
         </v-list-item>
 
         <template v-if="showMore">
+
             <v-list-item>
                 <v-list-item-action>
                     <v-icon :color="getProgressColor(getMileageProgress(mileage.mileage, mileage.lifetime))">mdi-cog-clockwise</v-icon>
@@ -53,6 +54,18 @@
                 <v-list-item-content>
                     <span>{{mileage.mileage}} km</span>
                 </v-list-item-content>
+            </v-list-item>
+
+            <v-list-item v-if="mileage.description">
+                <div >
+                    <span>{{mileage.description}}</span>
+                </div>
+            </v-list-item>
+
+            <v-list-item v-if="mileage.description">
+                <div >
+                    <span>{{mileage.description}}</span>
+                </div>
             </v-list-item>
         </template>
     </div>

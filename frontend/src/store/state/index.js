@@ -1,8 +1,16 @@
+import settingsTypes from "./SettingsTypes";
+
 const state = {
     services: [],
     currentMileage: 0,
     mileageHistory: {
 
+    },
+    settings: {
+        units: {
+            distance: settingsTypes.UNITS.DISTANCE.MI,
+        },
+        language: settingsTypes.LANGUAGE.EN
     },
     isLogged: false,
     isRegisterUser: false,

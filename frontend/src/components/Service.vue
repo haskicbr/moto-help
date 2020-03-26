@@ -185,7 +185,7 @@
                                 v-if="isActivePayment"
                                 style="font-size: 16px"
                                 label="payment amount"
-                                append-icon="mdi-currency-rub"
+                                append-icon="mdi-currency-usd"
                                 type="number"
                                 v-model="paymentAmount">
                         </v-text-field>
