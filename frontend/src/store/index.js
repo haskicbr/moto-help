@@ -1,11 +1,9 @@
 import {SystemMutations, ServiceMutations} from "./mutations";
-import {ServiceActions, RegistrationActions, AuthActions} from "./actions";
+import {ServiceActions, RegistrationActions, AuthActions, SystemActions} from "./actions";
 import state from "./state";
 
 import Vuex  from "vuex";
 import Vue   from "vue";
-import axios from "../services/api/ApiRequest";
-import Urls from "../services/api/Urls";
 
 
 Vue.use(Vuex);
@@ -19,6 +17,7 @@ let actions = {
     ...ServiceActions,
     ...RegistrationActions,
     ...AuthActions,
+    ...SystemActions
 };
 
 
@@ -47,18 +46,7 @@ const store = new Vuex.Store({
 });
 
 store.subscribe((mutation, state, dispatch) => {
-
-    if (state.isRegisterUser) {
-
-        axios.post(Urls.POST_UPDATE_STORE, {
-            store: JSON.stringify(state)
-        });
-
-        localStorage.setItem('store', JSON.stringify(state));
-
-    } else {
-        localStorage.setItem('store', JSON.stringify(state));
-    }
+    localStorage.setItem('store', JSON.stringify(state));
 });
 
 window.store2 = store;

@@ -1,0 +1,3 @@
+export default {
+    SYNC_STORE_WITH_SERVER: "SYSTEM_SYNC_STORE_WITH_SERVER",
+}

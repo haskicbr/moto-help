@@ -41,6 +41,8 @@ actions[AuthActionTypes.LOGOUT] = function ({commit, dispatch, state}, data) {
 
 actions[AuthActionTypes.AUTH_WITHOUT_REGISTRATION] = function ({commit, state}, data) {
 
+    commit(SystemMutationTypes.INITIAL_STORE, {needToResetStore: true});
+
     commit(SystemMutationTypes.LOGIN, {
         isLogged: true,
         isRegisterUser: false
@@ -49,9 +51,10 @@ actions[AuthActionTypes.AUTH_WITHOUT_REGISTRATION] = function ({commit, state}, 
     router.push('/');
 };
 
-actions[AuthActionTypes.RATE] = function ({commit, state}, rateValue) {
+actions[AuthActionTypes.RATE] = function ({commit, state}, {rate, text}) {
     return axios.post(Urls.POST_RATE, {
-        rate : rateValue
+        rate,
+        text
     });
 };
 

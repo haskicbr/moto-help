@@ -17,7 +17,7 @@
         methods: {
 
             sendRate() {
-                this.$store.dispatch(AuthActionTypes.RATE, this.rating)
+                this.$store.dispatch(AuthActionTypes.RATE, {rate : this.rating, text: this.reviewText})
                     .then(() => {
                         this.dialog = false;
                     })
@@ -27,6 +27,7 @@
         data() {
             return {
                 rating: 4.5,
+                reviewText: "",
                 dialog: false,
             }
         },
@@ -76,7 +77,17 @@
 
                     </div>
                 </v-card-text>
+
+                <v-textarea
+                        v-model="reviewText"
+                        style="padding: 0 10px 0 10px"
+                        solo
+                        name="input-7-4"
+                        label="Review text"
+                ></v-textarea>
+
                 <v-divider></v-divider>
+
                 <v-card-actions class="justify-space-between">
                     <v-btn
                             @click="dialog = false"
