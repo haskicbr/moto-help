@@ -1,6 +1,12 @@
+const API_HOST = "localhost";
+const API_PORT = "8001";
+const API_PROTOCOL = "http";
+
+const API_URL = `${API_PROTOCOL}://${API_HOST}:${API_PORT}`;
+
 export default {
-    POST_RATE: 'http://localhost:8001/api/rate',
-    POST_AUTH: "http://localhost:8001/api/auth",
-    POST_REGISTRATION: 'http://localhost:8001/api/registration',
-    POST_UPDATE_STORE: "http://localhost:8001/api/update-store"
+    POST_RATE: `${API_URL}/api/rate`,
+    POST_AUTH: `${API_URL}/api/auth`,
+    POST_REGISTRATION: `${API_URL}/api/registration`,
+    POST_UPDATE_STORE: `${API_URL}/api/update-store`
 }
