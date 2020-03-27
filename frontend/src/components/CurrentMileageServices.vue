@@ -61,12 +61,6 @@
                     <span>{{mileage.description}}</span>
                 </div>
             </v-list-item>
-
-            <v-list-item v-if="mileage.description">
-                <div >
-                    <span>{{mileage.description}}</span>
-                </div>
-            </v-list-item>
         </template>
     </div>
 </template>
