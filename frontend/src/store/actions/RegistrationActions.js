@@ -19,7 +19,7 @@ actions[RegistrationsActionTypes.REGISTRATION] = function ({commit, state, dispa
 
         dispatch(AuthActionTypes.ADD_TOKEN, data.token);
 
-        commit(SystemMutationTypes.UPDATE_STORE, JSON.parse(data.store));
+        commit(SystemMutationTypes.UPDATE_STORE, data.store);
 
         router.push('/');
     })
