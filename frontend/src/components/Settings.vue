@@ -20,32 +20,32 @@
 </script>
 
 <template>
-
-
-    <div>
-        <v-select
-                v-on:change=""
-                v-model="language"
-                :items="[{
+    <v-list-item>
+        <v-list-item-content>
+            <v-select
+                    v-on:change=""
+                    v-model="language"
+                    :items="[{
                     key: language, description: language
                 }]"
-                item-text="description"
-                item-value="key"
+                    item-text="description"
+                    item-value="key"
 
-                label="Language"
-        ></v-select>
+                    label="Language"
+            ></v-select>
 
-        <v-select
-                v-on:change=""
-                :items="[{
+            <v-select
+                    v-on:change=""
+                    :items="[{
                     key: distanceUnit, description: distanceUnit
                     }]"
-                item-text="description"
-                item-value="key"
-                v-model="distanceUnit"
-                label="Distance unit"
+                    item-text="description"
+                    item-value="key"
+                    v-model="distanceUnit"
+                    label="Distance unit"
 
-        ></v-select>
-    </div>
+            ></v-select>
+        </v-list-item-content>
+    </v-list-item>
 
 </template>
