@@ -1,6 +1,6 @@
 <script>
 
-    import SettingTypes from "../store/state/SettingsTypes";
+    import SettingTypes from "../../store/state/SettingsTypes";
 
     export default {
         name: "Settings",

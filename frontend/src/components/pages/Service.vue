@@ -1,6 +1,6 @@
 <script>
 
-    import {ServiceActionTypes} from "../store/actions/types";
+    import {ServiceActionTypes} from "../../store/actions/types";
     import dateFormat from "date-format";
 
 

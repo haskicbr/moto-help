@@ -1,8 +1,8 @@
 <script>
 
-    import EventBus from "../events/EventBus";
-    import {ModalEventTypes} from "../events/types";
-    import {AuthActionTypes} from "../store/actions/types";
+    import EventBus from "../../events/EventBus";
+    import {ModalEventTypes} from "../../events/types";
+    import {AuthActionTypes} from "../../store/actions/types";
 
     export default {
         name: "RateApp",

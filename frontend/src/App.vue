@@ -1,84 +1,84 @@
 <script>
-    import {ServiceMutationTypes, SystemMutationTypes} from "./store/mutations/types";
+import {ServiceMutationTypes, SystemMutationTypes} from "./store/mutations/types";
 
-    import {AuthActionTypes} from "./store/actions/types";
-    import RateApp from "./components/RateApp";
-    import EventBus from "./events/EventBus";
-    import {ModalEventTypes} from "./events/types";
+import {AuthActionTypes} from "./store/actions/types";
+import RateApp from "./components/modals/RateApp";
+import EventBus from "./events/EventBus";
+import {ModalEventTypes} from "./events/types";
 
 
-    export default {
+export default {
 
-        name: "app",
+    name: "app",
 
-        components: {
-            RateApp
+    components: {
+        RateApp
+    },
+
+    methods: {
+        closeMenu() {
+            this.menuVisible = false;
         },
 
-        methods: {
-            closeMenu() {
-                this.menuVisible = false;
-            },
-
-            showRateModal() {
-                this.closeMenu();
-                EventBus.$emit(ModalEventTypes.SHOW_RATE_MODAL);
-            },
-
-            logout() {
-                this.closeMenu();
-
-                this.$store.dispatch(AuthActionTypes.LOGOUT);
-            }
+        showRateModal() {
+            this.closeMenu();
+            EventBus.$emit(ModalEventTypes.SHOW_RATE_MODAL);
         },
 
-        watch: {
-            nightMode: function (state) {
-                this.$vuetify.theme.dark = state;
-                this.$store.commit(SystemMutationTypes.CHANGE_NIGHT_MODE, state);
-            }
-        },
+        logout() {
+            this.closeMenu();
 
-        props: {
-            source: String,
-        },
+            this.$store.dispatch(AuthActionTypes.LOGOUT);
+        }
+    },
 
-        data() {
-            let self = this;
+    watch: {
+        nightMode: function (state) {
+            this.$vuetify.theme.dark = state;
+            this.$store.commit(SystemMutationTypes.CHANGE_NIGHT_MODE, state);
+        }
+    },
 
-            return {
-                drawer: null,
-                menuVisible: false,
-                nightMode: self.$store.state.nightMode
-            }
-        },
+    props: {
+        source: String,
+    },
 
-        mounted() {
-            this.$vuetify.theme.dark = this.nightMode;
-        },
-    }
+    data() {
+        let self = this;
+
+        return {
+            drawer: null,
+            menuVisible: false,
+            nightMode: self.$store.state.nightMode
+        }
+    },
+
+    mounted() {
+        this.$vuetify.theme.dark = this.nightMode;
+    },
+}
 </script>
 
 <style lang="scss">
-    .theme--dark.v-application {
-        background: #1e1e1e !important;
-    }
+.theme--dark.v-application {
+    background: #1e1e1e !important;
+}
 
-    footer {
-        z-index: 100000 !important;
-    }
+footer {
+    z-index: 100000 !important;
+}
 
-    .container {
-        padding: 0 0 50px 0 !important;
-    }
+.container {
+    padding: 0 0 50px 0 !important;
+}
 
 </style>
 
 <template>
     <v-app id="inspire">
         <v-navigation-drawer
-                v-model="menuVisible"
-                app
+            v-model="menuVisible"
+            app
         >
             <v-list dense>
                 <template v-if="$store.state.isLogged">
@@ -106,7 +106,22 @@
                             <v-list-item-content>
 
                                 <v-list-item-title>
-                                    <span  class="subtitle-1">service types</span>
+                                    <span class="subtitle-1">service types</span>
+                                </v-list-item-title>
+
+                            </v-list-item-content>
+                        </v-list-item>
+                    </router-link>
+
+                    <router-link tag="div" v-on:click="closeMenu" to="/time-line">
+                        <v-list-item link>
+                            <v-list-item-action>
+                                <v-icon>mdi-road</v-icon>
+                            </v-list-item-action>
+                            <v-list-item-content>
+
+                                <v-list-item-title>
+                                    <span class="subtitle-1">Timeline</span>
                                 </v-list-item-title>
 
                             </v-list-item-content>
@@ -177,8 +192,8 @@
             </v-container>
 
             <v-bottom-navigation
-                    v-if="$store.state.isLogged"
-                    fixed
+                v-if="$store.state.isLogged"
+                fixed
             >
 
                 <router-link tag="div" style="height: 100%" v-on:click="closeMenu" to="/">
@@ -195,23 +210,22 @@
                     </v-btn>
                 </router-link>
 
-
-                <router-link tag="div" style="height: 100%" v-on:click="closeMenu" to="/time-line">
+                <router-link tag="div" style="height: 100%" v-on:click="closeMenu" to="/transport">
                     <v-btn>
-                        <span>Timeline</span>
+                        <span>My transport</span>
                         <v-icon>mdi-road</v-icon>
                     </v-btn>
                 </router-link>
 
                 <v-btn v-on:click="menuVisible = !menuVisible">
-                    <span>Other</span>
+                    <span>More</span>
                     <v-icon>mdi-menu</v-icon>
                 </v-btn>
 
             </v-bottom-navigation>
         </v-content>
 
-        <RateApp />
+        <RateApp/>
 
     </v-app>
 </template>

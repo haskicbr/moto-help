@@ -1,7 +1,7 @@
 <script>
 
-    import router from "../routes";
-    import {AuthActionTypes} from "../store/actions/types";
+    import router from "../../routes";
+    import {AuthActionTypes} from "../../store/actions/types";
 
     export default {
 

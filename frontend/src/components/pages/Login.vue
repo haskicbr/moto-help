@@ -1,5 +1,5 @@
 <script>
-    import {AuthActionTypes, RegistrationsActionTypes} from "../store/actions/types";
+    import {AuthActionTypes, RegistrationsActionTypes} from "../../store/actions/types";
     import Registration from "./Registration";
     import Auth from "./Auth";
 

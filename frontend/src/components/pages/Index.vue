@@ -1,6 +1,6 @@
 <script>
 
-    import CurrentMileage from "./CurrentMileage";
+    import CurrentMileage from "../CurrentMileage";
     import Login from "./Login";
 
     export default {

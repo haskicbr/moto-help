@@ -1,6 +1,6 @@
 <script>
 
-    import {ServiceActionTypes} from "../store/actions/types";
+    import {ServiceActionTypes} from "../../store/actions/types";
     import { v1 as uuidv1 } from "uuid";
 
     export default {

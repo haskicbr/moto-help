@@ -1,9 +1,9 @@
 <script>
 
-    import router from "../routes";
+    import router from "../../routes";
 
-    import {RegistrationsActionTypes} from "../store/actions/types";
-    import {AuthActionTypes} from "../store/actions/types";
+    import {RegistrationsActionTypes} from "../../store/actions/types";
+    import {AuthActionTypes} from "../../store/actions/types";
 
     export default {
         data: () => ({
