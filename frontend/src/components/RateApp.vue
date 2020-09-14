@@ -26,7 +26,7 @@
 
         data() {
             return {
-                rating: 4.5,
+                rating: 5,
                 reviewText: "",
                 dialog: false,
             }
