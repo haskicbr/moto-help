@@ -1,8 +1,9 @@
-import SystemMutations  from "./SystemMutations";
+import SystemMutations from "./SystemMutations";
 import ServiceMutations from "./ServiceMutations";
-
+import TransportMutations from "./TransportMutations";
 
 export {
     SystemMutations,
-    ServiceMutations
+    ServiceMutations,
+    TransportMutations
 }

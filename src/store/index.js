@@ -1,23 +1,37 @@
-import {SystemMutations, ServiceMutations} from "./mutations";
-import {ServiceActions, RegistrationActions, AuthActions, SystemActions} from "./actions";
+import {
+    SystemMutations,
+    ServiceMutations,
+    TransportMutations
+} from "./mutations";
+
+import {
+    ServiceActions,
+    RegistrationActions,
+    AuthActions,
+    SystemActions,
+    TransportActions
+} from "./actions";
+
 import state from "./state";
 
-import Vuex  from "vuex";
-import Vue   from "vue";
+import Vuex from "vuex";
+import Vue from "vue";
 
 
 Vue.use(Vuex);
 
 let mutations = {
     ...SystemMutations,
-    ...ServiceMutations
+    ...ServiceMutations,
+    ...TransportMutations
 };
 
 let actions = {
     ...ServiceActions,
     ...RegistrationActions,
     ...AuthActions,
-    ...SystemActions
+    ...SystemActions,
+    ...TransportActions
 };
 
 

@@ -1,6 +1,7 @@
 import settingsTypes from "./SettingsTypes";
 
 const state = {
+    transports: [],
     services: [],
     currentMileage: 0,
     mileageHistory: {
