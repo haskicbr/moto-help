@@ -8,7 +8,7 @@ const state = {
     },
     settings: {
         units: {
-            distance: settingsTypes.UNITS.DISTANCE.MI,
+            distance: settingsTypes.UNITS.DISTANCE.KM,
         },
         language: settingsTypes.LANGUAGE.EN
     },

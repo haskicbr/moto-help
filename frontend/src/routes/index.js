@@ -3,12 +3,13 @@ import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
 
-import Service      from "../components/Service";
-import Index        from "../components/Index";
-import Login        from "../components/Login";
-import ServiceTypes from "../components/ServiceTypes";
+import Service      from "../components/pages/Service";
+import Index        from "../components/pages/Index";
+import Login        from "../components/pages/Login";
+import ServiceTypes from "../components/pages/ServiceTypes";
 import TimeLine     from "../components/TimeLine";
-import Settings     from "../components/Settings";
+import Settings     from "../components/pages/Settings";
+import Transport    from "../components/pages/Transport";
 
 const routes = [
     {path: '/service', component: Service},
@@ -24,6 +25,7 @@ const routes = [
     {path: '/service-types', component: ServiceTypes},
     {path: '/time-line', component: TimeLine},
     {path: '/settings', component: Settings},
+    {path: '/transport', component: Transport},
 ];
 
 const router = new VueRouter({
