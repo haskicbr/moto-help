@@ -1,12 +1,11 @@
 import settingsTypes from "./SettingsTypes";
 
 const state = {
+    currentTransportId: null,
     transports: [],
     services: [],
     currentMileage: 0,
-    mileageHistory: {
-
-    },
+    mileageHistory: {},
     settings: {
         units: {
             distance: settingsTypes.UNITS.DISTANCE.KM,

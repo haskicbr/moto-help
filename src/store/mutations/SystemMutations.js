@@ -1,8 +1,18 @@
 import {SystemMutationTypes} from "./types";
-
+import { v4 as uuidv4 } from 'uuid';
 const mutations = {};
 
 const initialState = {
+    "currentTransportId": null,
+    "transports": [{
+        "id" : uuidv4(),
+        "name" : "Yamaha ybr 125",
+        "mileage": 7000,
+    }, {
+        "id": uuidv4(),
+        "name": "Honda Accord",
+        "mileage": 190000,
+    }],
     "services": [{
         "type": "CHANGE_SPARK_PLUGS",
         "mileage": 17000,
