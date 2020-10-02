@@ -13,6 +13,7 @@ import {
 } from "./actions";
 
 import state from "./state";
+import getters from "./getters";
 
 import Vuex from "vuex";
 import Vue from "vue";
@@ -41,22 +42,7 @@ const store = new Vuex.Store({
 
     actions,
 
-    getters: {
-        defaultServiceType(state) {
-
-            let defaultServiceType = state.defaultServiceType;
-
-            if (typeof (state.serviceTypes[defaultServiceType]) !== 'undefined') {
-                return defaultServiceType;
-            }
-
-            if (Object.keys(state.serviceTypes).length > 0) {
-                return Object.keys(state.serviceTypes)[0];
-            }
-
-            return null;
-        }
-    }
+    getters
 });
 
 store.subscribe((mutation, state, dispatch) => {
