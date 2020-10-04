@@ -80,7 +80,7 @@
             },
             getMileageProgress(mileage, lifetime) {
 
-                let compareMileage = this.$store.state.currentMileage - mileage;
+                let compareMileage = this.$store.getters.currentMileage - mileage;
 
                 let progress = compareMileage / lifetime * 100;
 
@@ -101,11 +101,11 @@
 
             getChangeThought(mileage) {
 
-                if (mileage.mileage > this.$store.state.currentMileage) {
+                if (mileage.mileage > this.$store.getters.currentMileage) {
                     return mileage.lifetime;
                 }
 
-                let change = mileage.lifetime + mileage.mileage - this.$store.state.currentMileage;
+                let change = mileage.lifetime + mileage.mileage - this.$store.getters.currentMileage;
 
                 if (change < 0) {
                     return 0;

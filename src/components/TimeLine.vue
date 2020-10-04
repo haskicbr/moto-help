@@ -1,5 +1,7 @@
 <script>
 
+
+    // TODO доработать страницу, непонятно какая должна быть логика работы с историей...
     import TimeLineItem from "./TimeLineItem";
 
     export default {

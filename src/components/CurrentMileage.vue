@@ -1,68 +1,75 @@
 <script>
 
-    import {ServiceActionTypes} from "../store/actions/types";
-    import CurrentMileageServices from "./CurrentMileageServices";
+import {ServiceActionTypes} from "../store/actions/types";
+import CurrentMileageServices from "./CurrentMileageServices";
 
-    export default {
-        name: "CurrentMileage",
+export default {
+    name: "CurrentMileage",
 
-        components: {
-            CurrentMileageServices
+    components: {
+        CurrentMileageServices
+    },
+
+    methods: {
+
+        getServices() {
+
+            let services = this.$store.getters.currentServices;
+
+            let lastTypes = [];
+
+            services = services.filter(service => {
+
+                if (lastTypes.includes(service.type)) {
+                    return false;
+                }
+
+                lastTypes.push(service.type);
+
+                return true;
+            });
+
+            return services;
         },
 
-        methods: {
-
-            getServices() {
-
-                let services = this.$store.state.services;
-
-                let lastTypes = [];
-
-                services = services.filter(service => {
-
-                    if (lastTypes.includes(service.type)) {
-                        return false;
-                    }
-
-                    lastTypes.push(service.type);
-
-                    return true;
-                });
-
-                return services;
-            },
-
-            changeCurrent() {
-                this.isEditable = false;
-                this.$store.dispatch(ServiceActionTypes.CHANGE_CURRENT, this.currentMileage);
-            },
+        changeCurrent() {
+            this.isEditable = false;
+            this.$store.dispatch(ServiceActionTypes.CHANGE_CURRENT_MILEAGE, this.currentMileage);
         },
+    },
 
-        data() {
-            return {
-                currentMileage: this.$store.state.currentMileage,
-                isEditable: false,
+    data() {
+        return {
+            currentMileage: this.$store.getters.currentMileage,
+            isEditable: false,
 
-            }
         }
     }
+}
 </script>
 
 
 <template>
     <div>
         <v-list-item v-if="!isEditable">
-            <v-list-item-title class="d-flex" style="padding: 10px 0px 10px 0px;">
-                <span class="d-flex align-self-center" style="width: 80%" >current mileage {{$store.state.currentMileage}} km</span>
-                <v-tooltip bottom>
-                    <template v-slot:activator="{ on }">
-                        <v-btn v-on="on" v-on:click="isEditable = !isEditable" class="mx-2"  fab x-small >
-                            <v-icon small dark>mdi-pencil</v-icon>
-                        </v-btn>
-                    </template>
-                    <span>change mileage</span>
-                </v-tooltip>
-            </v-list-item-title>
+            <v-list-item-content>
+                <v-list-item-title>
+                    <div class="">current transport {{$store.getters.currentTransport.name}}</div>
+                </v-list-item-title>
+
+                <v-list-item-title class="d-flex" style="padding: 10px 0px 10px 0px;">
+                    <span class="d-flex align-self-center"
+                          style="width: 80%">current mileage {{ $store.getters.currentMileage }} km</span>
+                    <v-tooltip bottom>
+                        <template v-slot:activator="{ on }">
+                            <v-btn v-on="on" v-on:click="isEditable = !isEditable" class="mx-2" fab x-small>
+                                <v-icon small dark>mdi-pencil</v-icon>
+                            </v-btn>
+                        </template>
+                        <span>change mileage</span>
+                    </v-tooltip>
+                </v-list-item-title>
+            </v-list-item-content>
         </v-list-item>
 
         <v-list-item v-if="isEditable">

@@ -4,26 +4,24 @@ import SystemActionTypes from "./types/SystemActionTypes";
 
 const actions = {};
 
-actions[ServiceActionTypes.ADD_MILEAGE] = function ({commit, state, dispatch}, service) {
+actions[ServiceActionTypes.ADD_SERVICE] = function ({commit, state, dispatch}, service) {
 
-    commit(ServiceMutationTypes.ADD_MILEAGE, service);
-
-    dispatch(SystemActionTypes.SYNC_STORE_WITH_SERVER);
-
-};
-
-actions[ServiceActionTypes.DELETE_MILEAGE] = function ({commit, state, dispatch}, index) {
-
-    commit(ServiceMutationTypes.DELETE_MILEAGE, index);
+    commit(ServiceMutationTypes.ADD_SERVICE, service);
 
     dispatch(SystemActionTypes.SYNC_STORE_WITH_SERVER);
 
 };
 
-actions[ServiceActionTypes.CHANGE_CURRENT] = function ({commit, state, dispatch}, newValue) {
+actions[ServiceActionTypes.DELETE_SERVICE] = function ({commit, state, dispatch}, index) {
 
-    commit(ServiceMutationTypes.ADD_HISTORY,    newValue);
-    commit(ServiceMutationTypes.CHANGE_CURRENT, newValue);
+    commit(ServiceMutationTypes.DELETE_SERVICE, index);
+
+    dispatch(SystemActionTypes.SYNC_STORE_WITH_SERVER);
+
+};
+
+actions[ServiceActionTypes.CHANGE_CURRENT_MILEAGE] = function ({commit, state, getters, dispatch}, mileage) {
+    commit(ServiceMutationTypes.CHANGE_CURRENT_MILEAGE, {id: getters.currentTransport.id, mileage});
 
     dispatch(SystemActionTypes.SYNC_STORE_WITH_SERVER);
 };

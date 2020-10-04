@@ -115,7 +115,7 @@ footer {
                         </v-list-item>
                     </router-link>
 
-                    <router-link tag="div" v-on:click="closeMenu" to="/time-line">
+<!--                    <router-link tag="div" v-on:click="closeMenu" to="/time-line">
                         <v-list-item link>
                             <v-list-item-action>
                                 <v-icon>mdi-road</v-icon>
@@ -128,7 +128,7 @@ footer {
 
                             </v-list-item-content>
                         </v-list-item>
-                    </router-link>
+                    </router-link>-->
 
                     <v-list-item link v-on:click="showRateModal">
                         <v-list-item-action>

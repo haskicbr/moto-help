@@ -23,7 +23,7 @@ const routes = [
     {path: '/', component: Index},
     {path: '/login', component: Login},
     {path: '/service-types', component: ServiceTypes},
-    {path: '/time-line', component: TimeLine},
+    /*{path: '/time-line', component: TimeLine},*/
     {path: '/settings', component: Settings},
     {path: '/transport', component: Transport},
 ];

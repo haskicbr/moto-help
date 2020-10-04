@@ -44,7 +44,8 @@
             },
             addService() {
                 this.changeVisibleServiceForm();
-                this.$store.dispatch(ServiceActionTypes.ADD_MILEAGE, {
+                this.$store.dispatch(ServiceActionTypes.ADD_SERVICE, {
+                    transportId: this.$store.getters.currentTransport.id,
                     type: this.mileageType,
                     mileage: parseInt(this.mileageValue),
                     lifetime: (this.isActiveLifetime) ? parseInt(this.lifetime) : null,
@@ -57,7 +58,7 @@
                 this.$router.push('/service-types')
             },
             deleteService(index) {
-                this.$store.dispatch(ServiceActionTypes.DELETE_MILEAGE, index);
+                this.$store.dispatch(ServiceActionTypes.DELETE_SERVICE, index);
             }
         },
 
@@ -75,7 +76,7 @@
                 lifetime: 100,
                 description: '',
                 paymentAmount: 0,
-                mileageValue: this.$store.state.currentMileage,
+                mileageValue: this.$store.getters.currentMileage,
                 mileageDate: new Date().toISOString().substr(0, 10),
                 serviceTypesDescriptions,
                 mileageType,
@@ -214,8 +215,8 @@
             </v-list-item-content>
         </v-list-item>
 
-        <template v-if="$store.state.services.length !== 0">
-            <v-list-item :key="key" v-for="(mileage,key) in $store.state.services">
+        <template v-if="$store.getters.currentServices.length !== 0">
+            <v-list-item :key="key" v-for="(mileage,key) in $store.getters.currentServices">
                 <v-list-item-content>
 
                     <v-list-item-title class="subtitle-1">{{getServiceDescription(mileage.type)}}</v-list-item-title>
