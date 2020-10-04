@@ -5,6 +5,7 @@ import {AuthActionTypes} from "./store/actions/types";
 import RateApp from "./components/modals/RateApp";
 import EventBus from "./events/EventBus";
 import {ModalEventTypes} from "./events/types";
+import Confirm from "./components/modals/Confirm";
 
 
 export default {
@@ -12,6 +13,7 @@ export default {
     name: "app",
 
     components: {
+        Confirm,
         RateApp
     },
 
@@ -226,6 +228,7 @@ footer {
         </v-content>
 
         <RateApp/>
+        <Confirm/>
 
     </v-app>
 </template>
