@@ -173,6 +173,7 @@ export default {
                             <v-tooltip bottom>
                                 <template v-slot:activator="{ on, attrs }">
                                     <v-btn
+                                        v-bind:disabled="$store.getters.currentTransport && $store.getters.currentTransport.id === transport.id"
                                         fab
                                         small
                                         color="default"

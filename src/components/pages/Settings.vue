@@ -4,16 +4,10 @@
 
     export default {
         name: "Settings",
-
-
         data() {
-
-
             return {
                 language: SettingTypes.LANGUAGE.EN,
                 distanceUnit: SettingTypes.UNITS.DISTANCE.KM
-
-
             }
         }
     }
@@ -43,7 +37,6 @@
                     item-value="key"
                     v-model="distanceUnit"
                     label="Distance unit"
-
             ></v-select>
         </v-list-item-content>
     </v-list-item>

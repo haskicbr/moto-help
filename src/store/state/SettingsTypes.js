@@ -1,5 +1,4 @@
 const settingsTypes = {
-
     UNITS: {
         DISTANCE: {
             MI: "mi",
@@ -11,6 +10,5 @@ const settingsTypes = {
         EN: "en"
     }
 };
-
 
 export default settingsTypes;

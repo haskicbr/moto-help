@@ -2,11 +2,13 @@
 
 import {ServiceActionTypes} from "../store/actions/types";
 import CurrentMileageServices from "./CurrentMileageServices";
+import AddTransportNotice from "./AddTransportNotice";
 
 export default {
     name: "CurrentMileage",
 
     components: {
+        AddTransportNotice,
         CurrentMileageServices
     },
 
@@ -50,7 +52,11 @@ export default {
 
 
 <template>
-    <div>
+
+    <div v-if="!$store.getters.currentTransport">
+        <AddTransportNotice/>
+    </div>
+    <div v-else>
         <v-list-item v-if="!isEditable">
             <v-list-item-content>
                 <v-list-item-title>

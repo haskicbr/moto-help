@@ -2,12 +2,13 @@
 
     import {ServiceActionTypes} from "../../store/actions/types";
     import dateFormat from "date-format";
+    import AddTransportNotice from "../AddTransportNotice";
 
 
     export default {
 
         name: "Service",
-
+        components: {AddTransportNotice},
         props: {
             visibleServiceForm: {
                 type: Boolean,
@@ -101,7 +102,10 @@
 
 </style>
 <template>
-    <div>
+    <div v-if="!$store.getters.currentTransport">
+        <AddTransportNotice/>
+    </div>
+    <div v-else>
         <v-list-item>
             <v-list-item-content>
                 <div class="md-layout md-gutter">
@@ -156,7 +160,7 @@
                         <v-text-field
                                 v-if="isActiveLifetime"
                                 label="lifetime"
-                                append-icon="mdi-cogs"
+                                :suffix="$store.state.settings.units.distance"
                                 style="font-size: 16px" type="number" v-model="lifetime"></v-text-field>
                         <v-text-field
                                 v-if="isActivePayment"
