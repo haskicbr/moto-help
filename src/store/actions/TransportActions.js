@@ -24,4 +24,9 @@ actions[TransportActionTypes.CHANGE_MILEAGE] = function ({commit, state, dispatc
     dispatch(SystemActionTypes.SYNC_STORE_WITH_SERVER);
 };
 
+actions[TransportActionTypes.EDIT_TRANSPORT] = function ({commit, state, dispatch}, {id, name, mileage}) {
+    commit(TransportMutationTypes.EDIT_TRANSPORT, {id, name, mileage});
+    dispatch(SystemActionTypes.SYNC_STORE_WITH_SERVER);
+};
+
 export default actions;

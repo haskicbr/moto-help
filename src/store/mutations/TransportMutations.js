@@ -20,6 +20,11 @@ TransportMutations[TransportMutationTypes.CHANGE_MILEAGE] = function (state, {id
     const transportId = state.transports.findIndex(transport => transport.id === id);
     state.transports[transportId].mileage = mileage;
 }
+TransportMutations[TransportMutationTypes.EDIT_TRANSPORT] = function (state, {id, name, mileage}) {
+    const transportId = state.transports.findIndex(transport => transport.id === id);
+    state.transports[transportId].mileage = mileage;
+    state.transports[transportId].name = name;
+}
 
 
 export default TransportMutations;

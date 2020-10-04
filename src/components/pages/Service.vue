@@ -16,46 +16,34 @@
         },
 
         methods: {
-
             changeActiveLifetime() {
                 this.isActiveLifetime = !this.isActiveLifetime;
             },
-
             changeActivePayment() {
                 this.isActivePayment = !this.isActivePayment;
             },
-
             getServiceTypesAsArray() {
-
                 let serviceTypesDescriptions = this.$store.state.serviceTypes;
                 let serviceTypes = [];
-
                 for (let key in serviceTypesDescriptions) {
                     serviceTypes.push({
                         key,
                         description: serviceTypesDescriptions[key].description
                     })
                 }
-
                 return serviceTypes;
             },
-
             changeVisibleServiceForm() {
                 this.visibleServiceFormState = !this.visibleServiceFormState;
             },
-
             getServiceDescription(type) {
                 return this.$store.state.serviceTypes[type].description;
             },
-
             dateFormat(dateString) {
                 return dateFormat('dd-MM-yyyy', new Date(dateString));
             },
-
             addService() {
-
                 this.changeVisibleServiceForm();
-
                 this.$store.dispatch(ServiceActionTypes.ADD_MILEAGE, {
                     type: this.mileageType,
                     mileage: parseInt(this.mileageValue),
@@ -65,29 +53,23 @@
                     description: this.description
                 });
             },
-
             goToAddServiceType() {
                 this.$router.push('/service-types')
             },
-
             deleteService(index) {
                 this.$store.dispatch(ServiceActionTypes.DELETE_MILEAGE, index);
             }
         },
 
         computed: {
-
             serviceTypes() {
                 return this.$store.state.serviceTypes;
             }
-
         },
 
         data() {
-
             let mileageType = this.$store.getters.defaultServiceType;
             let serviceTypesDescriptions = this.getServiceTypesAsArray();
-
             return {
                 visibleServiceFormState: this.$props.visibleServiceForm,
                 lifetime: 100,
@@ -139,8 +121,6 @@
                 </div>
 
                 <template v-if="visibleServiceFormState">
-
-
                     <div class="justify-start d-flex ">
                         <v-chip v-on:click="changeActiveLifetime" style="cursor: pointer;display: flex">
                             <v-avatar left>
@@ -151,11 +131,9 @@
                                 <template v-else>
                                     <v-icon>mdi-minus-circle-outline</v-icon>
                                 </template>
-
                             </v-avatar>
                             lifetime
                         </v-chip>
-
                         <v-chip
                                 v-on:click="changeActivePayment"
                                 class="mx-2"
@@ -173,14 +151,12 @@
                             payment
                         </v-chip>
                     </div>
-
                     <div style="margin-top: 15px">
                         <v-text-field
                                 v-if="isActiveLifetime"
                                 label="lifetime"
                                 append-icon="mdi-cogs"
                                 style="font-size: 16px" type="number" v-model="lifetime"></v-text-field>
-
                         <v-text-field
                                 v-if="isActivePayment"
                                 style="font-size: 16px"
@@ -189,10 +165,8 @@
                                 type="number"
                                 v-model="paymentAmount">
                         </v-text-field>
-
                         <v-text-field label="description" style="font-size: 16px" type="text"
                                       v-model="description"></v-text-field>
-
                         <v-row>
                             <v-col cols="12" sm="12" md="12">
                                 <v-dialog
@@ -219,7 +193,6 @@
                                 </v-dialog>
                             </v-col>
                         </v-row>
-
                         <v-row>
                             <v-col class="d-flex" cols="12">
                                 <v-select full-width
@@ -232,7 +205,6 @@
                                 ></v-select>
                             </v-col>
                         </v-row>
-
                         <v-btn color="primary" style="width: 100%" v-on:click="addService">
                             Save
                         </v-btn>
