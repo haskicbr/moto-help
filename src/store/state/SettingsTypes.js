@@ -1,14 +1,29 @@
-const settingsTypes = {
+
+const LanguageTypes = {
+    RU: "RU",
+    EN: "EN"
+}
+
+const DistanceTypes = {
+    MI: "MI",
+    KM: "KM"
+}
+
+const SettingsTypes = {
     UNITS: {
         DISTANCE: {
-            MI: "mi",
-            KM: "km"
+            [DistanceTypes.MI]: "mi",
+            [DistanceTypes.KM]: "km"
         },
     },
     LANGUAGE: {
-        RU: "ru",
-        EN: "en"
+        [LanguageTypes.RU]: "Russian",
+        [LanguageTypes.EN]: "English"
     }
 };
 
-export default settingsTypes;
+export {
+    SettingsTypes,
+    DistanceTypes,
+    LanguageTypes
+}

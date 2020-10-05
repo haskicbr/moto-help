@@ -69,14 +69,14 @@
                 <br>
 
                 <div class="d-flex justify-center">
-                    <v-btn text color="primary accent-4" v-on:click="showRegistrationForm">Start new history</v-btn>
-                    <v-btn text color="success" v-on:click="showAuthForm">Sign in</v-btn>
+                    <v-btn text color="primary accent-4" v-on:click="showRegistrationForm">{{ $store.getters.languages("REGISTRATION") }}</v-btn>
+                    <v-btn text color="success" v-on:click="showAuthForm">{{ $store.getters.languages("SIGN_IN") }}</v-btn>
                 </div>
 
                 <Registration v-if="isShowedRegistrationForm" />
                 <Auth v-if="isShowedAuthForm" />
 
-                <v-btn text block color="primary accent-4" v-on:click="authWithoutRegistration">Without registration
+                <v-btn text block color="primary accent-4" v-on:click="authWithoutRegistration">{{ $store.getters.languages("SIGN_IN_WITHOUT_REGISTRATION") }}
                 </v-btn>
             </template>
         </template>

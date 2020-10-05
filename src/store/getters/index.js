@@ -1,3 +1,5 @@
+import language from "./language";
+
 const getters = {
     defaultServiceType(state) {
 
@@ -14,6 +16,9 @@ const getters = {
         return null;
     },
     currentTransport(state) {
+        if (state.transports.length === 0) {
+            return null;
+        }
         return state.transports.find(transport => transport.id === state.currentTransportId);
     },
     currentMileage(state, getters) {
@@ -22,7 +27,8 @@ const getters = {
     },
     currentServices(state, getters) {
         return state.services.filter(service => service.transportId === getters.currentTransport.id)
-    }
+    },
+    ...language
 }
 
 

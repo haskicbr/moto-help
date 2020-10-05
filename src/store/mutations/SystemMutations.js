@@ -4,38 +4,11 @@ const mutations = {};
 
 const initialState = {
     "currentTransportId": null,
-    "transports": [{
-        "id" : uuidv4(),
-        "name" : "Yamaha ybr 125",
-        "mileage": 7000,
-    }, {
-        "id": uuidv4(),
-        "name": "Honda Accord",
-        "mileage": 190000,
-    }],
-    "services": [{
-        "type": "CHANGE_SPARK_PLUGS",
-        "mileage": 17000,
-        "lifetime": 10000,
-        "date": "2020-02-24",
-        "description": "ngk iridium"
-    }, {
-        "type": "CHANGE_OIL_FILTER",
-        "mileage": 17000,
-        "lifetime": 5000,
-        "date": "2020-02-24",
-        "description": ""
-    }, {
-        "type": "CHANGE_OIL",
-        "mileage": 17000,
-        "lifetime": 5000,
-        "date": "2020-02-24",
-        "description": "10 W 40"
-    }],
-    "currentMileage": "21000",
+    "transports": [],
+    "services": [],
     "isLogged": false,
     "isRegisterUser": false,
-    "nightMode": false,
+    "nightMode": true,
     "serviceTypes": {
         "CHANGE_OIL": {"description": "Change oil"},
         "CHANGE_OIL_FILTER": {"description": "Change oil filter"},

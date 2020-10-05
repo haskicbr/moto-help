@@ -1,20 +1,19 @@
-import settingsTypes from "./SettingsTypes";
+import {LanguageTypes, DistanceTypes} from "./SettingsTypes";
 
 const state = {
     currentTransportId: null,
     transports: [],
     services: [],
-    currentMileage: 0,
     mileageHistory: {},
     settings: {
         units: {
-            distance: settingsTypes.UNITS.DISTANCE.KM,
+            distance: DistanceTypes.KM,
         },
-        language: settingsTypes.LANGUAGE.EN
+        language: LanguageTypes.EN
     },
     isLogged: false,
     isRegisterUser: false,
-    nightMode: false
+    nightMode: true
 };
 
 let serviceTypes = {

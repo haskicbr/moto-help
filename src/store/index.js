@@ -1,7 +1,8 @@
 import {
     SystemMutations,
     ServiceMutations,
-    TransportMutations
+    TransportMutations,
+    SettingsMutations
 } from "./mutations";
 
 import {
@@ -9,7 +10,8 @@ import {
     RegistrationActions,
     AuthActions,
     SystemActions,
-    TransportActions
+    TransportActions,
+    SettingsActions
 } from "./actions";
 
 import state from "./state";
@@ -24,7 +26,8 @@ Vue.use(Vuex);
 let mutations = {
     ...SystemMutations,
     ...ServiceMutations,
-    ...TransportMutations
+    ...TransportMutations,
+    ...SettingsMutations
 };
 
 let actions = {
@@ -32,16 +35,15 @@ let actions = {
     ...RegistrationActions,
     ...AuthActions,
     ...SystemActions,
-    ...TransportActions
+    ...TransportActions,
+    ...SettingsActions
 };
 
 
 const store = new Vuex.Store({
     state,
     mutations,
-
     actions,
-
     getters
 });
 
