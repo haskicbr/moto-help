@@ -73,7 +73,7 @@
             <v-text-field
                     v-model="email"
                     :rules="[...emailRules, rules.emailServer]"
-                    label="E-mail"
+                    :label="$store.getters.languages('EMAIL')"
                     required
                     v-on:keydown="clearServerErrors"
             ></v-text-field>
@@ -84,7 +84,7 @@
                     :rules="[rules.required]"
                     :type="isShowedPassword ? 'text' : 'password'"
                     name="input-10-1"
-                    label="Password"
+                    :label="$store.getters.languages('PASSWORD')"
                     counter
                     v-on:keydown="clearServerErrors"
                     @click:append="isShowedPassword = !isShowedPassword"
@@ -96,7 +96,7 @@
                    style="width: 100%"
                    type="submit"
             >
-                Login
+                {{ $store.getters.languages("LOGIN_BUTTON") }}
             </v-btn>
         </v-form>
     </v-col>

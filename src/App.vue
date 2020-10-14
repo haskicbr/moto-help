@@ -93,7 +93,7 @@ footer {
                             <v-list-item-content>
 
                                 <v-list-item-title>
-                                    <span class="md-list-item-text subtitle-1">service</span>
+                                    <span class="md-list-item-text subtitle-1">{{$store.getters.languages('SERVICE')}}</span>
                                 </v-list-item-title>
 
                             </v-list-item-content>
@@ -108,7 +108,7 @@ footer {
                             <v-list-item-content>
 
                                 <v-list-item-title>
-                                    <span class="subtitle-1">service types</span>
+                                    <span class="subtitle-1">{{$store.getters.languages('SERVICE_TYPES')}}</span>
                                 </v-list-item-title>
 
                             </v-list-item-content>
@@ -137,7 +137,7 @@ footer {
                         <v-list-item-content>
 
                             <v-list-item-title>
-                                <span class="subtitle-1">rate app</span>
+                                <span class="subtitle-1">{{$store.getters.languages('RATE_APP')}}</span>
                             </v-list-item-title>
 
                         </v-list-item-content>
@@ -151,7 +151,7 @@ footer {
                             <v-list-item-content>
 
                                 <v-list-item-title>
-                                    <span class="subtitle-1">settings</span>
+                                    <span class="subtitle-1">{{$store.getters.languages('SETTINGS')}}</span>
                                 </v-list-item-title>
 
                             </v-list-item-content>
@@ -164,7 +164,7 @@ footer {
                         </v-list-item-action>
                         <v-list-item-content>
                             <v-list-item-title>
-                                <span class="md-list-item-text subtitle-1">logout</span>
+                                <span class="md-list-item-text subtitle-1">{{$store.getters.languages('LOGOUT_BUTTON')}}</span>
                             </v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
@@ -172,7 +172,7 @@ footer {
 
 
                 <v-list-item class="justify-space-between">
-                    <div class="subtitle-1 mx-5">night mode</div>
+                    <div class="subtitle-1 mx-5">{{$store.getters.languages('NIGHT_MODE')}}</div>
                     <div class="mx-5">
                         <v-switch class=" d-flex d-flex" v-model="nightMode"></v-switch>
                     </div>
