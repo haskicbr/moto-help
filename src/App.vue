@@ -200,27 +200,27 @@ footer {
 
                 <router-link tag="div" style="height: 100%" v-on:click="closeMenu" to="/">
                     <v-btn>
-                        <span>Mileage</span>
+                        <span>{{$store.getters.languages('MILEAGE')}}</span>
                         <v-icon>mdi-history</v-icon>
                     </v-btn>
                 </router-link>
 
                 <router-link tag="div" style="height: 100%" v-on:click="closeMenu" to="/service">
                     <v-btn>
-                        <span>Service</span>
+                        <span>{{$store.getters.languages('SERVICE')}}</span>
                         <v-icon>mdi-cogs</v-icon>
                     </v-btn>
                 </router-link>
 
                 <router-link tag="div" style="height: 100%" v-on:click="closeMenu" to="/transport">
                     <v-btn>
-                        <span>My transport</span>
+                        <span>{{$store.getters.languages('MY_TRANSPORT')}}</span>
                         <v-icon>mdi-road</v-icon>
                     </v-btn>
                 </router-link>
 
                 <v-btn v-on:click="menuVisible = !menuVisible">
-                    <span>More</span>
+                    <span>{{$store.getters.languages('MORE')}}</span>
                     <v-icon>mdi-menu</v-icon>
                 </v-btn>
 

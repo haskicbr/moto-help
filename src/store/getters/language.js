@@ -73,6 +73,30 @@ const languages = {
         [LanguageTypes.EN]: "night mode",
         [LanguageTypes.RU]: "night mode",
     },
+    "MILEAGE" : {
+        [LanguageTypes.EN]: "Mileage",
+        [LanguageTypes.RU]: "Пробег",
+    },
+    "MY_TRANSPORT" : {
+        [LanguageTypes.EN]: "Transport",
+        [LanguageTypes.RU]: "Транспорт",
+    },
+    "MORE" : {
+        [LanguageTypes.EN]: "More",
+        [LanguageTypes.RU]: "   ",
+    },
+    "NEED_CREATE_TRANSPORT" : {
+        [LanguageTypes.EN]: "First you need create transport",
+        [LanguageTypes.RU]: "Добавьте Ваш первый транспорт",
+    },
+    "ADD_BUTTON" : {
+        [LanguageTypes.EN]: "Create",
+        [LanguageTypes.RU]: "Добавить",
+    },
+    "ADD_123" : {
+        [LanguageTypes.EN]: "Create",
+        [LanguageTypes.RU]: "Добавить",
+    },
 };
 const language = {
     languages(state, getters) {
