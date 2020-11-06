@@ -65,7 +65,7 @@ export default {
 
                 <v-list-item-title class="d-flex" style="padding: 10px 0px 10px 0px;">
                     <span class="d-flex align-self-center"
-                          style="width: 80%">current mileage {{ $store.getters.currentMileage }} km</span>
+                          style="width: 80%">current mileage {{ $store.getters.currentMileage }} {{$store.getters.languages($store.state.settings.units.distance)}}</span>
                     <v-tooltip bottom>
                         <template v-slot:activator="{ on }">
                             <v-btn v-on="on" v-on:click="isEditable = !isEditable" class="mx-2" fab x-small>
@@ -94,10 +94,11 @@ export default {
         </v-list-item>
 
         <div v-if="getServices() !== 0" class="md-layout md-gutter">
-
-            <template v-for="(mileage) in getServices()">
-                <CurrentMileageServices v-bind:mileage="mileage"/>
-            </template>
+            <v-row justify="center">
+                <template v-for="(mileage) in getServices()">
+                    <CurrentMileageServices v-bind:mileage="mileage"/>
+                </template>
+            </v-row>
         </div>
     </div>
 </template>

@@ -183,7 +183,7 @@
                                     <template v-slot:activator="{ on }">
                                         <v-text-field
                                                 v-model="mileageDate"
-                                                label="Change date"
+                                                :label="$store.getters.languages('CHANGE_DATE')"
                                                 prepend-icon="mdi-view-dashboard"
                                                 readonly
                                                 v-on="on"
@@ -241,7 +241,6 @@
                                     v-on="on" v-on:click="deleteService(key)"
                                     small
                                     absolute
-
                                     fab
                                     middle
                                     right
