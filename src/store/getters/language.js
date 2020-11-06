@@ -86,7 +86,7 @@ const languages = {
     },
     "MORE" : {
         [LanguageTypes.EN]: "More",
-        [LanguageTypes.RU]: "   ",
+        [LanguageTypes.RU]: "More",
     },
     "NEED_CREATE_TRANSPORT" : {
         [LanguageTypes.EN]: "First you need create transport",
@@ -114,7 +114,7 @@ const languages = {
     },
     "PAYMENT" : {
         [LanguageTypes.EN]: "Payment",
-        [LanguageTypes.RU]: "Payment",
+        [LanguageTypes.RU]: "Стоимость",
     },
     "DESCRIPTION" : {
         [LanguageTypes.EN]: "Description",
@@ -122,11 +122,11 @@ const languages = {
     },
     "DELETE_SERVICE" : {
         [LanguageTypes.EN]: "Delete service",
-        [LanguageTypes.RU]: "Delete service",
+        [LanguageTypes.RU]: "Удалить сервис",
     },
     "DISTANCE_UNIT" : {
         [LanguageTypes.EN]: "Distance unit",
-        [LanguageTypes.RU]: "Distance unit",
+        [LanguageTypes.RU]: "Единица расстояния",
     },
     "CANCEL" : {
         [LanguageTypes.EN]: "Cancel",
@@ -138,16 +138,19 @@ const languages = {
     },
     "CHANGE_MILEAGE" : {
         [LanguageTypes.EN]: "Change mileage",
-        [LanguageTypes.RU]: "Change mileage",
+        [LanguageTypes.RU]: "Изменить пробег",
     },
-
     [DistanceTypes.KM]: {
-        [LanguageTypes.EN]: "Km",
-        [LanguageTypes.RU]: "Км",
+        [LanguageTypes.EN]: "km",
+        [LanguageTypes.RU]: "км",
     },
     [DistanceTypes.MI]: {
-        [LanguageTypes.EN]: "Mi",
-        [LanguageTypes.RU]: "Миль",
+        [LanguageTypes.EN]: "mi",
+        [LanguageTypes.RU]: "миль",
+    },
+    "CHANGE_DATE": {
+        [LanguageTypes.EN]: "Change date",
+        [LanguageTypes.RU]: "Изменить дату",
     }
 };
 const language = {
