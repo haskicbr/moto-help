@@ -113,13 +113,12 @@
                         <div class="md-layout-item md-size=100 add-mileage-container">
                             <template v-if="Object.keys(serviceTypes).length > 0">
                                 <v-btn class="button--add-service" v-on:click="changeVisibleServiceForm" color="primary">
-                                    <span>add service</span>
-
+                                    <span>{{$store.getters.languages('ADD_SERVICE')}}</span>
                                 </v-btn>
                             </template>
 
                             <v-btn class="button--add-service-type" v-on:click="goToAddServiceType" color="primary">
-                                <span>add type</span>
+                                <span>{{$store.getters.languages('ADD_SERVICE_TYPE')}}</span>
                             </v-btn>
                         </div>
                     </template>
@@ -137,7 +136,7 @@
                                     <v-icon>mdi-minus-circle-outline</v-icon>
                                 </template>
                             </v-avatar>
-                            lifetime
+                            <span>{{$store.getters.languages('LIFETIME')}}</span>
                         </v-chip>
                         <v-chip
                                 v-on:click="changeActivePayment"
@@ -153,7 +152,7 @@
                                     <v-icon>mdi-minus-circle-outline</v-icon>
                                 </template>
                             </v-avatar>
-                            payment
+                            <span>{{$store.getters.languages('PAYMENT')}}</span>
                         </v-chip>
                     </div>
                     <div style="margin-top: 15px">
@@ -170,7 +169,7 @@
                                 type="number"
                                 v-model="paymentAmount">
                         </v-text-field>
-                        <v-text-field label="description" style="font-size: 16px" type="text"
+                        <v-text-field :label="$store.getters.languages('DESCRIPTION')" style="font-size: 16px" type="text"
                                       v-model="description"></v-text-field>
                         <v-row>
                             <v-col cols="12" sm="12" md="12">
@@ -192,8 +191,8 @@
                                     </template>
                                     <v-date-picker v-model="mileageDate" scrollable>
                                         <v-spacer></v-spacer>
-                                        <v-btn text color="primary" @click="modal = false">Cancel</v-btn>
-                                        <v-btn text color="primary" @click="$refs.dialog.save(mileageDate)">OK</v-btn>
+                                        <v-btn text color="primary" @click="modal = false">{{$store.getters.languages('CANCEL')}}</v-btn>
+                                        <v-btn text color="primary" @click="$refs.dialog.save(mileageDate)">{{$store.getters.languages('OK')}}</v-btn>
                                     </v-date-picker>
                                 </v-dialog>
                             </v-col>
@@ -211,7 +210,7 @@
                             </v-col>
                         </v-row>
                         <v-btn color="primary" style="width: 100%" v-on:click="addService">
-                            Save
+                            {{$store.getters.languages('SAVE')}}
                         </v-btn>
                     </div>
                 </template>
@@ -225,11 +224,15 @@
 
                     <v-list-item-title class="subtitle-1">{{getServiceDescription(mileage.type)}}</v-list-item-title>
                     <v-list-item-title>{{dateFormat(mileage.date)}}</v-list-item-title>
-                    <v-list-item-title>change mileage: {{mileage.mileage}} km</v-list-item-title>
-                    <v-list-item-title>lifetime: {{mileage.lifetime}} km</v-list-item-title>
+                    <v-list-item-title>{{$store.getters.languages('CHANGE_MILEAGE')}}:
+                        {{mileage.mileage}} {{$store.getters.languages($store.state.settings.units.distance)}}
+                    </v-list-item-title>
+                    <v-list-item-title>{{$store.getters.languages('LIFETIME')}}:
+                        {{mileage.lifetime}} {{$store.getters.languages($store.state.settings.units.distance)}}
+                    </v-list-item-title>
 
                     <template v-if="mileage.description">
-                        <v-list-item-title>description: {{mileage.description}}</v-list-item-title>
+                        <v-list-item-title>{{$store.getters.languages('DESCRIPTION')}}: {{mileage.description}}</v-list-item-title>
                     </template>
 
                     <v-tooltip bottom>
@@ -247,7 +250,7 @@
                                 <v-icon>mdi-minus</v-icon>
                             </v-btn>
                         </template>
-                        <span>delete service</span>
+                        <span>{{$store.getters.languages('DELETE_SERVICE')}}</span>
                     </v-tooltip>
 
                 </v-list-item-content>

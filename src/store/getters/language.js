@@ -1,5 +1,8 @@
-import {LanguageTypes} from "../state/SettingsTypes";
+import {DistanceTypes, LanguageTypes} from "../state/SettingsTypes";
 import WordTypes from "./types/WordTypes";
+
+
+
 const languages = {
     [WordTypes.ADD_MILEAGE]: {
         [LanguageTypes.EN]: "Add mileage",
@@ -93,14 +96,65 @@ const languages = {
         [LanguageTypes.EN]: "Create",
         [LanguageTypes.RU]: "Добавить",
     },
-    "ADD_123" : {
-        [LanguageTypes.EN]: "Create",
-        [LanguageTypes.RU]: "Добавить",
+    "ADD_SERVICE" : {
+        [LanguageTypes.EN]: "Service",
+        [LanguageTypes.RU]: "Обслуживание",
     },
+    "ADD_SERVICE_TYPE" : {
+        [LanguageTypes.EN]: "Service type",
+        [LanguageTypes.RU]: "Тип обслуживания",
+    },
+    "SAVE" : {
+        [LanguageTypes.EN]: "Save",
+        [LanguageTypes.RU]: "Сохранить",
+    },
+    "LIFETIME" : {
+        [LanguageTypes.EN]: "Lifetime",
+        [LanguageTypes.RU]: "Пробег",
+    },
+    "PAYMENT" : {
+        [LanguageTypes.EN]: "Payment",
+        [LanguageTypes.RU]: "Payment",
+    },
+    "DESCRIPTION" : {
+        [LanguageTypes.EN]: "Description",
+        [LanguageTypes.RU]: "Description",
+    },
+    "DELETE_SERVICE" : {
+        [LanguageTypes.EN]: "Delete service",
+        [LanguageTypes.RU]: "Delete service",
+    },
+    "DISTANCE_UNIT" : {
+        [LanguageTypes.EN]: "Distance unit",
+        [LanguageTypes.RU]: "Distance unit",
+    },
+    "CANCEL" : {
+        [LanguageTypes.EN]: "Cancel",
+        [LanguageTypes.RU]: "Отмена",
+    },
+    "OK" : {
+        [LanguageTypes.EN]: "Ok",
+        [LanguageTypes.RU]: "Ок",
+    },
+    "CHANGE_MILEAGE" : {
+        [LanguageTypes.EN]: "Change mileage",
+        [LanguageTypes.RU]: "Change mileage",
+    },
+
+    [DistanceTypes.KM]: {
+        [LanguageTypes.EN]: "Km",
+        [LanguageTypes.RU]: "Км",
+    },
+    [DistanceTypes.MI]: {
+        [LanguageTypes.EN]: "Mi",
+        [LanguageTypes.RU]: "Миль",
+    }
 };
 const language = {
     languages(state, getters) {
         return (textType) => {
+
+            console.log(textType)
             return languages[textType][state.settings.language];
         }
     }
