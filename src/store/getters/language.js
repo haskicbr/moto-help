@@ -2,7 +2,6 @@ import {DistanceTypes, LanguageTypes} from "../state/SettingsTypes";
 import WordTypes from "./types/WordTypes";
 
 
-
 const languages = {
     [WordTypes.ADD_MILEAGE]: {
         [LanguageTypes.EN]: "Add mileage",
@@ -20,123 +19,123 @@ const languages = {
         [LanguageTypes.EN]: "Registration",
         [LanguageTypes.RU]: "Зарегистрироваться",
     },
-    "LOGIN_BANNER_TEXT" : {
+    "LOGIN_BANNER_TEXT": {
         [LanguageTypes.EN]: "moto.help is a free app to help for service motorcycles",
         [LanguageTypes.RU]: "moto.help это бесплатное приложение для помощи в техническом обслуживании вашего транспортного средства",
     },
-    "LANGUAGE" : {
+    "LANGUAGE": {
         [LanguageTypes.EN]: "Language",
         [LanguageTypes.RU]: "Язык",
     },
-    "RU" : {
+    "RU": {
         [LanguageTypes.EN]: "Russian",
         [LanguageTypes.RU]: "Русский",
     },
-    "EN" : {
+    "EN": {
         [LanguageTypes.EN]: "English",
         [LanguageTypes.RU]: "Английский",
     },
-    "EMAIL" : {
+    "EMAIL": {
         [LanguageTypes.EN]: "Email",
         [LanguageTypes.RU]: "Email",
     },
-    "PASSWORD" : {
+    "PASSWORD": {
         [LanguageTypes.EN]: "Password",
         [LanguageTypes.RU]: "Пароль",
     },
-    "LOGIN_BUTTON" : {
+    "LOGIN_BUTTON": {
         [LanguageTypes.EN]: "Login",
         [LanguageTypes.RU]: "Войти",
     },
-    "REGISTRATION_BUTTON" : {
+    "REGISTRATION_BUTTON": {
         [LanguageTypes.EN]: "Registration",
         [LanguageTypes.RU]: "Зарегистрироваться",
     },
-    "LOGOUT_BUTTON" : {
+    "LOGOUT_BUTTON": {
         [LanguageTypes.EN]: "Logout",
         [LanguageTypes.RU]: "Выйти",
     },
-    "SETTINGS" : {
+    "SETTINGS": {
         [LanguageTypes.EN]: "Settings",
         [LanguageTypes.RU]: "Настройки",
     },
-    "RATE_APP" : {
+    "RATE_APP": {
         [LanguageTypes.EN]: "Rate app",
         [LanguageTypes.RU]: "Оценить приложение",
     },
-    "SERVICE_TYPES" : {
+    "SERVICE_TYPES": {
         [LanguageTypes.EN]: "Service types",
         [LanguageTypes.RU]: "Типы обслуживания",
     },
-    "SERVICE" : {
+    "SERVICE": {
         [LanguageTypes.EN]: "Service",
         [LanguageTypes.RU]: "Обслуживание",
     },
-    "NIGHT_MODE" : {
+    "NIGHT_MODE": {
         [LanguageTypes.EN]: "night mode",
         [LanguageTypes.RU]: "night mode",
     },
-    "MILEAGE" : {
+    "MILEAGE": {
         [LanguageTypes.EN]: "Mileage",
         [LanguageTypes.RU]: "Пробег",
     },
-    "MY_TRANSPORT" : {
+    "MY_TRANSPORT": {
         [LanguageTypes.EN]: "Transport",
         [LanguageTypes.RU]: "Транспорт",
     },
-    "MORE" : {
+    "MORE": {
         [LanguageTypes.EN]: "More",
         [LanguageTypes.RU]: "More",
     },
-    "NEED_CREATE_TRANSPORT" : {
+    "NEED_CREATE_TRANSPORT": {
         [LanguageTypes.EN]: "First you need create transport",
         [LanguageTypes.RU]: "Добавьте Ваш первый транспорт",
     },
-    "ADD_BUTTON" : {
+    "ADD_BUTTON": {
         [LanguageTypes.EN]: "Create",
         [LanguageTypes.RU]: "Добавить",
     },
-    "ADD_SERVICE" : {
+    "ADD_SERVICE": {
         [LanguageTypes.EN]: "Service",
         [LanguageTypes.RU]: "Обслуживание",
     },
-    "ADD_SERVICE_TYPE" : {
+    "ADD_SERVICE_TYPE": {
         [LanguageTypes.EN]: "Service type",
         [LanguageTypes.RU]: "Тип обслуживания",
     },
-    "SAVE" : {
+    "SAVE": {
         [LanguageTypes.EN]: "Save",
         [LanguageTypes.RU]: "Сохранить",
     },
-    "LIFETIME" : {
+    "LIFETIME": {
         [LanguageTypes.EN]: "Lifetime",
         [LanguageTypes.RU]: "Пробег",
     },
-    "PAYMENT" : {
+    "PAYMENT": {
         [LanguageTypes.EN]: "Payment",
         [LanguageTypes.RU]: "Стоимость",
     },
-    "DESCRIPTION" : {
+    "DESCRIPTION": {
         [LanguageTypes.EN]: "Description",
         [LanguageTypes.RU]: "Description",
     },
-    "DELETE_SERVICE" : {
+    "DELETE_SERVICE": {
         [LanguageTypes.EN]: "Delete service",
         [LanguageTypes.RU]: "Удалить сервис",
     },
-    "DISTANCE_UNIT" : {
+    "DISTANCE_UNIT": {
         [LanguageTypes.EN]: "Distance unit",
         [LanguageTypes.RU]: "Единица расстояния",
     },
-    "CANCEL" : {
+    "CANCEL": {
         [LanguageTypes.EN]: "Cancel",
         [LanguageTypes.RU]: "Отмена",
     },
-    "OK" : {
+    "OK": {
         [LanguageTypes.EN]: "Ok",
         [LanguageTypes.RU]: "Ок",
     },
-    "CHANGE_MILEAGE" : {
+    "CHANGE_MILEAGE": {
         [LanguageTypes.EN]: "Change mileage",
         [LanguageTypes.RU]: "Изменить пробег",
     },
@@ -157,7 +156,16 @@ const language = {
     languages(state, getters) {
         return (textType) => {
 
-            console.log(textType)
+            if (typeof (languages[textType]) === 'undefined') {
+                console.error('lang: ' + textType + ' not found ')
+                return textType;
+            }
+
+            if (typeof (languages[textType][state.settings.language]) === 'undefined') {
+                console.error('lang: ' + state.settings.language + ' not found in ' + textType)
+                return textType;
+            }
+
             return languages[textType][state.settings.language];
         }
     }
