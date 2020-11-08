@@ -1,55 +1,9 @@
-<template>
-    <v-expansion-panels>
-        <v-expansion-panel style="margin-bottom: 10px">
-            <v-expansion-panel-header>
-                <span class="d-flex" style="width: 50%">{{ getMileageDescription(mileage.type) }}</span>
-                <div class="d-flex" style="padding-right: 20px; padding-left: 10px; width: 50%">
-                    <v-progress-linear
-                        :color="getProgressColor(getMileageProgress(mileage.mileage, mileage.lifetime))"
-                        :value="getMileageProgress(mileage.mileage, mileage.lifetime)"
-                        height="10"
-                    ></v-progress-linear>
-                </div>
-            </v-expansion-panel-header>
-            <v-expansion-panel-content>
-                <div class="d-flex align-self-center">
-                    <div class="d-flex pa-1">
-                        <v-icon :color="getProgressColor(getMileageProgress(mileage.mileage, mileage.lifetime))">
-                            mdi-cog-clockwise
-                        </v-icon>
-                        <span class="pa-1">{{ getChangeThought(mileage) }} {{$store.getters.languages($store.state.settings.units.distance)}}</span>
-                    </div>
-                    <div class="d-flex pa-1">
-                        <v-icon :color="getProgressColor(getMileageProgress(mileage.mileage, mileage.lifetime))">
-                            mdi-cogs
-                        </v-icon>
-                        <span class="pa-1">{{ mileage.lifetime }} {{$store.getters.languages($store.state.settings.units.distance)}}</span>
-                    </div>
-                    <div class="d-flex pa-1">
-                        <v-icon :color="getProgressColor(getMileageProgress(mileage.mileage, mileage.lifetime))">
-                            mdi-wrench
-                        </v-icon>
-                        <span class="pa-1">{{ mileage.mileage }} {{$store.getters.languages($store.state.settings.units.distance)}}</span>
-                    </div>
-                </div>
-
-                <v-list-item v-if="mileage.description">
-                    <div>
-                        <span>{{ mileage.description }}</span>
-                    </div>
-                </v-list-item>
-            </v-expansion-panel-content>
-        </v-expansion-panel>
-    </v-expansion-panels>
-</template>
-
 <script>
 import dateFormat from "date-format";
 
 export default {
     name: "CurrentMileageServices",
     props: ['mileage'],
-
 
     methods: {
 
@@ -111,3 +65,60 @@ export default {
     }
 }
 </script>
+
+<template>
+    <v-expansion-panels>
+        <v-expansion-panel style="margin-bottom: 10px">
+            <v-expansion-panel-header>
+                <span class="d-flex" style="width: 50%">{{ getMileageDescription(mileage.type) }}</span>
+                <template v-if="mileage.lifetime !== null">
+                    <div class="d-flex" style="padding-right: 20px; padding-left: 10px; width: 50%">
+                        <v-progress-linear
+                            :color="getProgressColor(getMileageProgress(mileage.mileage, mileage.lifetime))"
+                            :value="getMileageProgress(mileage.mileage, mileage.lifetime)"
+                            height="10"
+                        ></v-progress-linear>
+                    </div>
+                </template>
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+                <div class="d-flex align-self-center">
+
+                    <template  v-if="mileage.lifetime !== null">
+                        <div class="d-flex pa-1">
+                            <v-icon :color="getProgressColor(getMileageProgress(mileage.mileage, mileage.lifetime))">
+                                mdi-cog-clockwise
+                            </v-icon>
+                            <span class="pa-1">{{ getChangeThought(mileage) }} {{$store.getters.languages($store.state.settings.units.distance)}}</span>
+                        </div>
+                        <div class="d-flex pa-1">
+                            <v-icon :color="getProgressColor(getMileageProgress(mileage.mileage, mileage.lifetime))">
+                                mdi-cogs
+                            </v-icon>
+                            <span class="pa-1">{{ mileage.lifetime }} {{$store.getters.languages($store.state.settings.units.distance)}}</span>
+                        </div>
+                    </template>
+
+                    <div class="d-flex pa-1">
+                        <v-icon :color="getProgressColor(getMileageProgress(mileage.mileage, mileage.lifetime))">
+                            mdi-wrench
+                        </v-icon>
+                        <span class="pa-1">{{ mileage.mileage }} {{$store.getters.languages($store.state.settings.units.distance)}}</span>
+                    </div>
+                    <div class="d-flex pa-1" v-if="mileage.amount !== null">
+                        <v-icon :color="getProgressColor(getMileageProgress(mileage.mileage, mileage.lifetime))">
+                            mdi-currency-usd
+                        </v-icon>
+                        <span class="pa-1">{{ mileage.amount }}</span>
+                    </div>
+                </div>
+
+                <v-list-item v-if="mileage.description">
+                    <div>
+                        <span>{{ mileage.description }}</span>
+                    </div>
+                </v-list-item>
+            </v-expansion-panel-content>
+        </v-expansion-panel>
+    </v-expansion-panels>
+</template>
