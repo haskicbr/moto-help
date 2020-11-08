@@ -3,28 +3,21 @@
     import router from "../../routes";
 
     import {RegistrationsActionTypes} from "../../store/actions/types";
+    import {validationRules} from "../../validation";
     import {AuthActionTypes} from "../../store/actions/types";
 
     export default {
         data: () => ({
-            valid: true,
-            nameRules: [
-                v => !!v || 'Name is required',
-                v => (v && v.length <= 10) || 'Name must be less than 10 characters',
-            ],
-            email: '',
-            emailRules: [
-                v => !!v || 'E-mail is required',
-                v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-            ],
             rules: {
                 emailServer: true,
                 passwordServer: true,
-                required: value => !!value || 'Required.',
-                min: v => v.length >= 8 || 'Min 8 characters',
-                emailMatch: () => ('The email and password you entered don\'t match'),
+                required: validationRules.required(),
+                min: validationRules.min(6),
+                email: validationRules.email(),
             },
+            valid: true,
             password: '',
+            email: '',
             isShowedPassword: false,
         }),
 
@@ -78,7 +71,7 @@
 
                 <v-text-field
                         v-model="email"
-                        :rules="[...emailRules, rules.emailServer]"
+                        :rules="[...rules.email, rules.emailServer]"
                         :label="$store.getters.languages('EMAIL')"
                         required
                         v-on:keydown="clearServerErrors"
@@ -87,7 +80,7 @@
                 <v-text-field
                         v-model="password"
                         :append-icon="isShowedPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                        :rules="[rules.required, rules.min, rules.passwordServer]"
+                        :rules="[...rules.required, ...rules.min, rules.passwordServer]"
                         :type="isShowedPassword ? 'text' : 'password'"
                         name="input-10-1"
                         :label="$store.getters.languages('PASSWORD')"

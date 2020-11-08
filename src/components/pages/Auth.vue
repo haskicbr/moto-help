@@ -1,62 +1,56 @@
 <script>
 
-    import router from "../../routes";
-    import {AuthActionTypes} from "../../store/actions/types";
+import router from "../../routes";
+import {validationRules} from "../../validation";
+import {AuthActionTypes} from "../../store/actions/types";
 
-    export default {
+export default {
 
-        name: "Auth",
+    name: "Auth",
 
-        data: () => ({
-            valid: true,
-            nameRules: [
-                v => !!v || 'Name is required',
-                v => (v && v.length <= 10) || 'Name must be less than 10 characters',
-            ],
-            email: '',
-            emailRules: [
-                v => !!v || 'E-mail is required',
-                v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-            ],
+    data: () => {
+        return {
             rules: {
                 emailServer: true,
                 passwordServer: true,
-                required: value => !!value || 'Required.',
-                min: v => v.length >= 8 || 'Min 8 characters',
-                emailMatch: () => ('The email and password you entered don\'t match'),
+                required: validationRules.required(),
+                min: validationRules.min(6),
+                email: validationRules.email(),
             },
+            valid: true,
             password: '',
+            email: '',
             isShowedPassword: false,
+        }
+    },
 
-        }),
+    methods: {
 
-        methods: {
-
-            clearServerErrors() {
-                this.rules.emailServer = true;
-                this.rules.passwordServer = true;
-            },
-
-            validate() {
-
-                if (this.$refs.form.validate()) {
-
-                    this.$store.dispatch(AuthActionTypes.AUTH, {
-                        email: this.email,
-                        password: this.password
-                    }).catch((error) => {
-                        this.rules.emailServer = "user not found"
-                    });
-                }
-            },
-            reset() {
-                this.$refs.form.reset()
-            },
-            resetValidation() {
-                this.$refs.form.resetValidation()
-            },
+        clearServerErrors() {
+            this.rules.emailServer = true;
+            this.rules.passwordServer = true;
         },
-    }
+
+        validate() {
+
+            if (this.$refs.form.validate()) {
+
+                this.$store.dispatch(AuthActionTypes.AUTH, {
+                    email: this.email,
+                    password: this.password
+                }).catch((error) => {
+                    this.rules.emailServer = "user not found"
+                });
+            }
+        },
+        reset() {
+            this.$refs.form.reset()
+        },
+        resetValidation() {
+            this.$refs.form.resetValidation()
+        },
+    },
+}
 </script>
 
 <template>
@@ -65,29 +59,29 @@
     <v-col cols="12">
 
         <v-form
-                ref="form"
-                v-model="valid"
-                v-on:submit.prevent="validate"
+            ref="form"
+            v-model="valid"
+            v-on:submit.prevent="validate"
         >
 
             <v-text-field
-                    v-model="email"
-                    :rules="[...emailRules, rules.emailServer]"
-                    :label="$store.getters.languages('EMAIL')"
-                    required
-                    v-on:keydown="clearServerErrors"
+                v-model="email"
+                :rules="[...rules.email, rules.emailServer]"
+                :label="$store.getters.languages('EMAIL')"
+                required
+                v-on:keydown="clearServerErrors"
             ></v-text-field>
 
             <v-text-field
-                    v-model="password"
-                    :append-icon="isShowedPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                    :rules="[rules.required]"
-                    :type="isShowedPassword ? 'text' : 'password'"
-                    name="input-10-1"
-                    :label="$store.getters.languages('PASSWORD')"
-                    counter
-                    v-on:keydown="clearServerErrors"
-                    @click:append="isShowedPassword = !isShowedPassword"
+                v-model="password"
+                :append-icon="isShowedPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                :rules="[...rules.required]"
+                :type="isShowedPassword ? 'text' : 'password'"
+                name="input-10-1"
+                :label="$store.getters.languages('PASSWORD')"
+                counter
+                v-on:keydown="clearServerErrors"
+                @click:append="isShowedPassword = !isShowedPassword"
             ></v-text-field>
 
             <v-btn class="mt-10"
