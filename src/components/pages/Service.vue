@@ -113,12 +113,16 @@
                         <div class="md-layout-item md-size=100 add-mileage-container">
                             <template v-if="Object.keys(serviceTypes).length > 0">
                                 <v-btn class="button--add-service" v-on:click="changeVisibleServiceForm" color="primary">
-                                    <span>{{$store.getters.languages('ADD_SERVICE')}}</span>
+                                    <span>{{$store.getters.languages('ADD_SERVICE')}}
+                                        <v-icon>mdi-plus</v-icon>
+                                    </span>
                                 </v-btn>
                             </template>
 
                             <v-btn class="button--add-service-type" v-on:click="goToAddServiceType" color="primary">
-                                <span>{{$store.getters.languages('ADD_SERVICE_TYPE')}}</span>
+                                <span>{{$store.getters.languages('ADD_SERVICE_TYPE')}}
+                                    <v-icon>mdi-plus</v-icon>
+                                </span>
                             </v-btn>
                         </div>
                     </template>
