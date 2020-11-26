@@ -63,6 +63,7 @@ export default {
         },
 
         clearTransportForm() {
+            this.transportId = "";
             this.$refs.form.reset();
             this.$refs.form.resetValidation();
         },
