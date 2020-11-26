@@ -1,12 +1,19 @@
 <script>
 
-import router from "../../routes";
 import {validationRules} from "../../validation";
 import {AuthActionTypes} from "../../store/actions/types";
 
 export default {
 
     name: "Auth",
+
+    watch: {
+        email: (next, prev) => {
+            console.log({
+                prev, next
+            });
+        }
+    },
 
     data: () => {
         return {
@@ -32,9 +39,7 @@ export default {
         },
 
         validate() {
-
             if (this.$refs.form.validate()) {
-
                 this.$store.dispatch(AuthActionTypes.AUTH, {
                     email: this.email,
                     password: this.password
@@ -81,7 +86,7 @@ export default {
                 :label="$store.getters.languages('PASSWORD')"
                 counter
                 v-on:keydown="clearServerErrors"
-                @click:append="isShowedPassword = !isShowedPassword"
+                v-on:click:append="isShowedPassword = !isShowedPassword"
             ></v-text-field>
 
             <v-btn class="mt-10"

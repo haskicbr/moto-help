@@ -3,20 +3,23 @@ import {TransportActionTypes} from "../../store/actions/types";
 import {v4 as uuidv4} from 'uuid';
 import EventBus from "../../events/EventBus";
 import {ModalEventTypes} from "../../events/types";
+import {validationRules} from "../../validation";
 
 export default {
     name: "Transport",
     methods: {
         async addTransport() {
 
-            if (this.transportId) {
+            if (!this.$refs.form.validate()) {
+                return false;
+            }
 
+            if (this.transportId) {
                 this.$store.dispatch(TransportActionTypes.EDIT_TRANSPORT, {
                     id: this.transportId,
                     name: this.transportName,
                     mileage: this.transportMileage
                 });
-
             } else {
                 const transportId = uuidv4();
 
@@ -48,12 +51,6 @@ export default {
             this.transportName = currentTransport.name;
             this.BUTTON_TEXT = this.CHANGE_BUTTON_TEXT
         },
-        changeTransportMileage() {
-            let value = parseInt(this.transportMileage);
-            value = (value > 100000000) ? 100000000 : value;
-
-            this.transportMileage = value;
-        },
         changeCurrentTransport(id) {
             this.$store.dispatch(TransportActionTypes.CHANGE_CURRENT_TRANSPORT, {
                 id
@@ -66,10 +63,8 @@ export default {
         },
 
         clearTransportForm() {
-            this.transportId = "";
-            this.transportName = "";
-            this.transportMileage = 0;
-            this.BUTTON_TEXT = this.ADD_BUTTON_TEXT;
+            this.$refs.form.reset();
+            this.$refs.form.resetValidation();
         },
 
         confirmDelete(transportId) {
@@ -87,14 +82,6 @@ export default {
             );
         }
     },
-
-    computed: {
-        // a computed getter
-        clearMileage: function () {
-            // `this` points to the vm instance
-            return parseInt(this.transportMileage);
-        }
-    },
     data() {
         return {
             transportId: "",
@@ -102,7 +89,16 @@ export default {
             transportMileage: 0,
             CHANGE_BUTTON_TEXT: "Save transport",
             ADD_BUTTON_TEXT: "Add new transport",
-            BUTTON_TEXT: "Add new transport"
+            BUTTON_TEXT: "Add new transport",
+            formIsValid: true,
+            rules: {
+                emailServer: true,
+                passwordServer: true,
+                required: validationRules.required(),
+                min: validationRules.min(3),
+                max: validationRules.max(20),
+                maxMileage: validationRules.maxNumber(100000000)
+            },
         }
     }
 }
@@ -112,14 +108,37 @@ export default {
     <div>
         <v-list-item>
             <v-list-item-content>
-                <form v-on:submit.prevent="addTransport">
+                <v-form
+                    v-model="formIsValid"
+                    ref="form"
+                    v-on:submit.prevent="addTransport"
+                >
                     <div>
-                        <v-text-field v-model="transportName" label="Transport name" type="text"></v-text-field>
-                        <v-text-field :suffix="$store.state.settings.units.distance" v-on:keyup="changeTransportMileage"
-                                      v-model="transportMileage" label="Transport mileage" type="number"></v-text-field>
+                        <v-text-field
+                            autocomplete="off"
+                            :rules="[...rules.required, ...rules.max]"
+                            v-model="transportName"
+                            label="Transport name"
+                            type="text">
+                        </v-text-field>
+
+                        <v-text-field
+                            autocomplete="off"
+                            :rules="[...rules.required, ...rules.maxMileage]"
+                            :suffix="$store.state.settings.units.distance"
+                            v-model="transportMileage"
+                            label="Transport mileage"
+                            type="number">
+                        </v-text-field>
                     </div>
-                    <v-btn style="width:100%" type="submit" color="primary">{{ BUTTON_TEXT }}</v-btn>
-                </form>
+                    <v-btn
+                        :disabled="!formIsValid"
+                        style="width:100%"
+                        type="submit"
+                        color="primary">
+                        {{ BUTTON_TEXT }}
+                    </v-btn>
+                </v-form>
             </v-list-item-content>
         </v-list-item>
 
