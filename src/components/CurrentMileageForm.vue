@@ -3,7 +3,61 @@ import {ServiceActionTypes} from "../store/actions/types";
 
 export default {
     name: "CurrentMileageForm",
+
+
+    watch: {
+
+        isIncrease(next, prev) {
+            this.handleChangeMileage(next, true);
+        },
+
+        isDecrease(next, prev) {
+            this.handleChangeMileage(next, false);
+        }
+    },
     methods: {
+
+        handleChangeMileage(isActive, isIncrease) {
+            if (isActive) {
+
+                let currentMileage = this.$store.getters.currentMileage;
+                let timeOut = 100;
+                let value = 1;
+                const decreaseMileage = () => {
+
+                    if (isIncrease) {
+                        currentMileage = currentMileage + value;
+                    } else if (currentMileage > 0) {
+                        currentMileage = currentMileage - value;
+                    }
+
+                    if(currentMileage < 0) {
+                        currentMileage = 0;
+                    }
+
+                    value += 1;
+                    this.$store.dispatch(ServiceActionTypes.CHANGE_CURRENT_MILEAGE, currentMileage);
+
+                    return true;
+                }
+
+                decreaseMileage();
+
+                this.intervalTimer = setInterval(() => {
+                    decreaseMileage();
+                }, timeOut);
+
+            } else {
+                if (this.intervalTimer) {
+                    clearInterval(this.intervalTimer);
+                }
+            }
+        },
+
+
+        decreaseMileage() {
+
+        },
         changeCurrent() {
             this.isEditable = false;
             this.$store.dispatch(ServiceActionTypes.CHANGE_CURRENT_MILEAGE, this.currentMileage);
@@ -13,45 +67,69 @@ export default {
         return {
             currentMileage: this.$store.getters.currentMileage,
             isEditable: false,
+            isDecrease: false,
+            isIncrease: false,
         }
     }
 }
 </script>
 
 <template>
-    <v-list-item>
-        <v-list-item-content v-if="!isEditable">
-            <v-list-item-title>
-                <div class="">current transport {{ $store.getters.currentTransport.name }}</div>
-            </v-list-item-title>
+    <div>
+        <v-list-item class="d-flex">
+            <v-list-item-content class="d-flex justify-content-center" v-if="!isEditable">
+                <v-list-item-title>
+                    <h3 class="">current transport {{ $store.getters.currentTransport.name }}</h3>
+                </v-list-item-title>
+            </v-list-item-content>
+        </v-list-item>
 
-            <v-list-item-title class="d-flex" style="padding: 10px 0px 10px 0px;">
-                    <span class="d-flex align-self-center"
-                          style="width: 80%">current mileage {{
-                            $store.getters.currentMileage
-                        }} {{ $store.getters.languages($store.state.settings.units.distance) }}</span>
-                <v-tooltip bottom>
-                    <template v-slot:activator="{ on }">
-                        <v-btn v-on="on" v-on:click="isEditable = !isEditable" class="mx-2" fab x-small>
-                            <v-icon small dark>mdi-pencil</v-icon>
-                        </v-btn>
-                    </template>
-                    <span>change mileage</span>
-                </v-tooltip>
-            </v-list-item-title>
-        </v-list-item-content>
+        <v-list-item>
+            <v-list-item-content style="padding-right: 20px">
 
-        <v-list-item-content v-if="isEditable">
+                <h4 class="d-flex" style="justify-content: flex-end">current mileage</h4>
 
-            <form v-on:submit.prevent="changeCurrent">
-                <div>
-                    <label class="subtitle-1 font-weight-regular">Change current mileage</label>
+                <h2 class="d-flex p-5" style="justify-content: flex-end">
+                    {{
+                        $store.getters.currentMileage
+                    }} {{ $store.getters.languages($store.state.settings.units.distance) }}
+                </h2>
 
-                    <v-text-field type="number" v-model="currentMileage"></v-text-field>
+            </v-list-item-content>
+            <v-list-item-content>
+                <div style="display: flex">
+                    <v-tooltip bottom>
+                        <template v-slot:activator="{ on }">
+                            <v-btn v-on="on" v-touch="{
+                                start: () => {
+                                    isIncrease = true;
+                                },
+                                end: () => {
+                                    isIncrease = false;
+                                },
+                            }" class="mx-2" fab>
+                                <v-icon color="blue" large dark>mdi-plus</v-icon>
+                            </v-btn>
+                        </template>
+                        <span>change mileage</span>
+                    </v-tooltip>
+                    <v-tooltip bottom>
+                        <template v-slot:activator="{ on }">
+                            <v-btn v-on="on" v-touch="{
+                                start: () => {
+                                    isDecrease = true;
+                                },
+                                end: () => {
+                                    isDecrease = false;
+                                },
+                            }" class="mx-2" fab>
+                                <v-icon color="red" large dark>mdi-minus</v-icon>
+                            </v-btn>
+                        </template>
+                        <span>change mileage</span>
+                    </v-tooltip>
                 </div>
-                <v-btn type="submit" color="primary">Save</v-btn>
-            </form>
-
-        </v-list-item-content>
-    </v-list-item>
+            </v-list-item-content>
+        </v-list-item>
+    </div>
 </template>
