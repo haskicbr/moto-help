@@ -4,9 +4,7 @@ import {ServiceActionTypes} from "../store/actions/types";
 export default {
     name: "CurrentMileageForm",
 
-
     watch: {
-
         isIncrease(next, prev) {
             this.handleChangeMileage(next, true);
         },
@@ -21,9 +19,9 @@ export default {
             if (isActive) {
 
                 let currentMileage = this.$store.getters.currentMileage;
-                let timeOut = 100;
+                let timeOut = 150;
                 let value = 1;
-                const decreaseMileage = () => {
+                const updateMileage = () => {
 
                     if (isIncrease) {
                         currentMileage = currentMileage + value;
@@ -31,20 +29,22 @@ export default {
                         currentMileage = currentMileage - value;
                     }
 
-                    if(currentMileage < 0) {
+                    if (currentMileage < 0) {
                         currentMileage = 0;
                     }
 
-                    value += 1;
+                    if (value < 10) {
+                        value += 1;
+                    }
                     this.$store.dispatch(ServiceActionTypes.CHANGE_CURRENT_MILEAGE, currentMileage);
 
                     return true;
                 }
 
-                decreaseMileage();
+                updateMileage();
 
                 this.intervalTimer = setInterval(() => {
-                    decreaseMileage();
+                    updateMileage();
                 }, timeOut);
 
             } else {
@@ -52,11 +52,6 @@ export default {
                     clearInterval(this.intervalTimer);
                 }
             }
-        },
-
-
-        decreaseMileage() {
-
         },
         changeCurrent() {
             this.isEditable = false;
@@ -98,9 +93,8 @@ export default {
             </v-list-item-content>
             <v-list-item-content>
                 <div style="display: flex">
-                    <v-tooltip bottom>
-                        <template v-slot:activator="{ on }">
-                            <v-btn v-on="on" v-touch="{
+
+                    <v-btn v-touch="{
                                 start: () => {
                                     isIncrease = true;
                                 },
@@ -108,14 +102,10 @@ export default {
                                     isIncrease = false;
                                 },
                             }" class="mx-2" fab>
-                                <v-icon color="blue" large dark>mdi-plus</v-icon>
-                            </v-btn>
-                        </template>
-                        <span>change mileage</span>
-                    </v-tooltip>
-                    <v-tooltip bottom>
-                        <template v-slot:activator="{ on }">
-                            <v-btn v-on="on" v-touch="{
+                        <v-icon color="blue" large dark>mdi-plus</v-icon>
+                    </v-btn>
+
+                    <v-btn v-touch="{
                                 start: () => {
                                     isDecrease = true;
                                 },
@@ -123,11 +113,8 @@ export default {
                                     isDecrease = false;
                                 },
                             }" class="mx-2" fab>
-                                <v-icon color="red" large dark>mdi-minus</v-icon>
-                            </v-btn>
-                        </template>
-                        <span>change mileage</span>
-                    </v-tooltip>
+                        <v-icon color="red" large dark>mdi-minus</v-icon>
+                    </v-btn>
                 </div>
             </v-list-item-content>
         </v-list-item>

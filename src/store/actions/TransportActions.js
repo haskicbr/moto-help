@@ -5,7 +5,15 @@ import SystemActionTypes from "./types/SystemActionTypes";
 const actions = {};
 
 actions[TransportActionTypes.ADD_TRANSPORT] = function ({commit, state, dispatch}, {id, name, mileage}) {
+
     commit(TransportMutationTypes.ADD_TRANSPORT, {id, name, mileage});
+
+    if (state.transports.length === 1) {
+        dispatch(TransportActionTypes.CHANGE_CURRENT_TRANSPORT, {
+            id
+        });
+    }
+
     dispatch(SystemActionTypes.SYNC_STORE_WITH_SERVER);
 }
 

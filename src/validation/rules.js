@@ -23,7 +23,6 @@ export default {
                 if (typeof (v) === 'string') {
                     return (v && v.length <= length) || `Max ${length} characters`
                 } else {
-                    console.log(v)
                     return (v && v <= length) || `Max ${length}`
                 }
             }

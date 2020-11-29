@@ -28,12 +28,6 @@ export default {
                     name: this.transportName,
                     mileage: this.transportMileage
                 });
-
-                if (this.$store.state.transports.length === 1) {
-                    this.$store.dispatch(TransportActionTypes.CHANGE_CURRENT_TRANSPORT, {
-                        id: transportId
-                    });
-                }
             }
             this.clearTransportForm();
         },
@@ -66,6 +60,7 @@ export default {
             this.transportId = "";
             this.$refs.form.reset();
             this.$refs.form.resetValidation();
+            this.BUTTON_TEXT = this.ADD_BUTTON_TEXT;
         },
 
         confirmDelete(transportId) {
@@ -87,7 +82,7 @@ export default {
         return {
             transportId: "",
             transportName: "",
-            transportMileage: 0,
+            transportMileage: "",
             CHANGE_BUTTON_TEXT: "Save transport",
             ADD_BUTTON_TEXT: "Add new transport",
             BUTTON_TEXT: "Add new transport",
@@ -118,7 +113,7 @@ export default {
                         <v-text-field
                             autocomplete="off"
                             :rules="[...rules.required, ...rules.max]"
-                            v-model="transportName"
+                            v-model.trim="transportName"
                             label="Transport name"
                             type="text">
                         </v-text-field>
@@ -127,7 +122,7 @@ export default {
                             autocomplete="off"
                             :rules="[...rules.required, ...rules.maxMileage]"
                             :suffix="$store.state.settings.units.distance"
-                            v-model="transportMileage"
+                            v-model.number="transportMileage"
                             label="Transport mileage"
                             type="number">
                         </v-text-field>
