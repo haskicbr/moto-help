@@ -173,7 +173,7 @@ export default {
         </v-navigation-drawer>
 
         <template>
-            <v-system-bar></v-system-bar>
+            <div class="pa-5"></div>
         </template>
 
         <v-main>

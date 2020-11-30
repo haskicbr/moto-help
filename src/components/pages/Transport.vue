@@ -67,10 +67,10 @@ export default {
             EventBus.$emit(
                 ModalEventTypes.SHOW_CONFIRM_MODAL,
                 {
-                    confirmTitle: 'Delete transport',
-                    confirmText: 'YES',
-                    disMissText: 'NO',
-                    text: 'Do you want to delete transport?',
+                    confirmTitle: this.$store.getters.languages('DELETE_TRANSPORT'),
+                    confirmText: this.$store.getters.languages("YES"),
+                    disMissText: this.$store.getters.languages("NO"),
+                    text: this.$store.getters.languages('DELETE_TRANSPORT_CONFIRM'),
                     callback: () => {
                         this.deleteTransport(transportId);
                     }
@@ -83,9 +83,9 @@ export default {
             transportId: "",
             transportName: "",
             transportMileage: "",
-            CHANGE_BUTTON_TEXT: "Save transport",
-            ADD_BUTTON_TEXT: "Add new transport",
-            BUTTON_TEXT: "Add new transport",
+            CHANGE_BUTTON_TEXT: this.$store.getters.languages("SAVE"),
+            ADD_BUTTON_TEXT: this.$store.getters.languages("ADD"),
+            BUTTON_TEXT: this.$store.getters.languages("ADD"),
             formIsValid: true,
             rules: {
                 emailServer: true,
@@ -114,7 +114,7 @@ export default {
                             autocomplete="off"
                             :rules="[...rules.required, ...rules.max]"
                             v-model.trim="transportName"
-                            label="Transport name"
+                            :label="$store.getters.languages('TRANSPORT_NAME')"
                             type="text">
                         </v-text-field>
 
@@ -123,7 +123,7 @@ export default {
                             :rules="[...rules.required, ...rules.maxMileage]"
                             :suffix="$store.state.settings.units.distance"
                             v-model.number="transportMileage"
-                            label="Transport mileage"
+                            :label="$store.getters.languages('MILEAGE')"
                             type="number">
                         </v-text-field>
                     </div>
@@ -141,8 +141,8 @@ export default {
         <template v-if="$store.state.transports.length !== 0">
             <v-list-item :key="key" v-for="(transport, key) in $store.state.transports">
                 <v-list-item-content>
-                    <v-list-item-title class="subtitle-1">transport: {{ transport.name }}</v-list-item-title>
-                    <v-list-item-title>mileage: {{ transport.mileage }} {{ $store.state.settings.units.distance }}
+                    <v-list-item-title class="subtitle-1">{{ $store.getters.languages("TRANSPORT") }}: {{ transport.name }}</v-list-item-title>
+                    <v-list-item-title>{{ $store.getters.languages("MILEAGE") }}: {{ transport.mileage }} {{ $store.state.settings.units.distance }}
                     </v-list-item-title>
                 </v-list-item-content>
 
@@ -165,7 +165,7 @@ export default {
 
                                     </v-btn>
                                 </template>
-                                <span>Change current</span>
+                                <span>{{ $store.getters.languages("CHANGE_CURRENT") }}</span>
                             </v-tooltip>
                             <v-tooltip bottom>
                                 <template v-slot:activator="{ on, attrs }">
@@ -182,7 +182,7 @@ export default {
 
                                     </v-btn>
                                 </template>
-                                <span>Edit transport</span>
+                                <span>{{ $store.getters.languages("EDIT") }}</span>
                             </v-tooltip>
 
                             <v-tooltip bottom>
@@ -200,7 +200,7 @@ export default {
 
                                     </v-btn>
                                 </template>
-                                <span>Delete transport</span>
+                                <span>{{ $store.getters.languages("DELETE") }}</span>
                             </v-tooltip>
                         </div>
                     </template>
