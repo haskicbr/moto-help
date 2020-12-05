@@ -1,17 +1,12 @@
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const webpack  = require("webpack");
-
-console.log(path.resolve(__dirname, './public'))
-console.log(path.join(__dirname, './public'))
+const webpack = require("webpack");
 
 module.exports = {
-
     mode: 'development',
-
     entry: './src/main.js',
     output: {
-        path: path.resolve(__dirname,  './public'),
+        path: path.resolve(__dirname, './public'),
         filename: 'bundle.js'
     },
 
@@ -23,7 +18,8 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                loader: 'babel-loader'
+                loader: 'babel-loader',
+                exclude: /(node_modules)/
             },
             {
                 test: /\.css$/,
@@ -63,10 +59,10 @@ module.exports = {
                 use: [
                     {
                         loader: 'file-loader',
-/*                        options: {
-                            name: '[name].[ext]',
-                            outputPath: 'fonts/'
-                        }*/
+                        /*                        options: {
+                                                    name: '[name].[ext]',
+                                                    outputPath: 'fonts/'
+                                                }*/
                     }
                 ]
             }
