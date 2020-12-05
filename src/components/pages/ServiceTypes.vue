@@ -2,6 +2,7 @@
 
 import {ServiceActionTypes} from "../../store/actions/types";
 import {v1 as uuidv1} from "uuid";
+import {validationRules} from "../../validation";
 
 export default {
     name: "ServiceTypes",
@@ -32,6 +33,11 @@ export default {
     },
     data() {
         return {
+            formIsValid: true,
+            rules: {
+                required: validationRules.required(),
+            },
+
             mileageDescription: "",
         }
     }
@@ -43,13 +49,22 @@ export default {
     <div>
         <v-list-item>
             <v-list-item-content>
-                <form v-on:submit.prevent="saveType">
+                <v-form
+                    v-model="formIsValid"
+                    v-on:submit.prevent="saveType">
                     <div>
-                        <v-text-field label="Description" type="text"
+                        <v-text-field :label="$store.getters.languages('DESCRIPTION')" type="text"
+                                      :rules="[...rules.required]"
                                       v-model="mileageDescription"></v-text-field>
                     </div>
-                    <v-btn style="width:100%" type="submit" color="primary">add service type</v-btn>
-                </form>
+                    <v-btn
+                        :disabled="!formIsValid"
+                        style="width:100%"
+                        type="submit"
+                        color="primary">
+                        {{ $store.getters.languages('ADD') }}
+                    </v-btn>
+                </v-form>
             </v-list-item-content>
         </v-list-item>
 
@@ -72,7 +87,7 @@ export default {
                                 <v-icon>mdi-minus</v-icon>
                             </v-btn>
                         </template>
-                        <span>delete</span>
+                        <span>{{ $store.getters.languages('DELETE') }}</span>
                     </v-tooltip>
                 </v-list-item-content>
             </v-list-item>
