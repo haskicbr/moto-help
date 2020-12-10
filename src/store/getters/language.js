@@ -107,6 +107,10 @@ const languages = {
         [LanguageTypes.EN]: "Save",
         [LanguageTypes.RU]: "Сохранить",
     },
+    "ADD": {
+        [LanguageTypes.EN]: "Add",
+        [LanguageTypes.RU]: "Добавить",
+    },
     "LIFETIME": {
         [LanguageTypes.EN]: "Lifetime",
         [LanguageTypes.RU]: "Ресурс",
@@ -155,7 +159,35 @@ const languages = {
     "CHANGE_DATE": {
         [LanguageTypes.EN]: "Change date",
         [LanguageTypes.RU]: "Изменить дату",
-    }
+    },
+    "TRANSPORT_NAME": {
+        [LanguageTypes.EN]: "Transport name",
+        [LanguageTypes.RU]: "Название ТС",
+    },
+    "CHANGE_CURRENT": {
+        [LanguageTypes.EN]: "Change current",
+        [LanguageTypes.RU]: "Сделать текущим",
+    },
+    "EDIT": {
+        [LanguageTypes.EN]: "Edit",
+        [LanguageTypes.RU]: "Изменить",
+    },
+    "DELETE": {
+        [LanguageTypes.EN]: "Delete",
+        [LanguageTypes.RU]: "Удалить",
+    },
+    "TRANSPORT": {
+        [LanguageTypes.EN]: "Transport",
+        [LanguageTypes.RU]: "ТС",
+    },
+    "DELETE_TRANSPORT": {
+        [LanguageTypes.EN]: "Delete transport",
+        [LanguageTypes.RU]: "Удалиние ТС",
+    },
+    "DELETE_TRANSPORT_CONFIRM": {
+        [LanguageTypes.EN]: "Do you want to delete transport?",
+        [LanguageTypes.RU]: "Вы действительно хотите удалить выбранное ТС?",
+    },
 };
 const language = {
     languages(state, getters) {

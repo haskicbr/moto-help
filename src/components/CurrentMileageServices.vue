@@ -82,7 +82,7 @@ export default {
                 </template>
             </v-expansion-panel-header>
             <v-expansion-panel-content>
-                <div class="d-flex align-self-center">
+                <div class="d-flex align-self-center flex-wrap">
 
                     <template  v-if="mileage.lifetime !== null">
                         <div class="d-flex pa-1">

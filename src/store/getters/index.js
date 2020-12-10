@@ -23,7 +23,7 @@ const getters = {
     },
     currentMileage(state, getters) {
         const currentTransport = getters.currentTransport;
-        return (currentTransport) ? currentTransport.mileage : null;
+        return (currentTransport) ? Number(currentTransport.mileage) : null;
     },
     currentServices(state, getters) {
         return state.services.filter(service => service.transportId === getters.currentTransport.id)
