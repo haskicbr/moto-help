@@ -109,15 +109,20 @@ const languages = {
     },
     "LIFETIME": {
         [LanguageTypes.EN]: "Lifetime",
-        [LanguageTypes.RU]: "Пробег",
+        [LanguageTypes.RU]: "Ресурс",
     },
     "PAYMENT": {
         [LanguageTypes.EN]: "Payment",
         [LanguageTypes.RU]: "Стоимость",
     },
+    "PAYMENT_AMOUNT": {
+        [LanguageTypes.EN]: "Payment amount",
+        [LanguageTypes.RU]: "Стоимость",
+    },
+
     "DESCRIPTION": {
         [LanguageTypes.EN]: "Description",
-        [LanguageTypes.RU]: "Description",
+        [LanguageTypes.RU]: "Описание",
     },
     "DELETE_SERVICE": {
         [LanguageTypes.EN]: "Delete service",
