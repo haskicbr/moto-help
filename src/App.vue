@@ -6,6 +6,7 @@ import RateApp from "./components/modals/RateApp";
 import EventBus from "./events/EventBus";
 import {ModalEventTypes} from "./events/types";
 import Confirm from "./components/modals/Confirm";
+import GoogleTagManager from "./components/visors/GoogleTagManager";
 import "./scss/main.scss";
 
 
@@ -15,7 +16,8 @@ export default {
 
     components: {
         Confirm,
-        RateApp
+        RateApp,
+        GoogleTagManager
     },
 
     methods: {
@@ -221,6 +223,6 @@ export default {
 
         <RateApp/>
         <Confirm/>
-
+        <GoogleTagManager/>
     </v-app>
 </template>
