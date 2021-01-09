@@ -113,11 +113,9 @@ export default {
                     </div>
                 </div>
 
-                <v-list-item v-if="mileage.description">
-                    <div>
-                        <span>{{ mileage.description }}</span>
-                    </div>
-                </v-list-item>
+                <div v-if="mileage.description">
+                    <span>{{ mileage.description }}</span>
+                </div>
             </v-expansion-panel-content>
         </v-expansion-panel>
     </v-expansion-panels>
