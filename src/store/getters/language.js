@@ -121,7 +121,7 @@ const languages = {
     },
     "DESCRIPTION": {
         [LanguageTypes.EN]: "Description",
-        [LanguageTypes.RU]: "Description",
+        [LanguageTypes.RU]: "Описание",
     },
     "DELETE_SERVICE": {
         [LanguageTypes.EN]: "Delete service",
@@ -129,7 +129,7 @@ const languages = {
     },
     "DISTANCE_UNIT": {
         [LanguageTypes.EN]: "Distance unit",
-        [LanguageTypes.RU]: "Единица расстояния",
+        [LanguageTypes.RU]: "Единица измерения расстояния",
     },
     "CANCEL": {
         [LanguageTypes.EN]: "Cancel",
