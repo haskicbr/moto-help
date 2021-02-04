@@ -25,11 +25,8 @@ jobs:
       #   run: npm run lint
       - name: Build
         run: npm run build
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@master
         with:
           node-version: '10.x'
-      - uses: actions/checkout@master
       - uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting
