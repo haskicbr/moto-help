@@ -13,35 +13,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Prepare
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
         with:
-          node-version: 10
-
-      - name: Prepare SSH key
-        uses: shimataro/ssh-key-action@v2
+          node-version: '10.x'
+      - uses: actions/checkout@master
+      - uses: w9jds/firebase-action@master
         with:
-          key: ${{ secrets.DEPLOY_KEY }}
-          known_hosts: moto.help
-      - name: Install
-        run: |
-          npm i --no-cache
-     # - name: Lint
-     #   run: npm run lint
-      - name: Build
-        run: npm run build
-
-      - name: Deploy
-        uses: appleboy/scp-action@master
+          args: deploy --only hosting
         env:
-          HOST: "moto.help"
-          USERNAME: "root"
-          KEY: ${{ secrets.DEPLOY_KEY }}
-        with:
-          source: "./public/*"
-          target: "/var/develop/moto-help-api/project/public"
-          strip_components: 1
-
-
+          FIREBASE_TOKEN: ${{ secrets.MOTO_HELP_FIREBASE_TOKEN }}
