@@ -28,12 +28,12 @@ const languages = {
         [LanguageTypes.RU]: "Язык",
     },
     "RU": {
-        [LanguageTypes.EN]: "Russian",
+        [LanguageTypes.EN]: "Русский",
         [LanguageTypes.RU]: "Русский",
     },
     "EN": {
         [LanguageTypes.EN]: "English",
-        [LanguageTypes.RU]: "Английский",
+        [LanguageTypes.RU]: "English",
     },
     "EMAIL": {
         [LanguageTypes.EN]: "Email",
